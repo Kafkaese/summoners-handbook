@@ -75,3 +75,14 @@ describe('attack lines', () => {
     expect(getValue(croc.creature, 'Melee')).toBe('bite +7 (1d8+2 plus grab), tail slap +2 (1d12+1)');
   });
 });
+
+describe('ability descriptions', () => {
+  it('explains each gained ability with the universal monster rules', () => {
+    const tiger = shape('tiger', 8)!;
+    expect(tiger.creature.special.map((s) => s.name)).toEqual(['Grab (Ex)', 'Pounce (Ex)', 'Rake (Ex)']);
+    expect(tiger.creature.special[0].text).toMatch(/\+4 bonus on combat maneuver checks/);
+    // Not granted by beast shape II, so not described either.
+    expect(shape('tiger', 6)!.creature.special.map((s) => s.name)).toEqual(['Grab (Ex)', 'Pounce (Ex)']);
+    expect(shape('dire-wolf', 6)!.creature.special.map((s) => s.name)).toEqual(['Trip (Ex)']);
+  });
+});

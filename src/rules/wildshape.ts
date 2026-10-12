@@ -1,5 +1,6 @@
 // Druid wild shape into animals (beast shape I–III), per the druid class
 // feature and the polymorph rules.
+import umrJson from '../data/umr.json';
 import { parseAttack, splitTopLevel } from './attacks';
 import { abilityMod, fmtMod, parseNum } from './fields';
 import type { BuiltCreature, Creature, Field } from './types';
@@ -237,6 +238,10 @@ export interface WildShapeResult {
 const strDamage = (mod: number, mult: number) => (mod < 0 ? mod : Math.floor(mod * mult));
 const withBonus = (dice: string, bonus: number) => (bonus === 0 ? dice : `${dice}${bonus > 0 ? '+' : '–'}${Math.abs(bonus)}`);
 
+const UMR = (umrJson as { rules: Record<string, { name: string; text: string }> }).rules;
+/** Gained abilities whose save DC uses the wild shape DC. */
+const DC_ABILITIES = new Set(['poison', 'trample', 'web']);
+
 const ABILITY_NAMES: Record<string, string> = {
   grab: 'Grab',
   pounce: 'Pounce',
@@ -411,14 +416,22 @@ export function buildWildShape(form: Creature, level: number, profile: DruidProf
     ],
   };
 
-  // Special abilities text for what's gained, from the form's stat block when it has one.
-  const special = gainedAbilities
-    .map((a) => {
-      const own = form.special.find((s) => s.name.toLowerCase().startsWith(a));
-      if (!own) return null;
-      return { name: own.name, text: own.text.replace(/DC \d+/g, `DC ${dc}`).replace(/The save DC is [A-Za-z]+-based\.?/i, `The save DC is 10 + ${tier.spellLevel} (spell level) + Wis modifier.`) };
-    })
-    .filter((s): s is { name: string; text: string } => !!s);
+  // Descriptions of what's gained: the form's own entry when it has one (e.g. its
+  // poison's effects), otherwise the universal monster rule.
+  const dcNote = `In wild shape the DC is ${dc} (10 + ${tier.spellLevel} for ${tier.spell} + Wis modifier).`;
+  const special = gainedAbilities.flatMap((a) => {
+    const own = form.special.find((s) => s.name.toLowerCase().startsWith(a));
+    const rule = UMR[a];
+    const texts: { name: string; text: string }[] = [];
+    if (own) {
+      texts.push({ name: own.name, text: own.text.replace(/DC \d+/g, `DC ${dc}`).replace(/The save DC is [A-Za-z]+-based\.?/i, dcNote) });
+    }
+    // The form's poison entry only lists the poison itself; the rule explains the ability.
+    if (rule && (!own || a === 'poison')) {
+      texts.push({ name: own ? `${rule.name}, general rule` : rule.name, text: DC_ABILITIES.has(a) && !own ? `${rule.text}\n${dcNote}` : rule.text });
+    }
+    return texts;
+  });
 
   const lost = [
     profile.naturalSpell ? '' : 'Spellcasting (you need Natural Spell to cast in animal form)',

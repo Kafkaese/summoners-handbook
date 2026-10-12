@@ -38,6 +38,17 @@ export default function App() {
     window.addEventListener('hashchange', onHash);
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
+  // Wild shape is a druid class feature: no tab, and no section, for other classes.
+  const isDruid = settings.classId === 'druid';
+  useEffect(() => {
+    if (route === 'wild-shape' && !isDruid) window.location.hash = '';
+  }, [route, isDruid]);
+  // The wild shape section is green; the page background lives outside .app.
+  const theme = route === 'wild-shape' || (route === 'license' && section === 'wild-shape') ? 'wild-shape' : 'summon';
+  useEffect(() => {
+    document.documentElement.dataset.section = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'wild-shape' ? '#2f5d3a' : '#7a1f1f');
+  }, [theme]);
   const closeLicense = () => {
     window.location.hash = section === 'wild-shape' ? '#wild-shape' : '';
   };
@@ -74,21 +85,24 @@ export default function App() {
           {APP_NAME}
         </h1>
         <p className="tagline">Pathfinder 1e summoning &amp; wild shape</p>
-        <nav className="tabs" aria-label="Sections">
-          <a href="#" className={route === 'summon' ? 'is-active' : ''} aria-current={route === 'summon' ? 'page' : undefined}>
-            Summoning
-          </a>
-          <a href="#wild-shape" className={route === 'wild-shape' ? 'is-active' : ''} aria-current={route === 'wild-shape' ? 'page' : undefined}>
-            Wild Shape
-          </a>
-        </nav>
+        {/* Only druids have a second section to switch to. */}
+        {isDruid && (
+          <nav className="tabs" aria-label="Sections">
+            <a href="#" className={route === 'summon' ? 'is-active' : ''} aria-current={route === 'summon' ? 'page' : undefined}>
+              Summoning
+            </a>
+            <a href="#wild-shape" className={route === 'wild-shape' ? 'is-active' : ''} aria-current={route === 'wild-shape' ? 'page' : undefined}>
+              Wild Shape
+            </a>
+          </nav>
+        )}
       </header>
 
       {route === 'license' ? (
         <main className="license-layout">
           <LicensePage onClose={closeLicense} />
         </main>
-      ) : route === 'wild-shape' ? (
+      ) : route === 'wild-shape' && isDruid ? (
         <WildShapeSection settings={settings} onSettings={setSettings} setPane={setPane} />
       ) : (
         <main className="layout">

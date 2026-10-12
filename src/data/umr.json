@@ -1,0 +1,45 @@
+{
+  "source": "https://www.d20pfsrd.com/bestiary/rules-for-monsters/universal-monster-rules/",
+  "rules": {
+    "constrict": {
+      "name": "Constrict (Ex)",
+      "text": "A creature with this special attack can crush an opponent, dealing bludgeoning damage, when it makes a successful grapple check (in addition to any other effects caused by a successful check, including additional damage). The amount of damage is given in the creature’s entry and is typically equal to the amount of damage caused by the creature’s melee attack."
+    },
+    "ferocity": {
+      "name": "Ferocity (Ex)",
+      "text": "A creature with ferocity remains conscious and can continue fighting even if its hit point total is below 0. The creature is still staggered and loses 1 hit point each round. A creature with ferocity still dies when its hit point total reaches a negative amount equal to its Constitution score."
+    },
+    "grab": {
+      "name": "Grab (Ex)",
+      "text": "If a creature with this special attack hits with the indicated attack (usually a claw or bite attack), it deals normal damage and attempts to start a grapple as a free action without provoking an attack of opportunity. Unless otherwise noted, grab can only be used against targets of a size equal to or smaller than the creature with this ability. If the creature can use grab on creatures of other sizes, it is noted in the creature’s Special Attacks line. The creature has the option to conduct the grapple normally, or simply use the part of its body it used in the grab to hold the opponent. If it chooses to do the latter, it takes a –20 penalty on its CMB check to make and maintain the grapple, but does not gain the grappled condition itself. A successful hold does not deal any extra damage unless the creature also has the constrict special attack. If the creature does not constrict, each successful grapple check it makes during successive rounds automatically deals the damage indicated for the attack that established the hold. Otherwise, it deals constriction damage as well (the amount is given in the creature’s descriptive text).\nCreatures with the grab special attack receive a +4 bonus on combat maneuver checks made to start and maintain a grapple."
+    },
+    "jet": {
+      "name": "Jet (Ex)",
+      "text": "The creature can swim backward as a full-round action at the listed speed. It must move in a straight line while jetting, and does not provoke attacks of opportunity when it does so."
+    },
+    "poison": {
+      "name": "Poison (Ex or Su)",
+      "text": "A creature with this ability can poison those it attacks. The effects of the poison, including its save, frequency, and cure, are included in the creature’s description. The saving throw to resist a poison is usually a Fort save (DC 10 + 1/2 the poisoning creature’s racial HD + the creature’s Con modifier; the exact DC is given in the creature’s descriptive text). Poisons can be removed through neutralize poison and similar effects."
+    },
+    "pounce": {
+      "name": "Pounce (Ex)",
+      "text": "When a creature with this special attack makes a charge, it can make a full attack (including rake attacks if the creature also has the rake ability)."
+    },
+    "rake": {
+      "name": "Rake (Ex)",
+      "text": "A creature with this special attack gains extra natural attacks under certain conditions, typically when it grapples its foe. In addition to the options available to all grapplers, a monster with the rake ability gains two free claw attacks that it can use only against a grappled foe. The bonus and damage caused by these attacks is included in the creature’s description. A monster with the rake ability must begin its turn already grappling to use its rake—it can’t begin a grapple and rake in the same turn."
+    },
+    "trample": {
+      "name": "Trample (Ex)",
+      "text": "As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature’s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a –4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature’s trample attack is 10 + 1/2 the creature’s HD + the creature’s Str modifier (the exact DC is given in the creature’s descriptive text). A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature."
+    },
+    "trip": {
+      "name": "Trip (Ex)",
+      "text": "A creature with the trip special attack can attempt to trip its opponent as a free action without provoking an attack of opportunity if it hits with the specified attack. If the attempt fails, the creature is not tripped in return."
+    },
+    "web": {
+      "name": "Web (Ex)",
+      "text": "Creatures with the web ability can use webs to support themselves and up to one additional creature of the same size. In addition, such creatures can throw a web up to eight times per day. This is similar to an attack with a net but has a maximum range of 50 feet, with a range increment of 10 feet, and is effective against targets up to one size category larger than the web spinner. An entangled creature can escape with a successful Escape Artist check or burst the web with a Strength check. Both are standard actions with a DC equal to 10 + 1/2 the creature’s HD + the creature’s Con modifier. Attempts to burst a web by those caught in it take a –4 penalty.\nWeb spinners can create sheets of sticky webbing up to three times their size. They usually position these sheets to snare flying creatures but can also try to trap prey on the ground. Approaching creatures must succeed on a DC 20 Perception check to notice a web; otherwise they stumble into it and become trapped as though by a successful web attack. Attempts to escape or burst the webbing gain a +5 bonus if the trapped creature has something to walk on or grab while pulling free. Each 5-foot-square section of web has a number of hit points equal to the Hit Dice of the creature that created it and DR 5/—.\nA creature can move across its own web at its climb speed and can pinpoint the location of any creature touching its web."
+    }
+  }
+}

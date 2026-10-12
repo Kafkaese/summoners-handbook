@@ -6,7 +6,7 @@ A web app for Pathfinder 1e summoning spells and druid wild shape.
   and *summon giant ally*. Set your class, level and alignment, pick a spell, pick a
   creature, and get the summoned stat block with the alignment template, alignment
   change and Augment Summoning applied.
-- **Wild Shape** (`#wild-shape`): for druids. Enter your ability scores and a few
+- **Wild Shape** (`#wild-shape`, shown only when the class is druid). Enter your ability scores and a few
   bonuses, browse the animals you can turn into at your level (beast shape I–III),
   star the ones you're familiar with, and get your stat block in that form.
 
@@ -41,6 +41,8 @@ The scraped data in `src/data/` is committed; CI doesn't scrape. To update it, r
     keeps only animals found on [Archives of Nethys](https://aonprd.com) (Paizo's licensed
     reference), which also gives each one's source book, and leaves out swarms, advanced
     or templated versions, and books without a verified copyright notice.
+  - `scrape-umr.mjs` copies the universal monster rules wild shape can grant (grab, pounce,
+    trip, …) into `umr.json`, so the wild shape stat block can explain them.
   - `scrape-spells.mjs` looks up every spell in those stat blocks and writes
     `restrictedSpells.json`: spells a summoned creature can't use (summoning, teleportation,
     planar travel, costly material components). The app crosses these out.

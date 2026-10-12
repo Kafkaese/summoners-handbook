@@ -47,6 +47,33 @@
   }
 }
 
+/* Wild shape: the same design with green as the base color. */
+:root[data-section='wild-shape'] {
+  --bg: #eef1e8;
+  --surface: #fbfdf8;
+  --surface-2: #f1f5ec;
+  --border: #d5dfcc;
+  --accent: #2f5d3a;
+  --accent-soft: #dde9da;
+  --accent-text: #ffffff;
+  --warn-bg: #f3e6dc;
+  --warn-text: #7a3a1f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-section='wild-shape'] {
+    --bg: #111611;
+    --surface: #182019;
+    --surface-2: #1f2a20;
+    --border: #2e3b2f;
+    --accent: #84c493;
+    --accent-soft: #1f3524;
+    --accent-text: #0d1a10;
+    --warn-bg: #3a2a1d;
+    --warn-text: #f0c4a4;
+  }
+}
+
 * {
   box-sizing: border-box;
 }

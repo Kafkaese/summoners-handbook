@@ -35,14 +35,7 @@ export function WildShapeSection({ settings, onSettings, setPane }: Props) {
   const familiar = new Set(familiarIds);
   const form = forms?.find((f) => f.id === selected && tier?.sizes.includes(f.size as never)) ?? null;
 
-  const notice = !isDruid ? (
-    <section className="card placeholder">
-      <p>Wild shape is a druid class feature.</p>
-      <button className="chip is-active" onClick={() => onSettings({ ...settings, classId: 'druid' })}>
-        Switch to druid
-      </button>
-    </section>
-  ) : !tier ? (
+  const notice = !tier ? (
     <section className="card placeholder">
       <p>Druids gain wild shape at 4th level.</p>
     </section>
@@ -51,7 +44,7 @@ export function WildShapeSection({ settings, onSettings, setPane }: Props) {
   return (
     <main className="layout">
       <div className="pane pane-spells">
-        <SettingsPanel settings={settings} onChange={onSettings} />
+        <SettingsPanel settings={settings} onChange={onSettings} characterOnly />
         {/* In the first pane so phones (one pane at a time) see it too. */}
         {notice}
         {isDruid && (

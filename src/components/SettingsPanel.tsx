@@ -6,6 +6,8 @@ import type { Settings } from '../rules/summon';
 interface Props {
   settings: Settings;
   onChange: (s: Settings) => void;
+  /** Hide the summoning-only options (templates, summoning feats). */
+  characterOnly?: boolean;
 }
 
 function AlignmentGrid({ label, value, onChange }: { label: string; value: Alignment; onChange: (a: Alignment) => void }) {
@@ -20,12 +22,12 @@ function AlignmentGrid({ label, value, onChange }: { label: string; value: Align
   );
 }
 
-export function SettingsPanel({ settings, onChange }: Props) {
+export function SettingsPanel({ settings, onChange, characterOnly = false }: Props) {
   const [open, setOpen] = useState(false);
   const set = <K extends keyof Settings>(key: K, value: Settings[K]) => onChange({ ...settings, [key]: value });
   const cls = classById(settings.classId);
   // Only summon monster applies alignment templates.
-  const usesTemplates = cls.summonSla || cls.access.some((a) => a.spell === 'summon-monster');
+  const usesTemplates = !characterOnly && (cls.summonSla || cls.access.some((a) => a.spell === 'summon-monster'));
 
   return (
     <section className={`card settings ${open ? 'is-open' : ''}`}>
@@ -105,27 +107,29 @@ export function SettingsPanel({ settings, onChange }: Props) {
           </label>
         )}
 
-        <fieldset className="toggles">
-          <legend>Feats &amp; options</legend>
-          <label className="toggle">
-            <input type="checkbox" checked={settings.augmentSummoning} onChange={(e) => set('augmentSummoning', e.target.checked)} />
-            <span>
-              Augment Summoning <small>+4 Str and Con</small>
-            </span>
-          </label>
-          <label className="toggle">
-            <input type="checkbox" checked={settings.superiorSummoning} onChange={(e) => set('superiorSummoning', e.target.checked)} />
-            <span>
-              Superior Summoning <small>+1 creature when summoning several</small>
-            </span>
-          </label>
-          <label className="toggle">
-            <input type="checkbox" checked={settings.includeAlternatives} onChange={(e) => set('includeAlternatives', e.target.checked)} />
-            <span>
-              Adventure Path alternatives <small>GM approval needed</small>
-            </span>
-          </label>
-        </fieldset>
+        {!characterOnly && (
+          <fieldset className="toggles">
+            <legend>Feats &amp; options</legend>
+            <label className="toggle">
+              <input type="checkbox" checked={settings.augmentSummoning} onChange={(e) => set('augmentSummoning', e.target.checked)} />
+              <span>
+                Augment Summoning <small>+4 Str and Con</small>
+              </span>
+            </label>
+            <label className="toggle">
+              <input type="checkbox" checked={settings.superiorSummoning} onChange={(e) => set('superiorSummoning', e.target.checked)} />
+              <span>
+                Superior Summoning <small>+1 creature when summoning several</small>
+              </span>
+            </label>
+            <label className="toggle">
+              <input type="checkbox" checked={settings.includeAlternatives} onChange={(e) => set('includeAlternatives', e.target.checked)} />
+              <span>
+                Adventure Path alternatives <small>GM approval needed</small>
+              </span>
+            </label>
+          </fieldset>
+        )}
       </div>
     </section>
   );
