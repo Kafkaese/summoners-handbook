@@ -10,8 +10,11 @@ export function normalizeUrl(url) {
   const u = new URL(url, 'https://www.d20pfsrd.com/');
   u.hash = '';
   u.protocol = 'https:';
-  u.hostname = 'www.d20pfsrd.com';
-  if (!u.pathname.endsWith('/')) u.pathname += '/';
+  // d20pfsrd pages are canonical as https://www.d20pfsrd.com/.../ with a trailing slash.
+  if (/(^|\.)d20pfsrd\.com$/.test(u.hostname)) {
+    u.hostname = 'www.d20pfsrd.com';
+    if (!u.pathname.endsWith('/')) u.pathname += '/';
+  }
   return u.toString();
 }
 

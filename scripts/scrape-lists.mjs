@@ -4,6 +4,10 @@ import * as cheerio from 'cheerio';
 import { writeFile } from 'node:fs/promises';
 import { fetchPage, normalizeUrl } from './fetch.mjs';
 
+// Adventure Path volumes whose OGL copyright notice we couldn't verify; their
+// alternative summons are left out so every included source can be credited.
+const UNCREDITED_SOURCES = /\bAP(23|26|32|59|64)\b/;
+
 const ROMAN = { I: 1, II: 2, III: 3, IV: 4, V: 5, VI: 6, VII: 7, VIII: 8, IX: 9 };
 const clean = (s) => s.replace(/\s+/g, ' ').trim();
 
@@ -153,11 +157,17 @@ async function scrapeNaturesAlly() {
   return levels;
 }
 
+/** Drops alternative summons whose source can't be credited in Section 15. */
+function withoutUncredited(levels) {
+  for (const level of Object.values(levels)) level.alternatives = level.alternatives.filter((e) => !UNCREDITED_SOURCES.test(e.source ?? ''));
+  return levels;
+}
+
 const data = {
   scrapedFrom: 'https://www.d20pfsrd.com',
   spells: {
-    'summon-monster': await scrapeSummonMonster(),
-    'summon-natures-ally': await scrapeNaturesAlly(),
+    'summon-monster': withoutUncredited(await scrapeSummonMonster()),
+    'summon-natures-ally': withoutUncredited(await scrapeNaturesAlly()),
     'summon-swarm': await scrapeSummonSwarm(),
     'summon-genie': await scrapeTiered('https://www.d20pfsrd.com/magic/all-spells/s/summon-genie/', [['janni'], ['djinni'], ['shaitan']], ''),
     'summon-giant-ally': await scrapeTiered(

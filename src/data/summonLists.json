@@ -279,30 +279,6 @@
         ],
         "alternatives": [
           {
-            "name": "Akata",
-            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/aberrations/akata/",
-            "templated": false,
-            "presetTemplates": [],
-            "subtypes": [],
-            "source": "AP64",
-            "footnotes": [],
-            "creatureIds": [
-              "akata"
-            ]
-          },
-          {
-            "name": "Elk",
-            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/herd-animals/elk/",
-            "templated": true,
-            "presetTemplates": [],
-            "subtypes": [],
-            "source": "AP32",
-            "footnotes": [],
-            "creatureIds": [
-              "elk"
-            ]
-          },
-          {
             "name": "Grig",
             "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/grig/",
             "templated": false,
@@ -570,42 +546,6 @@
             "creatureIds": [
               "blink-dog"
             ]
-          },
-          {
-            "name": "Choker",
-            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/aberrations/choker/",
-            "templated": false,
-            "presetTemplates": [],
-            "subtypes": [],
-            "source": "AP23",
-            "footnotes": [
-              2
-            ],
-            "creatureIds": [
-              "choker"
-            ]
-          },
-          {
-            "name": "Dire boar",
-            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/boar/dire-boar/",
-            "templated": true,
-            "presetTemplates": [],
-            "subtypes": [],
-            "source": "AP32",
-            "footnotes": [],
-            "creatureIds": [
-              "boar-dire-daeodon"
-            ]
-          },
-          {
-            "name": "Human natural wererat rogue 2",
-            "url": null,
-            "templated": false,
-            "presetTemplates": [],
-            "subtypes": [],
-            "source": "AP59",
-            "footnotes": [],
-            "creatureIds": []
           },
           {
             "name": "Iron cobra (no poison)",
@@ -901,20 +841,6 @@
             ]
           },
           {
-            "name": "Choker",
-            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/aberrations/choker/",
-            "templated": false,
-            "presetTemplates": [],
-            "subtypes": [],
-            "source": "AP59",
-            "footnotes": [
-              2
-            ],
-            "creatureIds": [
-              "choker"
-            ]
-          },
-          {
             "name": "Giant mantis",
             "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/mantis/giant-mantis/",
             "templated": true,
@@ -924,30 +850,6 @@
             "footnotes": [],
             "creatureIds": [
               "giant-mantis"
-            ]
-          },
-          {
-            "name": "Gibbering mouther",
-            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/aberrations/gibbering-mouther/",
-            "templated": true,
-            "presetTemplates": [],
-            "subtypes": [],
-            "source": "AP23",
-            "footnotes": [],
-            "creatureIds": [
-              "gibbering-mouther"
-            ]
-          },
-          {
-            "name": "Grick",
-            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/aberrations/grick/",
-            "templated": true,
-            "presetTemplates": [],
-            "subtypes": [],
-            "source": "AP23",
-            "footnotes": [],
-            "creatureIds": [
-              "grick"
             ]
           },
           {
@@ -1174,20 +1076,6 @@
             ]
           },
           {
-            "name": "Shadow mastiff",
-            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/shadow-mastiff/",
-            "templated": false,
-            "presetTemplates": [],
-            "subtypes": [
-              "evil"
-            ],
-            "source": "AP59 (B3)",
-            "footnotes": [],
-            "creatureIds": [
-              "shadow-mastiff"
-            ]
-          },
-          {
             "name": "Vulpinal agathion",
             "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/agathion/agathion-vulpinal/",
             "templated": false,
@@ -1405,46 +1293,6 @@
             ]
           },
           {
-            "name": "Chaos Beast",
-            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/chaos-beast/",
-            "templated": false,
-            "presetTemplates": [],
-            "subtypes": [
-              "chaotic"
-            ],
-            "source": "AP64",
-            "footnotes": [],
-            "creatureIds": [
-              "chaos-beast"
-            ]
-          },
-          {
-            "name": "Griffon",
-            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/griffon/",
-            "templated": true,
-            "presetTemplates": [],
-            "subtypes": [],
-            "source": "AP26",
-            "footnotes": [],
-            "creatureIds": [
-              "griffon"
-            ]
-          },
-          {
-            "name": "Mothman",
-            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/monstrous-humanoids/mothman/",
-            "templated": false,
-            "presetTemplates": [],
-            "subtypes": [],
-            "source": "AP64",
-            "footnotes": [
-              2
-            ],
-            "creatureIds": [
-              "mothman"
-            ]
-          },
-          {
             "name": "Tylosaurus (dinosaur)",
             "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/dinosaur/tylosaurus/",
             "templated": false,
@@ -1650,18 +1498,6 @@
             ],
             "creatureIds": [
               "daughter-of-the-dead"
-            ]
-          },
-          {
-            "name": "Emkrah",
-            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/aberrations/emkrah/",
-            "templated": false,
-            "presetTemplates": [],
-            "subtypes": [],
-            "source": "AP23",
-            "footnotes": [],
-            "creatureIds": [
-              "emkrah"
             ]
           },
           {
@@ -2201,20 +2037,6 @@
             ]
           },
           {
-            "name": "Celestial Elk",
-            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/herd-animals/elk/",
-            "templated": false,
-            "presetTemplates": [
-              "celestial"
-            ],
-            "subtypes": [],
-            "source": "AP32",
-            "footnotes": [],
-            "creatureIds": [
-              "elk"
-            ]
-          },
-          {
             "name": "Dire badger",
             "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/badger/badger-dire/",
             "templated": false,
@@ -2423,22 +2245,7 @@
             ]
           }
         ],
-        "alternatives": [
-          {
-            "name": "Celestial dire boar",
-            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/boar/dire-boar/",
-            "templated": false,
-            "presetTemplates": [
-              "celestial"
-            ],
-            "subtypes": [],
-            "source": "AP32",
-            "footnotes": [],
-            "creatureIds": [
-              "boar-dire-daeodon"
-            ]
-          }
-        ]
+        "alternatives": []
       },
       "4": {
         "standard": [

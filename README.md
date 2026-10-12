@@ -41,4 +41,14 @@ npm run build    # static build in dist/
 - Summon Good/Evil/Neutral Monster feat lists, Evolved Summoned Monster and
   similar feats are not included yet.
 
-Rules text and stat blocks are Open Game Content from d20pfsrd.com.
+## Licensing
+
+- **Game content** (stat blocks, rules text, summon lists, spell data) is Open Game Content
+  used under the Open Game License v1.0a. The app's license page (`#license`) shows the full
+  license and the Section 15 copyright notices. `scripts/build-legal.mjs` generates them into
+  `src/data/legal.json` from Paizo's compiled notices (Pathfinder Reference Document), the
+  notices on each d20pfsrd page used, and d20pfsrd's master Section 15 list.
+- **The Pathfinder name and other Paizo trademarks** are used under Paizo's
+  [Community Use Policy](https://paizo.com/licenses/communityuse). The required notice is in
+  the footer and on the license page; the wording lives in `src/legal.ts`. The policy requires
+  the app to stay free, unofficial, and to show contact details (`CONTACT` in `src/legal.ts`).

@@ -112,10 +112,49 @@ a {
 }
 
 .app-footer {
-  margin-top: 24px;
+  margin: 24px auto 0;
+  max-width: 760px;
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
   text-align: center;
+}
+
+.app-footer p {
+  margin: 0 0 6px;
+}
+
+/* License page */
+
+.license-layout {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.license h3 {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  margin: 20px 0 6px;
+}
+
+.license p {
+  margin: 0 0 8px;
+}
+
+.license .fine,
+.ogl {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.ogl p.notice {
+  margin-bottom: 4px;
+}
+
+.back.always {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .layout {

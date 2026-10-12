@@ -48,13 +48,6 @@
       "planar travel"
     ]
   },
-  "false vision": {
-    "name": "false vision",
-    "url": "https://www.d20pfsrd.com/magic/all-spells/f/false-vision/",
-    "reasons": [
-      "costly material component (250 gp)"
-    ]
-  },
   "greater teleport": {
     "name": "greater teleport",
     "url": "https://www.d20pfsrd.com/magic/all-spells/t/teleport/",
@@ -70,13 +63,6 @@
       "planar travel"
     ]
   },
-  "project image": {
-    "name": "project image",
-    "url": "https://www.d20pfsrd.com/magic/all-spells/p/project-image/",
-    "reasons": [
-      "costly material component (5 gp)"
-    ]
-  },
   "raise dead": {
     "name": "raise dead",
     "url": "https://www.d20pfsrd.com/magic/all-spells/r/raise-dead/",
@@ -89,13 +75,6 @@
     "url": "https://www.d20pfsrd.com/magic/all-spells/r/restoration/",
     "reasons": [
       "costly material component (100 gp)"
-    ]
-  },
-  "shadow walk": {
-    "name": "shadow walk",
-    "url": "https://www.d20pfsrd.com/magic/all-spells/s/shadow-walk/",
-    "reasons": [
-      "planar travel"
     ]
   },
   "stoneskin": {

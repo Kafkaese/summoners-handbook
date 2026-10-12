@@ -1,11 +1,13 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { CreatureList } from './components/CreatureList';
+import { LicensePage } from './components/LicensePage';
 import { SettingsPanel } from './components/SettingsPanel';
 import { SpellList } from './components/SpellList';
 import { SummonDetail } from './components/SummonDetail';
 import { classById, summonOptions } from './rules/classes';
 import { choicesFor, countGroups, optionTitle } from './rules/summon';
 import type { TemplateId } from './rules/templates';
+import { APP_NAME, COMMUNITY_USE_NOTICE } from './legal';
 import { useSettings } from './useSettings';
 
 type Pane = 'spells' | 'creatures' | 'detail';
@@ -17,6 +19,16 @@ export default function App() {
   const [choiceKey, setChoiceKey] = useState<string | null>(null);
   const [templates, setTemplates] = useState<Record<string, TemplateId>>({});
   const [pane, setPane] = useState<Pane>('spells');
+  const [showLicense, setShowLicense] = useState(() => window.location.hash === '#license');
+  useEffect(() => {
+    const onHash = () => setShowLicense(window.location.hash === '#license');
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+  const closeLicense = () => {
+    history.pushState(null, '', window.location.pathname + window.location.search);
+    setShowLicense(false);
+  };
 
   const cls = classById(settings.classId);
   const options = useMemo(() => summonOptions(cls, settings.level), [cls, settings.level]);
@@ -47,64 +59,73 @@ export default function App() {
           <span className="logo" aria-hidden>
             ✶
           </span>{' '}
-          Summoner's Handbook
+          {APP_NAME}
         </h1>
         <p className="tagline">Pathfinder 1e summoning spells</p>
       </header>
 
-      <main className="layout">
-        <div className="pane pane-spells">
-          <SettingsPanel settings={settings} onChange={setSettings} />
-          <SpellList cls={cls} options={options} selected={option?.key ?? null} onSelect={selectOption} />
-        </div>
+      {showLicense ? (
+        <main className="license-layout">
+          <LicensePage onClose={closeLicense} />
+        </main>
+      ) : (
+        <main className="layout">
+          <div className="pane pane-spells">
+            <SettingsPanel settings={settings} onChange={setSettings} />
+            <SpellList cls={cls} options={options} selected={option?.key ?? null} onSelect={selectOption} />
+          </div>
 
-        <div className="pane pane-creatures">
-          {option && group ? (
-            <CreatureList
-              spell={option.spell}
-              title={optionTitle(option)}
-              groups={groups}
-              groupIndex={groups.indexOf(group)}
-              onGroup={(i) => {
-                setGroupIndex(i);
-                setChoiceKey(null);
-              }}
-              choices={choices}
-              selected={choice?.key ?? null}
-              onSelect={(key) => {
-                setChoiceKey(key);
-                setPane('detail');
-              }}
-              onBack={() => setPane('spells')}
-            />
-          ) : (
-            <section className="card placeholder">
-              <p>Pick a spell to see what you can summon.</p>
-            </section>
-          )}
-        </div>
+          <div className="pane pane-creatures">
+            {option && group ? (
+              <CreatureList
+                spell={option.spell}
+                title={optionTitle(option)}
+                groups={groups}
+                groupIndex={groups.indexOf(group)}
+                onGroup={(i) => {
+                  setGroupIndex(i);
+                  setChoiceKey(null);
+                }}
+                choices={choices}
+                selected={choice?.key ?? null}
+                onSelect={(key) => {
+                  setChoiceKey(key);
+                  setPane('detail');
+                }}
+                onBack={() => setPane('spells')}
+              />
+            ) : (
+              <section className="card placeholder">
+                <p>Pick a spell to see what you can summon.</p>
+              </section>
+            )}
+          </div>
 
-        <div className="pane pane-detail">
-          {choice && group ? (
-            <SummonDetail
-              choice={choice}
-              group={group}
-              duration={option!.duration}
-              template={template}
-              onTemplate={(t) => setTemplates({ ...templates, [choice.key]: t })}
-              settings={settings}
-              onBack={() => setPane('creatures')}
-            />
-          ) : (
-            <section className="card placeholder">
-              <p>Pick a creature to see its summoned stat block.</p>
-            </section>
-          )}
-        </div>
-      </main>
+          <div className="pane pane-detail">
+            {choice && group ? (
+              <SummonDetail
+                choice={choice}
+                group={group}
+                duration={option!.duration}
+                template={template}
+                onTemplate={(t) => setTemplates({ ...templates, [choice.key]: t })}
+                settings={settings}
+                onBack={() => setPane('creatures')}
+              />
+            ) : (
+              <section className="card placeholder">
+                <p>Pick a creature to see its summoned stat block.</p>
+              </section>
+            )}
+          </div>
+        </main>
+      )}
 
       <footer className="app-footer">
-        Rules text and stat blocks from <a href="https://www.d20pfsrd.com">d20pfsrd.com</a> under the Open Game License. Pathfinder is a trademark of Paizo Inc.
+        <p>{COMMUNITY_USE_NOTICE}</p>
+        <p>
+          Game rules are Open Game Content used under the Open Game License v1.0a. <a href="#license">License &amp; credits</a>
+        </p>
       </footer>
     </div>
   );
