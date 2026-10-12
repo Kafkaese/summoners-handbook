@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react';
 import type { Creature } from '../rules/types';
-import { formAbilities, formMovement, type Size, SIZES, type Tier } from '../rules/wildshape';
+import { formAbilities, formMovement, rulesFor, type ShapeRules, type Size, SIZES } from '../rules/wildshape';
 
 interface Props {
   forms: Creature[];
-  tier: Tier;
+  level: number;
   familiar: Set<string>;
   onToggleFamiliar: (id: string) => void;
   selected: string | null;
@@ -14,24 +14,34 @@ interface Props {
 
 const MOVES = ['fly', 'swim', 'climb', 'burrow'] as const;
 type Move = (typeof MOVES)[number];
+type Kind = ShapeRules['kind'];
 
-export function FormList({ forms, tier, familiar, onToggleFamiliar, selected, onSelect, onBack }: Props) {
+const KIND_LABELS: Record<Kind, string> = { animal: 'Animals', elemental: 'Elementals' };
+
+export function FormList({ forms, level, familiar, onToggleFamiliar, selected, onSelect, onBack }: Props) {
   const [query, setQuery] = useState('');
+  const [kind, setKind] = useState<Kind>('animal');
   const [sizes, setSizes] = useState<Set<Size>>(new Set());
   const [moves, setMoves] = useState<Set<Move>>(new Set());
   const [onlyFamiliar, setOnlyFamiliar] = useState(false);
 
-  const info = useMemo(
+  // Each available form with the rules it's taken with at this level.
+  const available = useMemo(
     () =>
-      new Map(
-        forms.map((f) => {
-          const m = formMovement(f);
-          const abilities = [...formAbilities(f)].filter((a) => tier.abilities.includes(a));
-          return [f.id, { moves: MOVES.filter((k) => m[k] > 0 && tier.caps[k] > 0), abilities }];
-        }),
-      ),
-    [forms, tier],
+      forms.flatMap((f) => {
+        const rules = rulesFor(f, level);
+        if (!rules) return [];
+        const m = formMovement(f);
+        const abilities = [...formAbilities(f)].filter((a) => rules.abilities.includes(a));
+        return [{ form: f, rules, moves: MOVES.filter((k) => m[k] > 0 && rules.caps[k] > 0), abilities }];
+      }),
+    [forms, level],
   );
+  const kinds = (['animal', 'elemental'] as Kind[]).filter((k) => available.some((a) => a.rules.kind === k));
+  const activeKind = kinds.includes(kind) ? kind : kinds[0];
+  const ofKind = available.filter((a) => a.rules.kind === activeKind);
+  const kindSizes = SIZES.filter((s) => ofKind.some((a) => a.form.size === s));
+  const kindMoves = MOVES.filter((m) => ofKind.some((a) => a.moves.includes(m)));
 
   const toggle = <T,>(set: Set<T>, value: T) => {
     const next = new Set(set);
@@ -41,13 +51,11 @@ export function FormList({ forms, tier, familiar, onToggleFamiliar, selected, on
   };
 
   const q = query.trim().toLowerCase();
-  const shown = forms.filter((f) => {
-    if (!tier.sizes.includes(f.size as Size)) return false;
-    if (sizes.size && !sizes.has(f.size as Size)) return false;
-    if (onlyFamiliar && !familiar.has(f.id)) return false;
-    if (q && !f.name.toLowerCase().includes(q)) return false;
-    const i = info.get(f.id)!;
-    return [...moves].every((m) => i.moves.includes(m));
+  const shown = ofKind.filter(({ form, moves: m }) => {
+    if (sizes.size && !sizes.has(form.size as Size)) return false;
+    if (onlyFamiliar && !familiar.has(form.id)) return false;
+    if (q && !form.name.toLowerCase().includes(q)) return false;
+    return [...moves].every((x) => m.includes(x));
   });
 
   return (
@@ -56,19 +64,32 @@ export function FormList({ forms, tier, familiar, onToggleFamiliar, selected, on
         <button className="back" onClick={onBack} aria-label="Back to druid stats">
           ‹
         </button>
-        <h2 className="pane-title">Animal forms</h2>
+        <h2 className="pane-title">Forms</h2>
       </header>
 
-      <div className="filters">
-        <div className="chips" aria-label="Size">
-          {SIZES.filter((s) => tier.sizes.includes(s)).map((s) => (
-            <button key={s} className={`chip small ${sizes.has(s) ? 'is-active' : ''}`} aria-pressed={sizes.has(s)} onClick={() => setSizes(toggle(sizes, s))}>
-              {s}
+      {kinds.length > 1 && (
+        <div className="segmented" role="tablist" aria-label="Form type">
+          {kinds.map((k) => (
+            <button key={k} role="tab" aria-selected={k === activeKind} className={k === activeKind ? 'is-active' : ''} onClick={() => setKind(k)}>
+              <strong>{KIND_LABELS[k]}</strong>
+              <span>{available.find((a) => a.rules.kind === k)?.rules.spell.replace(/ (I|II|III|IV)$/, '')}</span>
             </button>
           ))}
         </div>
+      )}
+
+      <div className="filters">
+        {kindSizes.length > 1 && (
+          <div className="chips" aria-label="Size">
+            {kindSizes.map((s) => (
+              <button key={s} className={`chip small ${sizes.has(s) ? 'is-active' : ''}`} aria-pressed={sizes.has(s)} onClick={() => setSizes(toggle(sizes, s))}>
+                {s}
+              </button>
+            ))}
+          </div>
+        )}
         <div className="chips" aria-label="Movement">
-          {MOVES.filter((m) => tier.caps[m] > 0).map((m) => (
+          {kindMoves.map((m) => (
             <button key={m} className={`chip small ${moves.has(m) ? 'is-active' : ''}`} aria-pressed={moves.has(m)} onClick={() => setMoves(toggle(moves, m))}>
               {m}
             </button>
@@ -78,32 +99,31 @@ export function FormList({ forms, tier, familiar, onToggleFamiliar, selected, on
           </button>
         </div>
       </div>
-      <input className="search" type="search" placeholder="Filter animals…" value={query} onChange={(e) => setQuery(e.target.value)} />
+      <input className="search" type="search" placeholder={`Filter ${KIND_LABELS[activeKind].toLowerCase()}…`} value={query} onChange={(e) => setQuery(e.target.value)} />
       <p className="group-label">
         {shown.length} form{shown.length === 1 ? '' : 's'}
-        {onlyFamiliar && !familiar.size && ' · star the animals your druid is familiar with'}
+        {onlyFamiliar && !familiar.size && ' · star the forms your druid is familiar with'}
       </p>
 
-      {SIZES.filter((s) => shown.some((f) => f.size === s)).map((size) => (
+      {SIZES.filter((s) => shown.some((a) => a.form.size === s)).map((size) => (
         <div key={size}>
           <h3 className="group-title">{size}</h3>
           <ul className="creature-items">
             {shown
-              .filter((f) => f.size === size)
-              .map((f) => {
-                const i = info.get(f.id)!;
+              .filter((a) => a.form.size === size)
+              .map(({ form: f, moves: m, abilities }) => {
                 const isFamiliar = familiar.has(f.id);
                 return (
                   <li key={f.id} className="form-row">
                     <button className={`creature-item ${selected === f.id ? 'is-active' : ''}`} onClick={() => onSelect(f.id)}>
                       <span className="creature-name">{f.name}</span>
                       <span className="creature-meta">
-                        {i.moves.map((m) => (
-                          <span key={m} className="badge">
-                            {m}
+                        {m.map((x) => (
+                          <span key={x} className="badge">
+                            {x}
                           </span>
                         ))}
-                        {i.abilities.map((a) => (
+                        {abilities.map((a) => (
                           <span key={a} className="badge template">
                             {a}
                           </span>
@@ -125,7 +145,7 @@ export function FormList({ forms, tier, familiar, onToggleFamiliar, selected, on
           </ul>
         </div>
       ))}
-      {!shown.length && <p className="empty">No animals match.</p>}
+      {!shown.length && <p className="empty">No forms match.</p>}
     </section>
   );
 }

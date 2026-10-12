@@ -5,7 +5,7 @@ import { writeFile } from 'node:fs/promises';
 import { fetchPage } from './fetch.mjs';
 
 const URL_UMR = 'https://www.d20pfsrd.com/bestiary/rules-for-monsters/universal-monster-rules/';
-// Heading ids on the page for each ability wild shape (beast shape I–III) can grant.
+// Heading ids on the page for each ability wild shape can grant.
 const ABILITIES = {
   constrict: 'constrict_ex',
   ferocity: 'ferocity_ex',
@@ -17,6 +17,10 @@ const ABILITIES = {
   trample: 'trample_ex',
   trip: 'trip_ex',
   web: 'web_ex',
+  // Elemental body (vortex has no universal rule; the water elemental entries describe it).
+  burn: 'burn_ex',
+  'earth glide': 'earth_glide_ex',
+  whirlwind: 'whirlwind_su',
 };
 
 const clean = (s) => s.replace(/\s+/g, ' ').trim();

@@ -8,7 +8,8 @@ A web app for Pathfinder 1e summoning spells and druid wild shape.
   change and Augment Summoning applied.
 - **Wild Shape** (`#wild-shape`, shown only when the class is druid). Enter your ability scores and a few
   bonuses, browse the animals you can turn into at your level (beast shape I–III),
-  star the ones you're familiar with, and get your stat block in that form.
+  star the ones you're familiar with, and get your stat block in that form. From 6th
+  level, elementals (air, earth, fire, water; elemental body I–IV) are available too.
 
 ## Running it
 
@@ -54,9 +55,10 @@ The scraped data in `src/data/` is committed; CI doesn't scrape. To update it, r
   - alignment → template choice (celestial, entropic, fiendish, resolute) and cleric/warpriest restrictions
   - the four templates, applied by HD band
   - Augment Summoning (attack, damage, hp, saves, CMB/CMD, Climb/Swim and Str/Con-based DCs)
-  - wild shape (`wildshape.ts`): beast shape I–III by druid level, size adjustments,
-    movement and sense caps, which special abilities each version grants, and natural
-    attacks with the druid's own BAB and Str
+  - wild shape (`wildshape.ts`): beast shape I–III and elemental body I–IV by druid level,
+    ability and natural armor adjustments, movement and sense caps, which special abilities
+    and defenses each version grants, and natural attacks with the druid's own BAB and Str.
+    Elemental forms reuse the elementals from the summon data.
 - `src/components/` is the React UI: three panes on desktop, one pane at a time on phones.
 
 ## Known limitations
@@ -67,8 +69,8 @@ The scraped data in `src/data/` is committed; CI doesn't scrape. To update it, r
 - Summon Good/Evil/Neutral Monster feat lists, Evolved Summoned Monster and
   similar feats are not included yet.
 
-- Wild shape covers animals only so far; elementals and plants (elemental body,
-  plant shape), druid archetypes and Improved Natural Attack aren't included yet.
+- Wild shape covers animals and elementals so far; plants (plant shape), druid
+  archetypes and Improved Natural Attack aren't included yet.
 
 ## Licensing
 

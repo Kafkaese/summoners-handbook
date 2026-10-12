@@ -86,3 +86,47 @@ describe('ability descriptions', () => {
     expect(shape('dire-wolf', 6)!.creature.special.map((s) => s.name)).toEqual(['Trip (Ex)']);
   });
 });
+
+describe('elementals (elemental body)', () => {
+  it('follows the druid table for sizes', () => {
+    expect(shape('small-earth-elemental', 5)).toBeNull();
+    expect(shape('small-earth-elemental', 6)!.tier.spell).toBe('elemental body I');
+    expect(shape('medium-earth-elemental', 7)).toBeNull();
+    expect(shape('small-earth-elemental', 8)!.tier.spell).toBe('elemental body II');
+    expect(shape('huge-earth-elemental', 11)).toBeNull();
+    expect(shape('huge-earth-elemental', 12)!.tier.spell).toBe('elemental body IV');
+  });
+  it('applies the element’s bonuses, including Con and hit points', () => {
+    // Large water: +2 Str, –2 Dex, +6 Con, +6 natural armor (elemental body III).
+    const r = shape('large-water-elemental', 10, { hp: 70 })!;
+    expect(r.abilities).toEqual({ str: 12, dex: 12, con: 20 });
+    expect(getValue(r.creature, 'hp')).toBe('100 (+30 from Con)');
+    expect(getValue(r.creature, 'Fort')).toBe('+12');
+    expect(getValue(r.creature, 'Speed')).toBe('20 ft., swim 60 ft.');
+    expect(getValue(r.creature, 'Immune')).toBe('bleed, critical hits, sneak attacks');
+    expect(getValue(r.creature, 'SQ')).toBe('water breathing');
+    // Two slams: primary, 1× Str. BAB 7, Str +1, size –1.
+    expect(getValue(r.creature, 'Melee')).toBe('2 slams +7 (1d8+1)');
+    expect(getValue(r.creature, 'Special Attacks')).toMatch(/^vortex \(DC 19, 10–40 ft\.\)$/);
+    expect(r.notGained).toEqual(expect.arrayContaining(['drench', 'water mastery']));
+  });
+  it('gives air its perfect fly speed and fire its burn, resistance and vulnerability', () => {
+    const air = shape('small-air-elemental', 6)!;
+    expect(getValue(air.creature, 'Speed')).toBe('fly 60 ft. (perfect) (no land speed)');
+    const fire = shape('huge-fire-elemental', 12)!;
+    // BAB 9, Str 10 (fire gives no Str), size –2.
+    expect(getValue(fire.creature, 'Melee')).toBe('2 slams +7 (2d6 plus burn)');
+    expect(getValue(fire.creature, 'Special Attacks')).toBe('burn (2d6, DC 20)');
+    expect(getValue(fire.creature, 'Resist')).toBe('fire 20');
+    expect(getValue(fire.creature, 'Weaknesses')).toBe('vulnerability to cold');
+    expect(getValue(fire.creature, 'DR')).toBe('5/—');
+    expect(fire.lost.some((l) => /Speech/.test(l))).toBe(false);
+  });
+  it("doesn't allow greater or elder elementals", () => {
+    expect(shape('greater-fire-elemental', 20)).toBeNull();
+    expect(shape('elder-air-elemental', 20)).toBeNull();
+  });
+  it('lets earth elementals glide through earth', () => {
+    expect(getValue(shape('medium-earth-elemental', 8)!.creature, 'Speed')).toBe('20 ft., burrow 20 ft., earth glide');
+  });
+});
