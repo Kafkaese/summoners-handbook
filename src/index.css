@@ -815,3 +815,9 @@ s.forbidden {
   margin: 4px 0 0;
   padding-left: 18px;
 }
+
+.statblock sup {
+  font-family: var(--font);
+  font-size: 0.65em;
+  line-height: 0;
+}

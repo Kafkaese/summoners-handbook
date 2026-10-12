@@ -31,6 +31,13 @@ function Value({ creature, section, label, children }: { creature: BuiltCreature
   );
 }
 
+/** Renders the parser's superscript markers ("Toughness^B", "dispel magic^D") as <sup>. */
+function Text({ children }: { children: string }) {
+  const parts = children.split(/\^([A-Za-z0-9]+)/);
+  if (parts.length === 1) return <>{children}</>;
+  return <>{parts.map((part, i) => (i % 2 ? <sup key={i}>{part}</sup> : part))}</>;
+}
+
 /** Comma-separated items with the ones a summoned creature can't use struck through. */
 function Items({ items, restriction }: { items: string[]; restriction: (item: string) => string[] | null }) {
   return (
@@ -42,10 +49,10 @@ function Items({ items, restriction }: { items: string[]; restriction: (item: st
             {i > 0 && ', '}
             {reasons ? (
               <s className="forbidden" title={`Summoned creatures can't use this: ${reasons.join(', ')}`}>
-                {item}
+                <Text>{item}</Text>
               </s>
             ) : (
-              item
+              <Text>{item}</Text>
             )}
           </span>
         );
@@ -70,7 +77,7 @@ function FieldText({ creature, section, field }: { creature: BuiltCreature; sect
     <>
       {field.label && <b>{field.label} </b>}
       <Value creature={creature} section={section} label={field.label}>
-        {abilities ? <Items items={splitItems(field.value)} restriction={abilityRestriction} /> : field.value}
+        {abilities ? <Items items={splitItems(field.value)} restriction={abilityRestriction} /> : <Text>{field.value}</Text>}
       </Value>
     </>
   );
@@ -180,7 +187,7 @@ export function StatBlock({ creature }: { creature: BuiltCreature }) {
                 {s.text.split('\n').map((para, j) => (
                   <p key={j}>
                     {j === 0 && s.name && <b>{forbidden ? <s className="forbidden">{s.name}</s> : s.name} </b>}
-                    {para}
+                    <Text>{para}</Text>
                   </p>
                 ))}
               </div>
