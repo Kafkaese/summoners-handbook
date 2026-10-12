@@ -9,7 +9,7 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "test": "vitest run",
-    "scrape": "node scripts/scrape-lists.mjs && node scripts/scrape-creatures.mjs && node scripts/scrape-spells.mjs && node scripts/build-legal.mjs"
+    "scrape": "node scripts/scrape-lists.mjs && node scripts/scrape-creatures.mjs && node scripts/scrape-spells.mjs && node scripts/scrape-animals.mjs && node scripts/build-legal.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",

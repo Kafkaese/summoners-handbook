@@ -41,10 +41,12 @@ const prdNotices = prdParas.slice(s15 + 1).filter((p) => /©|Copyright/.test(p) 
 
 // --- Notices on the d20pfsrd pages the app uses ----------------------------
 const creatures = await data('creatures.json');
+const animals = await data('animals.json');
 const restricted = await data('restrictedSpells.json');
 const lists = await data('summonLists.json');
 const pages = new Set([
   ...Object.values(creatures).map((c) => c.url),
+  ...Object.values(animals).map((c) => c.url),
   ...Object.values(restricted).map((s) => s.url).filter(Boolean),
   ...Object.keys(lists.spells).map((s) => `https://www.d20pfsrd.com/magic/all-spells/s/${s}/`),
   'https://www.d20pfsrd.com/bestiary/monster-listings/templates/celestial-creature-cr-special/',
@@ -79,10 +81,48 @@ for (const n of [...apNumbers].sort((a, b) => a - b)) {
   else missing.push(`Pathfinder Adventure Path #${n}`);
 }
 
+// --- Source books of the wild shape animals (from Archives of Nethys) -------
+const titleOf = (notice) => notice.split(/©|\bCopyright\b/)[0];
+const words = (s) => s.toLowerCase().replace(/pathfinder (rpg|roleplaying game)/g, ' ').replace(/[^a-z0-9#]+/g, ' ').trim();
+/** Finds the notice for a source title like "Bestiary 3", "Pathfinder #57: Tempest Rising" or "Animal Archive". */
+function noticeFor(source) {
+  const ap = source.match(/^Pathfinder #(\d+)/);
+  if (ap) return csvNotices.find((t) => new RegExp(`^Pathfinder (Adventure Path )?#?${ap[1]}\\b`).test(t));
+  if (/^Pathfinder RPG Bestiary$/.test(source)) return prdNotices.find((t) => /^Pathfinder Roleplaying Game Bestiary\./.test(t));
+  const want = words(source);
+  const exact = [...prdNotices, ...csvNotices].find((t) => words(titleOf(t)).replace(/^(campaign setting|player companion|module|chronicles)\s+/, '') === want);
+  return exact ?? [...prdNotices, ...csvNotices].find((t) => words(titleOf(t)).endsWith(` ${want}`));
+}
+// Notices not in the lists above: from d20pfsrd's content-source pages, or
+// spelled differently in d20pfsrd's master list.
+const BOOK_NOTICES = {
+  'Bestiary 6': 'https://www.d20pfsrd.com/srd-content-source/pathfinder-roleplaying-game-bestiary-6/',
+  'Osirion, Legacy of the Pharaohs': (t) => t.startsWith('Pathfinder Campaign Setting: Osirion, Legacy of Pharaohs'),
+  'Pathfinder #31: Stolen Land': (t) => t.startsWith('Pathfinder Adventure Path volume #31: Stolen Land'),
+};
+async function knownNotice(source) {
+  const how = BOOK_NOTICES[source];
+  if (typeof how === 'function') return csvNotices.find(how);
+  if (typeof how === 'string') {
+    const { html } = await fetchPage(how);
+    // "Content Source: <title> <notice>. 3 Records Found …"
+    const text = clean(cheerio.load(html)('article').text());
+    return text.match(/Content Source: .*? (Pathfinder [^©]*©\s*\d{4}.*?\.)\s+\d+ Records Found/)?.[1];
+  }
+  return undefined;
+}
+const bookNotices = [];
+const uncreditedBooks = [];
+for (const source of [...new Set(Object.values(animals).map((a) => a.source))].sort()) {
+  const hit = (await knownNotice(source)) ?? noticeFor(source);
+  if (hit) bookNotices.push(hit);
+  else uncreditedBooks.push(source);
+}
+
 // --- Assemble: WotC and Paizo first, then everything else -----------------
 const section15 = [];
 const seen = new Set();
-for (const notice of [...prdNotices, ...pageNotices, ...apNotices, OWN_NOTICE]) {
+for (const notice of [...prdNotices, ...pageNotices, ...apNotices, ...bookNotices, OWN_NOTICE]) {
   const key = titleKey(notice);
   if (seen.has(key)) continue;
   seen.add(key);
@@ -91,7 +131,9 @@ for (const notice of [...prdNotices, ...pageNotices, ...apNotices, OWN_NOTICE]) 
 
 await writeFile(
   new URL('../src/data/legal.json', import.meta.url),
-  JSON.stringify({ sources: [PRD_OGL_URL, 'd20pfsrd.com Section 15 notices', D20PFSRD_SECTION15_CSV], ogl, section15, missing }, null, 2) + '\n',
+  JSON.stringify({ sources: [PRD_OGL_URL, 'd20pfsrd.com Section 15 notices', D20PFSRD_SECTION15_CSV], ogl, section15, missing: [...missing, ...uncreditedBooks] }, null, 2) + '\n',
 );
 console.log(`OGL: ${ogl.length} paragraphs; Section 15: ${section15.length} notices (${prdNotices.length} PRD, ${pageNotices.length} from pages, ${apNotices.length} AP).`);
 if (missing.length) console.log(`No verified notice found for: ${missing.join(', ')}`);
+if (uncreditedBooks.length) console.log(`No notice found for animal source books: ${uncreditedBooks.join(', ')}`);
+console.log(`Animal source books matched:\n${bookNotices.map((n) => `  ${titleOf(n).trim()}`).join('\n')}`);

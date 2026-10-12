@@ -4,6 +4,7 @@ import { LicensePage } from './components/LicensePage';
 import { SettingsPanel } from './components/SettingsPanel';
 import { SpellList } from './components/SpellList';
 import { SummonDetail } from './components/SummonDetail';
+import { WildShapeSection } from './components/WildShapeSection';
 import { classById, summonOptions } from './rules/classes';
 import { choicesFor, countGroups, optionTitle } from './rules/summon';
 import type { TemplateId } from './rules/templates';
@@ -11,6 +12,9 @@ import { APP_NAME, COMMUNITY_USE_NOTICE } from './legal';
 import { useSettings } from './useSettings';
 
 type Pane = 'spells' | 'creatures' | 'detail';
+type Route = 'summon' | 'wild-shape' | 'license';
+
+const routeFromHash = (): Route => (window.location.hash === '#license' ? 'license' : window.location.hash === '#wild-shape' ? 'wild-shape' : 'summon');
 
 export default function App() {
   const [settings, setSettings] = useSettings();
@@ -19,15 +23,23 @@ export default function App() {
   const [choiceKey, setChoiceKey] = useState<string | null>(null);
   const [templates, setTemplates] = useState<Record<string, TemplateId>>({});
   const [pane, setPane] = useState<Pane>('spells');
-  const [showLicense, setShowLicense] = useState(() => window.location.hash === '#license');
+  const [route, setRoute] = useState<Route>(routeFromHash);
+  // The section to return to from the license page.
+  const [section, setSection] = useState<Exclude<Route, 'license'>>(() => (routeFromHash() === 'wild-shape' ? 'wild-shape' : 'summon'));
   useEffect(() => {
-    const onHash = () => setShowLicense(window.location.hash === '#license');
+    const onHash = () => {
+      const next = routeFromHash();
+      setRoute(next);
+      if (next !== 'license') {
+        setSection(next);
+        setPane('spells');
+      }
+    };
     window.addEventListener('hashchange', onHash);
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
   const closeLicense = () => {
-    history.pushState(null, '', window.location.pathname + window.location.search);
-    setShowLicense(false);
+    window.location.hash = section === 'wild-shape' ? '#wild-shape' : '';
   };
 
   const cls = classById(settings.classId);
@@ -61,13 +73,23 @@ export default function App() {
           </span>{' '}
           {APP_NAME}
         </h1>
-        <p className="tagline">Pathfinder 1e summoning spells</p>
+        <p className="tagline">Pathfinder 1e summoning &amp; wild shape</p>
+        <nav className="tabs" aria-label="Sections">
+          <a href="#" className={route === 'summon' ? 'is-active' : ''} aria-current={route === 'summon' ? 'page' : undefined}>
+            Summoning
+          </a>
+          <a href="#wild-shape" className={route === 'wild-shape' ? 'is-active' : ''} aria-current={route === 'wild-shape' ? 'page' : undefined}>
+            Wild Shape
+          </a>
+        </nav>
       </header>
 
-      {showLicense ? (
+      {route === 'license' ? (
         <main className="license-layout">
           <LicensePage onClose={closeLicense} />
         </main>
+      ) : route === 'wild-shape' ? (
+        <WildShapeSection settings={settings} onSettings={setSettings} setPane={setPane} />
       ) : (
         <main className="layout">
           <div className="pane pane-spells">
