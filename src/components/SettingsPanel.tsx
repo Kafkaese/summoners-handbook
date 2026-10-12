@@ -24,6 +24,8 @@ export function SettingsPanel({ settings, onChange }: Props) {
   const [open, setOpen] = useState(false);
   const set = <K extends keyof Settings>(key: K, value: Settings[K]) => onChange({ ...settings, [key]: value });
   const cls = classById(settings.classId);
+  // Only summon monster applies alignment templates.
+  const usesTemplates = cls.summonSla || cls.access.some((a) => a.spell === 'summon-monster');
 
   return (
     <section className={`card settings ${open ? 'is-open' : ''}`}>
@@ -89,17 +91,19 @@ export function SettingsPanel({ settings, onChange }: Props) {
           </div>
         )}
 
-        <label className="field">
-          <span>Summon monster templates</span>
-          <select value={settings.templateRule} onChange={(e) => set('templateRule', e.target.value as TemplateRule)}>
-            {TEMPLATE_RULES.map((r) => (
-              <option key={r.id} value={r.id}>
-                {r.name}
-              </option>
-            ))}
-          </select>
-          <small className="field-hint">{TEMPLATE_RULES.find((r) => r.id === settings.templateRule)?.description}</small>
-        </label>
+        {usesTemplates && (
+          <label className="field">
+            <span>Summon monster templates</span>
+            <select value={settings.templateRule} onChange={(e) => set('templateRule', e.target.value as TemplateRule)}>
+              {TEMPLATE_RULES.map((r) => (
+                <option key={r.id} value={r.id}>
+                  {r.name}
+                </option>
+              ))}
+            </select>
+            <small className="field-hint">{TEMPLATE_RULES.find((r) => r.id === settings.templateRule)?.description}</small>
+          </label>
+        )}
 
         <fieldset className="toggles">
           <legend>Feats &amp; options</legend>
