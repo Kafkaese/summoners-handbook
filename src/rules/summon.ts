@@ -2,7 +2,7 @@ import creaturesJson from '../data/creatures.json';
 import listsJson from '../data/summonLists.json';
 import { ALIGNMENT_NAMES, type Alignment, allowedTemplates, hasAlignmentSubtype, opposedDescriptors, spellDescriptors, TEMPLATE_ALIGNMENT, type TemplateRule } from './alignment';
 import { applyAugmentSummoning } from './augment';
-import { type ClassDef, ROMAN, type SummonOption } from './classes';
+import { type ClassDef, ROMAN, spellLevelLabel, type SummonOption } from './classes';
 import { applyTemplate, type TemplateId } from './templates';
 import type { BuiltCreature, Creature, ListEntry, SpellKey, SummonLists } from './types';
 
@@ -29,7 +29,8 @@ export interface CountGroup {
 }
 
 /** One creature, two lower-level 1d3 or lower 1d4+1, as the summon spells allow. */
-export function countGroups(level: number, superior: boolean): CountGroup[] {
+export function countGroups(level: number, superior: boolean, spell: SpellKey = 'summon-monster'): CountGroup[] {
+  if (spell === 'summon-swarm') return [{ listLevels: [1], count: '1', label: '1 swarm of bats, rats, or spiders' }];
   const groups: CountGroup[] = [{ listLevels: [level], count: '1', label: `1 creature from the ${ROMAN[level]} list` }];
   if (level >= 2) {
     const count = superior ? '1d3+1' : '1d3';
@@ -166,6 +167,9 @@ export function buildCreature(choice: CreatureChoice, template: TemplateId | nul
     );
   }
 
+  if (choice.spell === 'summon-swarm') {
+    c.notes.push('The swarm attacks all other creatures in its area; you have no control over its target or direction.');
+  }
   if (settings.augmentSummoning) applyAugmentSummoning(c);
   if (choice.creature.note) c.notes.push(choice.creature.note);
   return c;
@@ -174,5 +178,5 @@ export function buildCreature(choice: CreatureChoice, template: TemplateId | nul
 const TEMPLATE_IDS: Record<TemplateId, true> = { celestial: true, fiendish: true, entropic: true, resolute: true };
 
 export function optionTitle(option: SummonOption, spellNames: Record<SpellKey, string>) {
-  return `${spellNames[option.spell]} ${ROMAN[option.level]}${option.sla ? ' (SLA)' : ''}`;
+  return [spellNames[option.spell], spellLevelLabel(option.spell, option.level)].filter(Boolean).join(' ') + (option.sla ? ' (SLA)' : '');
 }

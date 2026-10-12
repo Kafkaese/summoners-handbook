@@ -90,6 +90,22 @@ async function scrapeSummonMonster() {
   return levels;
 }
 
+// Summon swarm has a single "list": the swarms linked from its effect line.
+async function scrapeSummonSwarm() {
+  const { html } = await fetchPage('https://www.d20pfsrd.com/magic/all-spells/s/summon-swarm/');
+  const $ = cheerio.load(html);
+  const seen = new Set();
+  const standard = [];
+  $('article a[href*="/bestiary/"]').each((_, a) => {
+    const url = fixCreatureUrl($(a).attr('href'));
+    if (!url || seen.has(url)) return;
+    seen.add(url);
+    const kind = clean($(a).text()).toLowerCase();
+    standard.push({ name: `${kind.replace(/s$/, '')} swarm`, url, templated: false, presetTemplates: [], subtypes: [], source: null, footnotes: [] });
+  });
+  return { 1: { standard, alternatives: [] } };
+}
+
 async function scrapeNaturesAlly() {
   const { html } = await fetchPage('https://www.d20pfsrd.com/magic/all-spells/s/summon-natures-ally/');
   const $ = cheerio.load(html);
@@ -122,6 +138,7 @@ const data = {
   spells: {
     'summon-monster': await scrapeSummonMonster(),
     'summon-natures-ally': await scrapeNaturesAlly(),
+    'summon-swarm': await scrapeSummonSwarm(),
   },
 };
 await writeFile(new URL('../src/data/summonLists.json', import.meta.url), JSON.stringify(data, null, 2) + '\n');

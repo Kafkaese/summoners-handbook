@@ -1336,6 +1336,153 @@
   ],
   "description": null
  },
+ "bat-swarm": {
+  "id": "bat-swarm",
+  "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/bat/bat-swarm/",
+  "pageTitle": "Bat Swarm",
+  "source": null,
+  "name": "Bat Swarm",
+  "cr": "2",
+  "mr": null,
+  "xp": "600",
+  "alignment": "N",
+  "size": "Diminutive",
+  "type": "animal",
+  "subtypes": [
+   "swarm"
+  ],
+  "typeLine": "N Diminutive animal (swarm)",
+  "sections": {
+   "intro": [
+    {
+     "label": "Init",
+     "value": "+2"
+    },
+    {
+     "label": "Senses",
+     "value": "blindsense 20 ft., low-light vision"
+    },
+    {
+     "label": "Perception",
+     "value": "+15"
+    }
+   ],
+   "defense": [
+    {
+     "label": "AC",
+     "value": "16, touch 16, flat-footed 14 (+2 Dex, +4 size)"
+    },
+    {
+     "label": "hp",
+     "value": "13 (3d8)"
+    },
+    {
+     "label": "Fort",
+     "value": "+3"
+    },
+    {
+     "label": "Ref",
+     "value": "+7"
+    },
+    {
+     "label": "Will",
+     "value": "+3"
+    },
+    {
+     "label": "Defensive Abilities",
+     "value": "swarm traits"
+    },
+    {
+     "label": "Immune",
+     "value": "weapon damage"
+    }
+   ],
+   "offense": [
+    {
+     "label": "Speed",
+     "value": "5 ft., fly 40 ft. (good)"
+    },
+    {
+     "label": "Melee",
+     "value": "swarm (1d6)"
+    },
+    {
+     "label": "Space",
+     "value": "10 ft."
+    },
+    {
+     "label": "Reach",
+     "value": "0 ft."
+    },
+    {
+     "label": "Special Attacks",
+     "value": "distraction (DC 11), wounding"
+    }
+   ],
+   "tactics": [],
+   "statistics": [
+    {
+     "label": "Str",
+     "value": "3"
+    },
+    {
+     "label": "Dex",
+     "value": "15"
+    },
+    {
+     "label": "Con",
+     "value": "11"
+    },
+    {
+     "label": "Int",
+     "value": "2"
+    },
+    {
+     "label": "Wis",
+     "value": "14"
+    },
+    {
+     "label": "Cha",
+     "value": "4"
+    },
+    {
+     "label": "Base Atk",
+     "value": "+2"
+    },
+    {
+     "label": "CMB",
+     "value": "—"
+    },
+    {
+     "label": "CMD",
+     "value": "—"
+    },
+    {
+     "label": "Feats",
+     "value": "Lightning Reflexes, Skill Focus (Perception)"
+    },
+    {
+     "label": "Skills",
+     "value": "Fly +12, Perception +15"
+    },
+    {
+     "label": "Racial Modifiers",
+     "value": "+4 Perception when using blindsense"
+    },
+    {
+     "label": "SQ",
+     "value": "swarm traits"
+    }
+   ]
+  },
+  "special": [
+   {
+    "name": "Wounding (Ex)",
+    "text": "Any living creature damaged by a bat swarm continues to bleed, losing 1 hit point per round thereafter. Multiple wounds do not result in cumulative bleeding loss. The bleeding can be stopped by a DC 10 Heal check or the application of a cure spell or some other healing magic."
+   }
+  ],
+  "description": "Hundreds of high-pitched squeaks fill the air as a mass of small, carnivorous bats surges forth, all of them hungry for blood."
+ },
  "bearded-devil-barbazu": {
   "id": "bearded-devil-barbazu",
   "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/devil/bearded/",
@@ -23628,6 +23775,145 @@
   ],
   "description": null
  },
+ "rat-swarm": {
+  "id": "rat-swarm",
+  "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/rat/rat-swarm/",
+  "pageTitle": "Rat Swarm",
+  "source": null,
+  "name": "Rat Swarm",
+  "cr": "2",
+  "mr": null,
+  "xp": "600",
+  "alignment": "N",
+  "size": "Tiny",
+  "type": "animal",
+  "subtypes": [
+   "swarm"
+  ],
+  "typeLine": "N Tiny animal (swarm)",
+  "sections": {
+   "intro": [
+    {
+     "label": "Init",
+     "value": "+6"
+    },
+    {
+     "label": "Senses",
+     "value": "low-light vision, scent"
+    },
+    {
+     "label": "Perception",
+     "value": "+8"
+    }
+   ],
+   "defense": [
+    {
+     "label": "AC",
+     "value": "14, touch 14, flat-footed 12 (+2 Dex, +2 size)"
+    },
+    {
+     "label": "hp",
+     "value": "16 (3d8+3)"
+    },
+    {
+     "label": "Fort",
+     "value": "+4"
+    },
+    {
+     "label": "Ref",
+     "value": "+5"
+    },
+    {
+     "label": "Will",
+     "value": "+2"
+    },
+    {
+     "label": "Defensive Abilities",
+     "value": "swarm traits (as a swarm of tiny creatures, a Rat Swarm takes only half damage from piercing and slashing attacks)"
+    }
+   ],
+   "offense": [
+    {
+     "label": "Speed",
+     "value": "15 ft., climb 15 ft., swim 15 ft."
+    },
+    {
+     "label": "Melee",
+     "value": "swarm (1d6 plus disease)"
+    },
+    {
+     "label": "Space",
+     "value": "10 ft."
+    },
+    {
+     "label": "Reach",
+     "value": "0 ft."
+    },
+    {
+     "label": "Special Attacks",
+     "value": "disease, distraction (DC 12)"
+    }
+   ],
+   "tactics": [],
+   "statistics": [
+    {
+     "label": "Str",
+     "value": "2"
+    },
+    {
+     "label": "Dex",
+     "value": "15"
+    },
+    {
+     "label": "Con",
+     "value": "13"
+    },
+    {
+     "label": "Int",
+     "value": "2"
+    },
+    {
+     "label": "Wis",
+     "value": "13"
+    },
+    {
+     "label": "Cha",
+     "value": "2"
+    },
+    {
+     "label": "Base Atk",
+     "value": "+2"
+    },
+    {
+     "label": "CMB",
+     "value": "—"
+    },
+    {
+     "label": "CMD",
+     "value": "—"
+    },
+    {
+     "label": "Feats",
+     "value": "Improved Initiative, Skill Focus (Perception)"
+    },
+    {
+     "label": "Skills",
+     "value": "Acrobatics +6, Climb +10, Perception +8, Stealth +14, Swim +10"
+    },
+    {
+     "label": "Racial Modifiers",
+     "value": "uses Dex to modify Climb and Swim"
+    }
+   ]
+  },
+  "special": [
+   {
+    "name": "Disease (Ex)",
+    "text": "Filth fever: Swarm—injury; save Fort DC 12; onset 1d3 days; frequency 1/day; effect 1d3 Dex damage and 1d3 Con damage; cure 2 consecutive saves. The save DC is Constitution-based."
+   }
+  ],
+  "description": "A squirming, roiling mass of squeaking rats draws closer, teeth flashing and claws scratching everything in its path."
+ },
  "reefclaw": {
   "id": "reefclaw",
   "url": "https://www.d20pfsrd.com/bestiary/monster-listings/aberrations/reefclaw/",
@@ -26659,6 +26945,149 @@
    {
     "name": "Water Mastery (Ex)",
     "text": "A water elemental gains a +1 bonus on attack and damage rolls if both it and its opponent are touching water. If the opponent or the elemental is touching the ground, the elemental takes a –4 penalty on attack and damage rolls. These modifiers apply to bull rush and overrun maneuvers, whether the elemental is initiating or resisting these kinds of attacks."
+   }
+  ],
+  "description": null
+ },
+ "spider-swarm": {
+  "id": "spider-swarm",
+  "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/spider/spider-swarm/",
+  "pageTitle": "Spider Swarm",
+  "source": null,
+  "name": "Spider Swarm",
+  "cr": "1",
+  "mr": null,
+  "xp": "400",
+  "alignment": "N",
+  "size": "Diminutive",
+  "type": "vermin",
+  "subtypes": [
+   "swarm"
+  ],
+  "typeLine": "N Diminutive vermin (swarm)",
+  "sections": {
+   "intro": [
+    {
+     "label": "Init",
+     "value": "+3"
+    },
+    {
+     "label": "Senses",
+     "value": "darkvision 60 ft., tremorsense 30 ft."
+    },
+    {
+     "label": "Perception",
+     "value": "+4"
+    }
+   ],
+   "defense": [
+    {
+     "label": "AC",
+     "value": "17, touch 17, flat-footed 14 (+3 Dex, +4 size)"
+    },
+    {
+     "label": "hp",
+     "value": "9 (2d8)"
+    },
+    {
+     "label": "Fort",
+     "value": "+3"
+    },
+    {
+     "label": "Ref",
+     "value": "+3"
+    },
+    {
+     "label": "Will",
+     "value": "+0"
+    },
+    {
+     "label": "Defensive Abilities",
+     "value": "swarm traits"
+    },
+    {
+     "label": "Immune",
+     "value": "mind-affecting effects, weapon damage"
+    },
+    {
+     "label": "Weaknesses",
+     "value": "swarm traits"
+    }
+   ],
+   "offense": [
+    {
+     "label": "Speed",
+     "value": "20 ft., climb 20 ft."
+    },
+    {
+     "label": "Melee",
+     "value": "swarm (1d6 plus poison and distraction)"
+    },
+    {
+     "label": "Space",
+     "value": "10 ft."
+    },
+    {
+     "label": "Reach",
+     "value": "0 ft."
+    },
+    {
+     "label": "Special Attacks",
+     "value": "distraction (DC 11)"
+    }
+   ],
+   "tactics": [],
+   "statistics": [
+    {
+     "label": "Str",
+     "value": "1"
+    },
+    {
+     "label": "Dex",
+     "value": "17"
+    },
+    {
+     "label": "Con",
+     "value": "10"
+    },
+    {
+     "label": "Int",
+     "value": "—"
+    },
+    {
+     "label": "Wis",
+     "value": "10"
+    },
+    {
+     "label": "Cha",
+     "value": "2"
+    },
+    {
+     "label": "Base Atk",
+     "value": "+1"
+    },
+    {
+     "label": "CMB",
+     "value": "—"
+    },
+    {
+     "label": "CMD",
+     "value": "—"
+    },
+    {
+     "label": "Skills",
+     "value": "Climb +11, Perception +4"
+    },
+    {
+     "label": "Racial Modifiers",
+     "value": "+4 Perception; uses Dexterity for Climb checks"
+    }
+   ]
+  },
+  "special": [
+   {
+    "name": "Poison (Ex)",
+    "text": "Swarm—injury; save Fort DC 11; frequency 1/round for 2 rounds; effect 1d2 Str; cure 1 save. The save DC is Constitution-based."
    }
   ],
   "description": null

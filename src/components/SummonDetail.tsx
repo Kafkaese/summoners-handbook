@@ -32,7 +32,7 @@ export function SummonDetail({ choice, group, duration, template, onTemplate, se
 
       <div className="summary">
         <p>
-          <strong>Summons {group.count === '1' ? '1 creature' : `${group.count} creatures`}</strong>
+          <strong>Summons {choice.spell === 'summon-swarm' ? '1 swarm' : group.count === '1' ? '1 creature' : `${group.count} creatures`}</strong>
           {choice.descriptors.length > 0 && <> · spell becomes {choice.descriptors.join(', ')}</>}
         </p>
 

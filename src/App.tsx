@@ -21,7 +21,7 @@ export default function App() {
   const cls = classById(settings.classId);
   const options = useMemo(() => summonOptions(cls, settings.level), [cls, settings.level]);
   const option = options.find((o) => o.key === optionKey && o.available) ?? null;
-  const groups = option ? countGroups(option.level, settings.superiorSummoning) : [];
+  const groups = option ? countGroups(option.level, settings.superiorSummoning, option.spell) : [];
   const group = groups[Math.min(groupIndex, groups.length - 1)];
 
   const choices = option && group ? group.listLevels.flatMap((l) => choicesFor(option.spell, l, cls, settings)) : [];

@@ -24,36 +24,36 @@ const range = (n: number) => Object.fromEntries(Array.from({ length: n }, (_, i)
 
 export const CLASSES: ClassDef[] = [
   { id: 'antipaladin', name: 'Antipaladin', progression: 'four', casterLevelOffset: -3, access: [{ spell: 'summon-monster', levels: range(4) }] },
-  { id: 'arcanist', name: 'Arcanist', progression: 'full-spontaneous', access: [{ spell: 'summon-monster', levels: range(9) }] },
-  { id: 'bard', name: 'Bard', progression: 'six', access: [{ spell: 'summon-monster', levels: range(6) }] },
+  { id: 'arcanist', name: 'Arcanist', progression: 'full-spontaneous', access: [{ spell: 'summon-monster', levels: range(9) }, { spell: 'summon-swarm', levels: { 1: 2 } }] },
+  { id: 'bard', name: 'Bard', progression: 'six', access: [{ spell: 'summon-monster', levels: range(6) }, { spell: 'summon-swarm', levels: { 1: 2 } }] },
   { id: 'cleric', name: 'Cleric', progression: 'full-prepared', alignmentRestricted: true, access: [{ spell: 'summon-monster', levels: range(9) }] },
-  { id: 'druid', name: 'Druid', progression: 'full-prepared', access: [{ spell: 'summon-natures-ally', levels: range(9) }] },
-  { id: 'hunter', name: 'Hunter', progression: 'six', access: [{ spell: 'summon-natures-ally', levels: range(6) }] },
+  { id: 'druid', name: 'Druid', progression: 'full-prepared', access: [{ spell: 'summon-natures-ally', levels: range(9) }, { spell: 'summon-swarm', levels: { 1: 2 } }] },
+  { id: 'hunter', name: 'Hunter', progression: 'six', access: [{ spell: 'summon-natures-ally', levels: range(6) }, { spell: 'summon-swarm', levels: { 1: 2 } }] },
   { id: 'medium', name: 'Medium', progression: 'four', access: [{ spell: 'summon-monster', levels: { 1: 1, 2: 2, 4: 3, 5: 4 } }] },
   { id: 'oracle', name: 'Oracle', progression: 'full-spontaneous', access: [{ spell: 'summon-monster', levels: range(9) }] },
   { id: 'psychic', name: 'Psychic', progression: 'full-spontaneous', access: [{ spell: 'summon-monster', levels: range(9) }] },
   { id: 'ranger', name: 'Ranger', progression: 'four', casterLevelOffset: -3, access: [{ spell: 'summon-natures-ally', levels: range(4) }] },
-  { id: 'shaman', name: 'Shaman', progression: 'full-prepared', access: [{ spell: 'summon-natures-ally', levels: range(9) }] },
-  { id: 'skald', name: 'Skald', progression: 'six', access: [{ spell: 'summon-monster', levels: range(6) }] },
-  { id: 'sorcerer', name: 'Sorcerer', progression: 'full-spontaneous', access: [{ spell: 'summon-monster', levels: range(9) }] },
+  { id: 'shaman', name: 'Shaman', progression: 'full-prepared', access: [{ spell: 'summon-natures-ally', levels: range(9) }, { spell: 'summon-swarm', levels: { 1: 2 } }] },
+  { id: 'skald', name: 'Skald', progression: 'six', access: [{ spell: 'summon-monster', levels: range(6) }, { spell: 'summon-swarm', levels: { 1: 2 } }] },
+  { id: 'sorcerer', name: 'Sorcerer', progression: 'full-spontaneous', access: [{ spell: 'summon-monster', levels: range(9) }, { spell: 'summon-swarm', levels: { 1: 2 } }] },
   { id: 'spiritualist', name: 'Spiritualist', progression: 'six', access: [{ spell: 'summon-monster', levels: range(6) }] },
   {
     id: 'summoner',
     name: 'Summoner',
     progression: 'six',
     summonSla: true,
-    access: [{ spell: 'summon-monster', levels: { 1: 1, 2: 2, 4: 3, 5: 4, 7: 5, 8: 6 } }],
+    access: [{ spell: 'summon-monster', levels: { 1: 1, 2: 2, 4: 3, 5: 4, 7: 5, 8: 6 } }, { spell: 'summon-swarm', levels: { 1: 2 } }],
   },
   {
     id: 'unchained-summoner',
     name: 'Summoner (Unchained)',
     progression: 'six',
     summonSla: true,
-    access: [{ spell: 'summon-monster', levels: { 1: 1, 2: 2, 4: 3, 5: 4, 6: 5, 7: 6 } }],
+    access: [{ spell: 'summon-monster', levels: { 1: 1, 2: 2, 4: 3, 5: 4, 6: 5, 7: 6 } }, { spell: 'summon-swarm', levels: { 1: 2 } }],
   },
   { id: 'warpriest', name: 'Warpriest', progression: 'six', alignmentRestricted: true, access: [{ spell: 'summon-monster', levels: range(6) }] },
-  { id: 'witch', name: 'Witch', progression: 'full-prepared', access: [{ spell: 'summon-monster', levels: range(9) }] },
-  { id: 'wizard', name: 'Wizard', progression: 'full-prepared', access: [{ spell: 'summon-monster', levels: range(9) }] },
+  { id: 'witch', name: 'Witch', progression: 'full-prepared', access: [{ spell: 'summon-monster', levels: range(9) }, { spell: 'summon-swarm', levels: { 1: 2 } }] },
+  { id: 'wizard', name: 'Wizard', progression: 'full-prepared', access: [{ spell: 'summon-monster', levels: range(9) }, { spell: 'summon-swarm', levels: { 1: 2 } }] },
 ];
 
 export const classById = (id: string) => CLASSES.find((c) => c.id === id) ?? CLASSES[0];
@@ -77,7 +77,11 @@ export const ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'
 export const SPELL_NAMES: Record<SpellKey, string> = {
   'summon-monster': 'Summon Monster',
   'summon-natures-ally': "Summon Nature's Ally",
+  'summon-swarm': 'Summon Swarm',
 };
+
+/** "III" for the leveled summon spells; summon swarm has a single version. */
+export const spellLevelLabel = (spell: SpellKey, level: number) => (spell === 'summon-swarm' ? '' : ROMAN[level]);
 
 export interface SummonOption {
   key: string;
@@ -108,7 +112,7 @@ export function summonOptions(cls: ClassDef, classLevel: number): SummonOption[]
         requiredLevel,
         available: classLevel >= requiredLevel,
         casterLevel,
-        duration: `${casterLevel} round${casterLevel === 1 ? '' : 's'}`,
+        duration: spell === 'summon-swarm' ? 'concentration + 2 rounds' : `${casterLevel} round${casterLevel === 1 ? '' : 's'}`,
       });
     }
   }

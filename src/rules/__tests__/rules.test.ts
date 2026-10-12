@@ -15,7 +15,7 @@ const settings: Settings = {
   deityAlignment: 'NG',
 };
 
-function build(spell: 'summon-monster' | 'summon-natures-ally', level: number, name: string, opts: Partial<Settings> = {}, template: Parameters<typeof buildCreature>[1] = null) {
+function build(spell: 'summon-monster' | 'summon-natures-ally' | 'summon-swarm', level: number, name: string, opts: Partial<Settings> = {}, template: Parameters<typeof buildCreature>[1] = null) {
   const s = { ...settings, ...opts };
   const choice = choicesFor(spell, level, classById(s.classId), s).find((c) => c.name === name);
   if (!choice) throw new Error(`no choice ${name}`);
@@ -24,11 +24,11 @@ function build(spell: 'summon-monster' | 'summon-natures-ally', level: number, n
 
 describe('class spell access', () => {
   it('gives a 9th-level wizard summon monster I–V', () => {
-    const opts = summonOptions(classById('wizard'), 9).filter((o) => o.available);
+    const opts = summonOptions(classById('wizard'), 9).filter((o) => o.available && o.spell === 'summon-monster');
     expect(opts.map((o) => o.level)).toEqual([1, 2, 3, 4, 5]);
   });
   it('maps summoner spell levels and adds the SLA', () => {
-    const opts = summonOptions(classById('summoner'), 7).filter((o) => o.available);
+    const opts = summonOptions(classById('summoner'), 7).filter((o) => o.available && o.spell === 'summon-monster');
     expect(opts.filter((o) => !o.sla).map((o) => o.level)).toEqual([1, 2, 4]);
     expect(opts.filter((o) => o.sla).map((o) => o.level)).toEqual([1, 2, 3, 4]);
   });
@@ -137,5 +137,28 @@ describe('deity alignment', () => {
   it('ignores the deity for other classes', () => {
     const s = { ...settings, alignment: 'N' as const, deityAlignment: 'LG' as const };
     expect(choicesFor('summon-monster', 2, classById('wizard'), s).find((c) => c.name === 'Wolf')!.templateOptions).toEqual(['celestial', 'fiendish']);
+  });
+});
+
+describe('summon swarm', () => {
+  it('is a 2nd-level spell for its classes', () => {
+    const swarm = (id: string, level: number) => summonOptions(classById(id), level).find((o) => o.spell === 'summon-swarm');
+    expect(swarm('wizard', 3)).toMatchObject({ available: true, classSpellLevel: 2, duration: 'concentration + 2 rounds' });
+    expect(swarm('wizard', 2)?.available).toBe(false);
+    expect(swarm('druid', 3)?.available).toBe(true);
+    expect(swarm('cleric', 20)).toBeUndefined();
+  });
+  it('summons one swarm without templates', () => {
+    expect(countGroups(1, true, 'summon-swarm').map((g) => g.count)).toEqual(['1']);
+    const choices = choicesFor('summon-swarm', 1, classById('wizard'), settings);
+    expect(choices.map((c) => c.name)).toEqual(['Bat swarm', 'Rat swarm', 'Spider swarm']);
+    expect(choices.every((c) => !c.templateOptions.length && !c.matchesCasterAlignment)).toBe(true);
+  });
+  it('applies Augment Summoning to Con-based distraction', () => {
+    const { creature } = build('summon-swarm', 1, 'Rat swarm', { augmentSummoning: true });
+    expect(getValue(creature, 'Melee')).toBe('swarm (1d6 plus disease)');
+    expect(getValue(creature, 'Special Attacks')).toMatch(/distraction \(DC 14\)/);
+    // Rat swarms use Dex for Climb and Swim.
+    expect(getValue(creature, 'Skills')).toMatch(/Climb \+10,.*Swim \+10/);
   });
 });

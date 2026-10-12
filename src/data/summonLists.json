@@ -3366,6 +3366,49 @@
         ],
         "alternatives": []
       }
+    },
+    "summon-swarm": {
+      "1": {
+        "standard": [
+          {
+            "name": "bat swarm",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/bat/bat-swarm/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "bat-swarm"
+            ]
+          },
+          {
+            "name": "rat swarm",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/rat/rat-swarm/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "rat-swarm"
+            ]
+          },
+          {
+            "name": "spider swarm",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/spider/spider-swarm/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "spider-swarm"
+            ]
+          }
+        ],
+        "alternatives": []
+      }
     }
   }
 }

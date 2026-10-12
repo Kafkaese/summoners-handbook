@@ -5,6 +5,8 @@ import type { BuiltCreature } from './types';
 
 const hasFeat = (c: BuiltCreature, feat: string) => new RegExp(`\\b${feat}\\b`, 'i').test(getValue(c, 'Feats') ?? '');
 
+const CON_BASED_RULES = ['distraction', 'breath weapon'];
+
 /** Raises "DC N" by `delta` in abilities whose save DC is based on the given ability. */
 function bumpDcs(c: BuiltCreature, ability: 'Strength' | 'Constitution', delta: number) {
   const based = new RegExp(`DCs? (is|are) ${ability}-based`, 'i');
@@ -16,6 +18,12 @@ function bumpDcs(c: BuiltCreature, ability: 'Strength' | 'Constitution', delta: 
       if (!c.changed.has(`special.${sa.name}`)) c.changed.set(`special.${sa.name}`, sa.text);
       sa.text = text;
       bumpedNames.push(sa.name.replace(/\s*\((Ex|Su|Sp)[^)]*\)\s*$/i, '').toLowerCase());
+    }
+  }
+  // Universal monster rules whose DCs are Con-based without saying so in the stat block.
+  if (ability === 'Constitution') {
+    for (const umr of CON_BASED_RULES) {
+      if (!c.special.some((sa) => sa.name.toLowerCase().startsWith(umr))) bumpedNames.push(umr);
     }
   }
   if (!bumpedNames.length) return;
@@ -71,11 +79,15 @@ export function applyAugmentSummoning(c: BuiltCreature) {
     if (cmd) setValue(c, 'CMD', bumpWithSituational(cmd, delta, false));
 
     const skills = getValue(c, 'Skills');
-    if (skills) {
+    // Climb and Swim are Str-based unless the creature "uses Dex to modify" them.
+    const dexSkills = (getValue(c, 'Racial Modifiers') ?? '').match(/uses Dex to modify ([^;]*)/i)?.[1] ?? '';
+    const strSkillNames = ['Climb', 'Swim'].filter((sk) => !dexSkills.includes(sk));
+    const strSkills = new RegExp(`\\b(${strSkillNames.join('|')}) ([+\\-–−]\\d+)((?: \\([+\\-–−]\\d+[^)]*\\))?)`, 'g');
+    if (skills && strSkillNames.length) {
       setValue(
         c,
         'Skills',
-        skills.replace(/\b(Climb|Swim) ([+\-–−]\d+)((?: \([+\-–−]\d+[^)]*\))?)/g, (_, skill, bonus, extra: string) =>
+        skills.replace(strSkills, (_, skill, bonus, extra: string) =>
           `${skill} ${bumpLeading(bonus, delta)}${extra.replace(/\(([+\-–−]\d+)/, (_m, b) => `(${bumpLeading(b, delta)}`)}`,
         ),
       );
