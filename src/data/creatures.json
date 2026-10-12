@@ -564,6 +564,169 @@
   ],
   "description": null
  },
+ "ash-giant": {
+  "id": "ash-giant",
+  "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-ash/",
+  "pageTitle": "Giant, Ash",
+  "source": null,
+  "name": "Ash Giant",
+  "cr": "11",
+  "mr": null,
+  "xp": "12,800",
+  "alignment": "CN",
+  "size": "Large",
+  "type": "humanoid",
+  "subtypes": [
+   "giant"
+  ],
+  "typeLine": "CN Large humanoid (giant)",
+  "sections": {
+   "intro": [
+    {
+     "label": "Init",
+     "value": "+2"
+    },
+    {
+     "label": "Senses",
+     "value": "low-light vision"
+    },
+    {
+     "label": "Perception",
+     "value": "+8"
+    }
+   ],
+   "defense": [
+    {
+     "label": "AC",
+     "value": "25, touch 11, flat-footed 23 (+4 armor, +2 Dex, +10 natural, -1 size)"
+    },
+    {
+     "label": "hp",
+     "value": "147 (14d8+84)"
+    },
+    {
+     "label": "Fort",
+     "value": "+15"
+    },
+    {
+     "label": "Ref",
+     "value": "+6"
+    },
+    {
+     "label": "Will",
+     "value": "+5"
+    },
+    {
+     "label": "Defensive Abilities",
+     "value": "rock catching"
+    },
+    {
+     "label": "Immune",
+     "value": "disease, poison"
+    }
+   ],
+   "offense": [
+    {
+     "label": "Speed",
+     "value": "40 ft. (30 ft. in armor)"
+    },
+    {
+     "label": "Melee",
+     "value": "Huge club +20/+15 (2d6+11 plus disease), slam +15 (1d8+5 plus disease) or 2 slams +20 (1d8+11 plus disease)"
+    },
+    {
+     "label": "Ranged",
+     "value": "rock +13 (1d8+16 plus disease)"
+    },
+    {
+     "label": "Space",
+     "value": "10 ft."
+    },
+    {
+     "label": "Reach",
+     "value": "10 ft."
+    },
+    {
+     "label": "Special Attacks",
+     "value": "disease, rock throwing (120 ft.)"
+    }
+   ],
+   "tactics": [],
+   "statistics": [
+    {
+     "label": "Str",
+     "value": "33"
+    },
+    {
+     "label": "Dex",
+     "value": "14"
+    },
+    {
+     "label": "Con",
+     "value": "23"
+    },
+    {
+     "label": "Int",
+     "value": "9"
+    },
+    {
+     "label": "Wis",
+     "value": "12"
+    },
+    {
+     "label": "Cha",
+     "value": "10"
+    },
+    {
+     "label": "Base Atk",
+     "value": "+10"
+    },
+    {
+     "label": "CMB",
+     "value": "+22"
+    },
+    {
+     "label": "CMD",
+     "value": "34"
+    },
+    {
+     "label": "Feats",
+     "value": "Catch Off-Guard, Cleave, Great Cleave, Point-Blank Shot, Power Attack, Precise Shot, Self-Sufficient"
+    },
+    {
+     "label": "Skills",
+     "value": "Climb +14, Heal +7, Intimidate +6, Perception +8, Survival +9"
+    },
+    {
+     "label": "Languages",
+     "value": "Common, Giant"
+    },
+    {
+     "label": "SQ",
+     "value": "oversized weapon, vermin empathy +14"
+    }
+   ]
+  },
+  "special": [
+   {
+    "name": "Disease (Su)",
+    "text": "While ash giants are immune to disease, they carry a contagious form of leprosy. Any creature struck by an ash giant’s attacks is exposed to this virulent sickness."
+   },
+   {
+    "name": "Ash Leprosy",
+    "text": "Injury; save Fort 23; onset 1 minute; frequency 1 day; effect 1d2 Con damage, 1d2 Cha drain; cure 2 consecutive saves. The save DC is Constitution-based."
+   },
+   {
+    "name": "Oversized Weapon (Ex)",
+    "text": "An ash giant can wield Huge weapons without penalty."
+   },
+   {
+    "name": "Vermin Empathy (Ex)",
+    "text": "This ability functions as a druid’s wild empathy ability, save that it works only on vermin. An ash giant gains a racial bonus on this check equal to its Hit Dice (+14 for most ash giants). Vermin are normally mindless, but this empathic communication imparts upon them a modicum of implanted intelligence, allowing the ash giant to train vermin and use them as guardians (although it does not grant them skills or feats)."
+   }
+  ],
+  "description": null
+ },
  "astral-deva": {
   "id": "astral-deva",
   "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/angel/astral-deva/",
@@ -2978,58 +3141,6 @@
     {
      "label": "Skills",
      "value": "Perception +28 Brachiosaurus Companions"
-    },
-    {
-     "label": "Starting Statistics",
-     "value": ":"
-    },
-    {
-     "label": "Size",
-     "value": "Medium"
-    },
-    {
-     "label": "Speed",
-     "value": "30 ft."
-    },
-    {
-     "label": "AC",
-     "value": "+3 natural armor"
-    },
-    {
-     "label": "Attack",
-     "value": "tail (2d4)"
-    },
-    {
-     "label": "Ability Scores",
-     "value": "Str 13, Dex 14, Con 11, Int 2, Wis 13, Cha 10"
-    },
-    {
-     "label": "Special Qualities",
-     "value": "low-light vision, scent."
-    },
-    {
-     "label": "7th-Level Adv.",
-     "value": ":"
-    },
-    {
-     "label": "Size",
-     "value": "Large"
-    },
-    {
-     "label": "AC",
-     "value": "+2 natural armor"
-    },
-    {
-     "label": "Attack",
-     "value": "tail (2d6)"
-    },
-    {
-     "label": "Ability Scores",
-     "value": "Str +8, Dex –2, Con +4"
-    },
-    {
-     "label": "Special Qualities",
-     "value": "trample (1d8)."
     }
    ]
   },
@@ -3463,6 +3574,153 @@
    }
   ],
   "description": "This armor-plated creature’s toothy maw gapes wide as a fin-like dorsal plate rises between its shoulders."
+ },
+ "cave-giant": {
+  "id": "cave-giant",
+  "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-cave/",
+  "pageTitle": "Giant, Cave",
+  "source": null,
+  "name": "Cave Giant",
+  "cr": "6",
+  "mr": null,
+  "xp": "2,400",
+  "alignment": "CE",
+  "size": "Large",
+  "type": "humanoid",
+  "subtypes": [
+   "giant"
+  ],
+  "typeLine": "CE Large humanoid (giant)",
+  "sections": {
+   "intro": [
+    {
+     "label": "Init",
+     "value": "+0"
+    },
+    {
+     "label": "Senses",
+     "value": "darkvision 120 ft., low-light vision"
+    },
+    {
+     "label": "Perception",
+     "value": "+5"
+    }
+   ],
+   "defense": [
+    {
+     "label": "AC",
+     "value": "19, touch 9, flat-footed 19 (+4 armor, +6 natural, -1 size)"
+    },
+    {
+     "label": "hp",
+     "value": "67 (9d8+27)"
+    },
+    {
+     "label": "Fort",
+     "value": "+9"
+    },
+    {
+     "label": "Ref",
+     "value": "+3"
+    },
+    {
+     "label": "Will",
+     "value": "+3"
+    },
+    {
+     "label": "Defensive Abilities",
+     "value": "ferocity, rock catching"
+    },
+    {
+     "label": "Weaknesses",
+     "value": "light sensitivity"
+    }
+   ],
+   "offense": [
+    {
+     "label": "Speed",
+     "value": "40 ft. (30 ft. in armor)"
+    },
+    {
+     "label": "Melee",
+     "value": "battleaxe +12/+7 (2d6+9/x3) or 2 slams +11 (1d8+6)"
+    },
+    {
+     "label": "Ranged",
+     "value": "rock +5 (1d8+6)"
+    },
+    {
+     "label": "Space",
+     "value": "10 ft."
+    },
+    {
+     "label": "Reach",
+     "value": "10 ft."
+    },
+    {
+     "label": "Special Attacks",
+     "value": "rock throwing (100 ft.)"
+    }
+   ],
+   "tactics": [],
+   "statistics": [
+    {
+     "label": "Str",
+     "value": "23"
+    },
+    {
+     "label": "Dex",
+     "value": "10"
+    },
+    {
+     "label": "Con",
+     "value": "17"
+    },
+    {
+     "label": "Int",
+     "value": "6"
+    },
+    {
+     "label": "Wis",
+     "value": "10"
+    },
+    {
+     "label": "Cha",
+     "value": "7"
+    },
+    {
+     "label": "Base Atk",
+     "value": "+6"
+    },
+    {
+     "label": "CMB",
+     "value": "+13"
+    },
+    {
+     "label": "CMD",
+     "value": "23"
+    },
+    {
+     "label": "Feats",
+     "value": "Cleave, Improved Sunder, Power Attack, Vital Strike, Weapon Focus (battleaxe)"
+    },
+    {
+     "label": "Skills",
+     "value": "Climb +6, Intimidate +7, Perception +5"
+    },
+    {
+     "label": "SQ",
+     "value": "axe wielder"
+    }
+   ]
+  },
+  "special": [
+   {
+    "name": "Axe Wielder (Ex)",
+    "text": "All cave giants are proficient with handaxes, battleaxes, and greataxes."
+   }
+  ],
+  "description": null
  },
  "cerberi": {
   "id": "cerberi",
@@ -4149,7 +4407,7 @@
   "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-cloud/",
   "pageTitle": "Giant, Cloud",
   "source": null,
-  "name": "Cloud Giant (",
+  "name": "Cloud Giant",
   "cr": "11",
   "mr": null,
   "xp": "12,800",
@@ -5398,6 +5656,161 @@
   "special": [],
   "description": null
  },
+ "desert-giant": {
+  "id": "desert-giant",
+  "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-desert/",
+  "pageTitle": "Giant, Desert",
+  "source": null,
+  "name": "Desert Giant",
+  "cr": "9",
+  "mr": null,
+  "xp": "6,400",
+  "alignment": "LN",
+  "size": "Large",
+  "type": "humanoid",
+  "subtypes": [
+   "giant"
+  ],
+  "typeLine": "LN Large humanoid (giant)",
+  "sections": {
+   "intro": [
+    {
+     "label": "Init",
+     "value": "+3"
+    },
+    {
+     "label": "Senses",
+     "value": "low-light vision"
+    },
+    {
+     "label": "Perception",
+     "value": "+9"
+    }
+   ],
+   "defense": [
+    {
+     "label": "AC",
+     "value": "24, touch 13, flat-footed 20 (+2 armor, +3 Dex, +1 dodge, +9 natural, -1 size)"
+    },
+    {
+     "label": "hp",
+     "value": "123 (13d8+65)"
+    },
+    {
+     "label": "Fort",
+     "value": "+9"
+    },
+    {
+     "label": "Ref",
+     "value": "+11"
+    },
+    {
+     "label": "Will",
+     "value": "+5"
+    },
+    {
+     "label": "Defensive Abilities",
+     "value": "rock catching"
+    },
+    {
+     "label": "Immune",
+     "value": "fire"
+    }
+   ],
+   "offense": [
+    {
+     "label": "Speed",
+     "value": "50 ft."
+    },
+    {
+     "label": "Melee",
+     "value": "mwk scimitars +16/+16/+11/+11 (1d8+8/15-20) or 2 slams +16 (1d8+8)"
+    },
+    {
+     "label": "Ranged",
+     "value": "rock +11 (1d8+8)"
+    },
+    {
+     "label": "Space",
+     "value": "10 ft."
+    },
+    {
+     "label": "Reach",
+     "value": "10 ft."
+    },
+    {
+     "label": "Special Attacks",
+     "value": "rock throwing (100 ft.), scimitar training"
+    }
+   ],
+   "tactics": [],
+   "statistics": [
+    {
+     "label": "Str",
+     "value": "26"
+    },
+    {
+     "label": "Dex",
+     "value": "17"
+    },
+    {
+     "label": "Con",
+     "value": "21"
+    },
+    {
+     "label": "Int",
+     "value": "13"
+    },
+    {
+     "label": "Wis",
+     "value": "12"
+    },
+    {
+     "label": "Cha",
+     "value": "10"
+    },
+    {
+     "label": "Base Atk",
+     "value": "+9"
+    },
+    {
+     "label": "CMB",
+     "value": "+18"
+    },
+    {
+     "label": "CMD",
+     "value": "32 (36 vs. disarm and sunder)"
+    },
+    {
+     "label": "Feats",
+     "value": "Combat Reflexes, Dodge, Improved Critical (scimitar), Improved Two-Weapon Fighting, Mobility, Two-Weapon Fighting, Weapon Focus (scimitar)"
+    },
+    {
+     "label": "Skills",
+     "value": "Acrobatics +16 (+24 when jumping), Intimidate +11, Perception +9, Survival +17"
+    },
+    {
+     "label": "Languages",
+     "value": "Common, Giant"
+    },
+    {
+     "label": "SQ",
+     "value": "sandwalking"
+    }
+   ]
+  },
+  "special": [
+   {
+    "name": "Sandwalking (Ex)",
+    "text": "A desert giant travels at full speed across sand, rocky ground, or dust, and leaves no trail behind unless it chooses to."
+   },
+   {
+    "name": "Scimitar Training (Ex)",
+    "text": "All desert giants are proficient with scimitars, and can wield them as if they were light weapons. A desert giant adds its full Strength bonus to attacks made with a scimitar wielded in its off hand, and gains a +4 bonus to CMD versus disarm and sunder attempts when fighting with a scimitar in each hand."
+   }
+  ],
+  "description": null
+ },
  "dire-ape-gigantopithecus": {
   "id": "dire-ape-gigantopithecus",
   "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/primates/primate-ape-dire/",
@@ -6407,6 +6820,154 @@
    ]
   },
   "special": [],
+  "description": null
+ },
+ "djinni": {
+  "id": "djinni",
+  "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/genie/djinni/",
+  "pageTitle": "Genie, Djinni",
+  "source": null,
+  "name": "Djinni",
+  "cr": "5",
+  "mr": null,
+  "xp": "1,600",
+  "alignment": "CG",
+  "size": "Large",
+  "type": "outsider",
+  "subtypes": [
+   "air",
+   "extraplanar"
+  ],
+  "typeLine": "CG Large outsider (air, extraplanar)",
+  "sections": {
+   "intro": [
+    {
+     "label": "Init",
+     "value": "+8"
+    },
+    {
+     "label": "Senses",
+     "value": "darkvision 60 ft."
+    },
+    {
+     "label": "Perception",
+     "value": "+12"
+    }
+   ],
+   "defense": [
+    {
+     "label": "AC",
+     "value": "19, touch 14, flat-footed 14 (+4 Dex, +1 dodge, +5 natural, –1 size)"
+    },
+    {
+     "label": "hp",
+     "value": "52 (7d10+14)"
+    },
+    {
+     "label": "Fort",
+     "value": "+4"
+    },
+    {
+     "label": "Ref",
+     "value": "+9"
+    },
+    {
+     "label": "Will",
+     "value": "+7"
+    },
+    {
+     "label": "Immune",
+     "value": "acid"
+    }
+   ],
+   "offense": [
+    {
+     "label": "Speed",
+     "value": "20 ft., fly 60 ft. (perfect)"
+    },
+    {
+     "label": "Melee",
+     "value": "2 slams +10 (1d8+4) or mwk scimitar +11/+6 (1d8+4/18–20)"
+    },
+    {
+     "label": "Space",
+     "value": "10 ft."
+    },
+    {
+     "label": "Reach",
+     "value": "10 ft."
+    },
+    {
+     "label": "Special Attacks",
+     "value": "air mastery, whirlwind (1/10 minutes, 10–50 ft. tall, 1d8+4 damage, DC 17)"
+    },
+    {
+     "label": "Spell-Like Abilities",
+     "value": "(CL 9th)",
+     "lines": [
+      "At will—invisibility (self only), plane shift (willing targets to elemental planes, Astral Plane, or Material Plane only)",
+      "1/day—create food and water, create wine (as create water, but wine instead), gaseous form (for up to 1 hour), major creation (created vegetable matter is permanent), persistent image (DC 17), wind walk"
+     ]
+    }
+   ],
+   "tactics": [],
+   "statistics": [
+    {
+     "label": "Str",
+     "value": "18"
+    },
+    {
+     "label": "Dex",
+     "value": "19"
+    },
+    {
+     "label": "Con",
+     "value": "14"
+    },
+    {
+     "label": "Int",
+     "value": "14"
+    },
+    {
+     "label": "Wis",
+     "value": "15"
+    },
+    {
+     "label": "Cha",
+     "value": "15"
+    },
+    {
+     "label": "Base Atk",
+     "value": "+7"
+    },
+    {
+     "label": "CMB",
+     "value": "+12"
+    },
+    {
+     "label": "CMD",
+     "value": "27"
+    },
+    {
+     "label": "Feats",
+     "value": "Combat Casting, Combat Reflexes, Dodge, Improved Initiative^B, Wind Stance"
+    },
+    {
+     "label": "Skills",
+     "value": "Appraise +12, Craft (any one) +12, Fly +20, Knowledge (planes) +12, Perception +12, Sense Motive +12, Spellcraft +12, Stealth +10"
+    },
+    {
+     "label": "Languages",
+     "value": "Aquan, Auran, Common, Ignan, Terran; telepathy 100 ft."
+    }
+   ]
+  },
+  "special": [
+   {
+    "name": "Air Mastery (Ex)",
+    "text": "Airborne creatures take a –1 penalty on attack and damage rolls against a djinni."
+   }
+  ],
   "description": null
  },
  "dog": {
@@ -8785,58 +9346,6 @@
     {
      "label": "Skills",
      "value": "Perception +21 Elephant/Mastodon Companions"
-    },
-    {
-     "label": "Starting Statistics",
-     "value": ":"
-    },
-    {
-     "label": "Size",
-     "value": "Medium"
-    },
-    {
-     "label": "Speed",
-     "value": "40 ft."
-    },
-    {
-     "label": "AC",
-     "value": "+4 natural armor"
-    },
-    {
-     "label": "Attack",
-     "value": "gore (1d8), slam (1d6)"
-    },
-    {
-     "label": "Ability Scores",
-     "value": "Str 14, Dex 14, Con 13, Int 2, Wis 13, Cha 7"
-    },
-    {
-     "label": "Special Abilities",
-     "value": "low-light vision, scent."
-    },
-    {
-     "label": "7th-Level Advancement",
-     "value": ":"
-    },
-    {
-     "label": "Size",
-     "value": "Large"
-    },
-    {
-     "label": "AC",
-     "value": "+3 natural armor"
-    },
-    {
-     "label": "Attack",
-     "value": "gore (2d6), slam (1d8)"
-    },
-    {
-     "label": "Ability Scores",
-     "value": "+8 Str, –2 Dex, +4 Con"
-    },
-    {
-     "label": "Special Abilities",
-     "value": "trample (2d6)."
     }
    ]
   },
@@ -9254,7 +9763,7 @@
   "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/ettin/",
   "pageTitle": "Ettin",
   "source": null,
-  "name": "Ettin (",
+  "name": "Ettin",
   "cr": "6",
   "mr": null,
   "xp": "2,400",
@@ -10101,7 +10610,7 @@
   "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/azata/ghaele/",
   "pageTitle": "Azata, Ghaele",
   "source": null,
-  "name": "Ghaele (",
+  "name": "Ghaele",
   "cr": "13",
   "mr": null,
   "xp": "25,600",
@@ -10674,7 +11183,7 @@
   "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/ant/ant-giant-worker/",
   "pageTitle": "Ant, Giant (Worker)",
   "source": null,
-  "name": "Giant Ant Worker (",
+  "name": "Giant Ant Worker",
   "cr": "1",
   "mr": null,
   "xp": "400",
@@ -13160,7 +13669,9 @@
     {
      "label": "Will",
      "value": "+5"
-    },
+    }
+   ],
+   "offense": [
     {
      "label": "Speed",
      "value": "40 ft., climb 40 ft."
@@ -13182,7 +13693,6 @@
      "value": "rend (4 claws, 1d4+6)"
     }
    ],
-   "offense": [],
    "tactics": [],
    "statistics": [
     {
@@ -17370,50 +17880,6 @@
     {
      "label": "Racial Modifiers",
      "value": "+4 Stealth in tall grass Hyena Companions"
-    },
-    {
-     "label": "Starting Statistics",
-     "value": ":"
-    },
-    {
-     "label": "Size",
-     "value": "Small"
-    },
-    {
-     "label": "Speed",
-     "value": "50 ft."
-    },
-    {
-     "label": "AC",
-     "value": "+2 natural armor"
-    },
-    {
-     "label": "Attack",
-     "value": "bite (1d4 plus trip)"
-    },
-    {
-     "label": "Ability Scores",
-     "value": "Str 10, Dex 17, Con 13, Int 2, Wis 13, Cha 6"
-    },
-    {
-     "label": "Special Qualities",
-     "value": "low-light vision, scent."
-    },
-    {
-     "label": "4th-Level Advancement",
-     "value": ":"
-    },
-    {
-     "label": "Size",
-     "value": "Medium"
-    },
-    {
-     "label": "Attack",
-     "value": "bite (1d6 plus trip)"
-    },
-    {
-     "label": "Ability Scores",
-     "value": "Str +4, Dex –2, Con +2."
     }
    ]
   },
@@ -18007,6 +18473,324 @@
    {
     "name": "Poison (Ex)",
     "text": "An iron cobra’s bite injects poison from a hidden reservoir within its body. Because it is a construct, the cobra does not naturally produce this poison, and its creator must refill this reservoir manually. The reservoir holds enough poison for 3 successful bite attacks, after which the creature merely deals bite damage. Refilling the reservoir takes 5 rounds and provokes attacks of opportunity. The creator can fill the reservoir with any injury poison (typically black adder venom), though acid, alchemical substances, and even stranger liquids have been used.\nBlack Adder Venom: Bite—injury; save Fort DC 11; frequency 1/round for 6 rounds; effect 1d2 Con damage; cure 1 save."
+   }
+  ],
+  "description": null
+ },
+ "janni": {
+  "id": "janni",
+  "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/genie/janni/",
+  "pageTitle": "Genie, Janni",
+  "source": null,
+  "name": "Janni",
+  "cr": "4",
+  "mr": null,
+  "xp": "1,200",
+  "alignment": "N",
+  "size": "Medium",
+  "type": "outsider",
+  "subtypes": [
+   "native"
+  ],
+  "typeLine": "N Medium outsider (native)",
+  "sections": {
+   "intro": [
+    {
+     "label": "Init",
+     "value": "+6"
+    },
+    {
+     "label": "Senses",
+     "value": "darkvision 60 ft."
+    },
+    {
+     "label": "Perception",
+     "value": "+11"
+    }
+   ],
+   "defense": [
+    {
+     "label": "AC",
+     "value": "20, touch 13, flat-footed 17 (+6 armor, +2 Dex, +1 dodge, +1 natural)"
+    },
+    {
+     "label": "hp",
+     "value": "39 (6d10+6)"
+    },
+    {
+     "label": "Fort",
+     "value": "+6"
+    },
+    {
+     "label": "Ref",
+     "value": "+7"
+    },
+    {
+     "label": "Will",
+     "value": "+4"
+    },
+    {
+     "label": "Resist",
+     "value": "fire 10"
+    }
+   ],
+   "offense": [
+    {
+     "label": "Speed",
+     "value": "30 ft., fly 20 ft. (perfect); 20 ft., fly 15 ft. (perfect) in chainmail"
+    },
+    {
+     "label": "Melee",
+     "value": "scimitar +9/+4 (1d6+4/18–20)"
+    },
+    {
+     "label": "Ranged",
+     "value": "composite longbow +8/+3 (1d8+3/×3)"
+    },
+    {
+     "label": "Special Attacks",
+     "value": "change size"
+    },
+    {
+     "label": "Spell-Like Abilities",
+     "value": "(CL 8th)",
+     "lines": [
+      "3/day—invisibility (self only), plane shift (willing targets to elemental planes, Astral Plane, or Material Plane only), speak with animals",
+      "1/day—create food and water, ethereal jaunt (for 1 hour)"
+     ]
+    }
+   ],
+   "tactics": [],
+   "statistics": [
+    {
+     "label": "Str",
+     "value": "16"
+    },
+    {
+     "label": "Dex",
+     "value": "15"
+    },
+    {
+     "label": "Con",
+     "value": "12"
+    },
+    {
+     "label": "Int",
+     "value": "14"
+    },
+    {
+     "label": "Wis",
+     "value": "15"
+    },
+    {
+     "label": "Cha",
+     "value": "13"
+    },
+    {
+     "label": "Base Atk",
+     "value": "+6"
+    },
+    {
+     "label": "CMB",
+     "value": "+9"
+    },
+    {
+     "label": "CMD",
+     "value": "22"
+    },
+    {
+     "label": "Feats",
+     "value": "Combat Reflexes, Dodge, Improved Initiative^B, Mobility"
+    },
+    {
+     "label": "Skills",
+     "value": "Appraise +11, Craft (any one—usually weaponsmith) +11, Fly +14, Perception +11, Ride +6, Sense Motive +11, Spellcraft +11, Stealth +6"
+    },
+    {
+     "label": "Languages",
+     "value": "Common, one elemental language (Aquan, Auran, Ignan, or Terran), one planar language (Abyssal, Celestial, or Infernal); telepathy 100 ft."
+    },
+    {
+     "label": "SQ",
+     "value": "elemental endurance"
+    }
+   ]
+  },
+  "special": [
+   {
+    "name": "Change Size (Sp)",
+    "text": "Twice per day, a janni can magically change a creature’s size. This works just like an enlarge person or reduce person spell (the janni chooses when using the ability), except that the ability can work on the janni. A DC 13 Fortitude save negates the effect. The save DC is Charisma-based. This is the equivalent of a 2nd-level spell."
+   },
+   {
+    "name": "Elemental Endurance (Ex)",
+    "text": "Jann can remain on the Planes of Air, Earth, Fire, or Water for up to 48 hours at a time. Failure to return to the Material Plane before that time expires causes a janni to take 1 point of damage per additional hour spent on the elemental plane, until it dies or returns to the Material Plane.\nVariants and Examples"
+   },
+   {
+    "name": "Amir (Noble Jann, CR 7)",
+    "text": "A small percentage of jann are noble. They are called sheikhs or amirs, have 9 Hit Dice, Strength 19, Intelligence 18, and gain the following spell-like abilities:\n3/day—augury, detect magic, and divination.\nA noble janni’s caster level for its spell-like abilities is 12th. Noble jann are CR 7.\nExample Sheikh/Amir (CR 7)"
+   },
+   {
+    "name": "Other Examples and Types",
+    "text": "Cheitan Janni (CR 6) Janni Monk 12 (CR 13) Janni Ranger 2/Rogue 3 (CR 7)"
+   }
+  ],
+  "description": null
+ },
+ "jungle-giant": {
+  "id": "jungle-giant",
+  "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-jungle/",
+  "pageTitle": "Giant, Jungle",
+  "source": null,
+  "name": "Jungle Giant",
+  "cr": "10",
+  "mr": null,
+  "xp": "9,600",
+  "alignment": "N",
+  "size": "Huge",
+  "type": "humanoid",
+  "subtypes": [
+   "giant"
+  ],
+  "typeLine": "N Huge humanoid (giant)",
+  "sections": {
+   "intro": [
+    {
+     "label": "Init",
+     "value": "+4"
+    },
+    {
+     "label": "Senses",
+     "value": "low-light vision"
+    },
+    {
+     "label": "Perception",
+     "value": "+15"
+    }
+   ],
+   "defense": [
+    {
+     "label": "AC",
+     "value": "24, touch 16, flat-footed 20 (+4 deflection, +4 Dex, +8 natural, -2 size)"
+    },
+    {
+     "label": "hp",
+     "value": "127 (15d8+60)"
+    },
+    {
+     "label": "Fort",
+     "value": "+9"
+    },
+    {
+     "label": "Ref",
+     "value": "+13"
+    },
+    {
+     "label": "Will",
+     "value": "+7"
+    },
+    {
+     "label": "Defensive Abilities",
+     "value": "rock catching, spell storing, warding tattoos"
+    },
+    {
+     "label": "Immune",
+     "value": "disease, poison"
+    }
+   ],
+   "offense": [
+    {
+     "label": "Speed",
+     "value": "40 ft."
+    },
+    {
+     "label": "Melee",
+     "value": "2 slams +17 (2d6+8)"
+    },
+    {
+     "label": "Ranged",
+     "value": "mwk composite longbow +15/+10/+5 (3d6+8/19-20/x3)"
+    },
+    {
+     "label": "Space",
+     "value": "15 ft."
+    },
+    {
+     "label": "Reach",
+     "value": "15 ft."
+    }
+   ],
+   "tactics": [],
+   "statistics": [
+    {
+     "label": "Str",
+     "value": "26"
+    },
+    {
+     "label": "Dex",
+     "value": "19"
+    },
+    {
+     "label": "Con",
+     "value": "19"
+    },
+    {
+     "label": "Int",
+     "value": "10"
+    },
+    {
+     "label": "Wis",
+     "value": "14"
+    },
+    {
+     "label": "Cha",
+     "value": "11"
+    },
+    {
+     "label": "Base Atk",
+     "value": "+11"
+    },
+    {
+     "label": "CMB",
+     "value": "+21"
+    },
+    {
+     "label": "CMD",
+     "value": "39"
+    },
+    {
+     "label": "Feats",
+     "value": "Deadly Aim, Improved Critical (longbow), Improved Precise Shot, Point-Blank Shot, Precise Shot, Rapid Shot, Skill Focus (Stealth), Weapon Focus (longbow)"
+    },
+    {
+     "label": "Skills",
+     "value": "Climb +12, Craft (bows) +8, Perception +15, Stealth +12 (+20 in forests), Survival +10"
+    },
+    {
+     "label": "Racial Modifiers",
+     "value": "+4 Climb, +8 Stealth in forests"
+    },
+    {
+     "label": "Languages",
+     "value": "Common, Giant"
+    },
+    {
+     "label": "SQ",
+     "value": "archery expert"
+    }
+   ]
+  },
+  "special": [
+   {
+    "name": "Archery Expert (Su)",
+    "text": "A jungle giant is proficient with all bows, and does not provoke an attack of opportunity when firing a bow in melee combat."
+   },
+   {
+    "name": "Spell Storing (Su)",
+    "text": "Once per day as a immediate action, a jungle giant can absorb a targeted or ranged touch spell used against it, negating the effects against it but not against any other targets. It can retain this stored power for up to 1 minute, during which time its tattoos glow with blue fire. If it damages a target with a successful hit using a melee or ranged weapon, it can cast the spell on the target as a free action, as if it were using a spell storing weapon. This spell uses the caster level and DC of the original caster. This discharges the stored spell."
+   },
+   {
+    "name": "Warding Tattoos (Su)",
+    "text": "A jungle giant’s magical tattoos grant it a +4 deflection bonus to Armor Class. The giant loses this bonus if it wears armor."
    }
   ],
   "description": null
@@ -20522,6 +21306,155 @@
    }
   ],
   "description": "This creature has a vaguely humanoid head, the body of a lion, and the wings of a dragon. Its tail ends in long, sharp spikes."
+ },
+ "marsh-giant": {
+  "id": "marsh-giant",
+  "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-marsh/",
+  "pageTitle": "Giant, Marsh",
+  "source": null,
+  "name": "Marsh Giant",
+  "cr": "8",
+  "mr": null,
+  "xp": "4,800",
+  "alignment": "CE",
+  "size": "Large",
+  "type": "humanoid",
+  "subtypes": [
+   "giant"
+  ],
+  "typeLine": "CE Large humanoid (giant)",
+  "sections": {
+   "intro": [
+    {
+     "label": "Init",
+     "value": "+3"
+    },
+    {
+     "label": "Senses",
+     "value": "low-light vision"
+    },
+    {
+     "label": "Perception",
+     "value": "+11"
+    }
+   ],
+   "defense": [
+    {
+     "label": "AC",
+     "value": "21, touch 12, flat-footed 18 (+3 Dex, +9 natural, –1 size)"
+    },
+    {
+     "label": "hp",
+     "value": "102 (12d8+48)"
+    },
+    {
+     "label": "Fort",
+     "value": "+12"
+    },
+    {
+     "label": "Ref",
+     "value": "+7"
+    },
+    {
+     "label": "Will",
+     "value": "+8"
+    },
+    {
+     "label": "Defensive Abilities",
+     "value": "rock catching"
+    }
+   ],
+   "offense": [
+    {
+     "label": "Speed",
+     "value": "40 ft., swim 20 ft."
+    },
+    {
+     "label": "Melee",
+     "value": "gaff +16/+11 (2d6+12) or 2 slams +16 (1d6+8)"
+    },
+    {
+     "label": "Ranged",
+     "value": "rock +12 (2d6+9)"
+    },
+    {
+     "label": "Space",
+     "value": "10 ft."
+    },
+    {
+     "label": "Reach",
+     "value": "10 ft."
+    },
+    {
+     "label": "Special Attacks",
+     "value": "rock throwing (120 ft.)"
+    },
+    {
+     "label": "Spell-Like Abilities",
+     "value": "(CL 12th; concentration +13)",
+     "lines": [
+      "3/day—augury, bestow curse (DC 15), fog cloud"
+     ]
+    }
+   ],
+   "tactics": [],
+   "statistics": [
+    {
+     "label": "Str",
+     "value": "27"
+    },
+    {
+     "label": "Dex",
+     "value": "17"
+    },
+    {
+     "label": "Con",
+     "value": "19"
+    },
+    {
+     "label": "Int",
+     "value": "8"
+    },
+    {
+     "label": "Wis",
+     "value": "15"
+    },
+    {
+     "label": "Cha",
+     "value": "12"
+    },
+    {
+     "label": "Base Atk",
+     "value": "+9"
+    },
+    {
+     "label": "CMB",
+     "value": "+18"
+    },
+    {
+     "label": "CMD",
+     "value": "31"
+    },
+    {
+     "label": "Feats",
+     "value": "Combat Reflexes, Improved Iron Will, Improved Sunder, Iron Will, Power Attack, Vital Strike"
+    },
+    {
+     "label": "Skills",
+     "value": "Perception +11, Stealth +5 (+13 in swamps), Swim +16"
+    },
+    {
+     "label": "Racial Modifiers",
+     "value": "+8 Stealth in swamps"
+    },
+    {
+     "label": "Languages",
+     "value": "Boggard, Giant"
+    }
+   ]
+  },
+  "special": [],
+  "description": null
  },
  "mastodon": {
   "id": "mastodon",
@@ -24313,6 +25246,152 @@
   "special": [],
   "description": "This large rhinoceros has a shaggy pelt of long, brown fur and a row of immense horns on its snout and brow."
  },
+ "river-giant": {
+  "id": "river-giant",
+  "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-river/",
+  "pageTitle": "Giant, River",
+  "source": null,
+  "name": "River Giant",
+  "cr": "6",
+  "mr": null,
+  "xp": "2,400",
+  "alignment": "CG or CE",
+  "size": "Large",
+  "type": "humanoid",
+  "subtypes": [
+   "giant"
+  ],
+  "typeLine": "CG or CE Large humanoid (giant)",
+  "sections": {
+   "intro": [
+    {
+     "label": "Init",
+     "value": "+4"
+    },
+    {
+     "label": "Senses",
+     "value": "low-light vision"
+    },
+    {
+     "label": "Perception",
+     "value": "+6"
+    }
+   ],
+   "defense": [
+    {
+     "label": "AC",
+     "value": "19, touch 9, flat-footed 19 (+3 armor, +7 natural, –1 size)"
+    },
+    {
+     "label": "hp",
+     "value": "68 (8d8+32)"
+    },
+    {
+     "label": "Fort",
+     "value": "+10"
+    },
+    {
+     "label": "Ref",
+     "value": "+2"
+    },
+    {
+     "label": "Will",
+     "value": "+2"
+    },
+    {
+     "label": "Defensive Abilities",
+     "value": "rock catching"
+    }
+   ],
+   "offense": [
+    {
+     "label": "Speed",
+     "value": "40 ft."
+    },
+    {
+     "label": "Melee",
+     "value": "spear +11/+6 (2d6+7/×3) or 2 slams +10 (1d8+5)"
+    },
+    {
+     "label": "Ranged",
+     "value": "rock +6 (1d8+5)"
+    },
+    {
+     "label": "Space",
+     "value": "10 ft."
+    },
+    {
+     "label": "Reach",
+     "value": "10 ft."
+    },
+    {
+     "label": "Special Attacks",
+     "value": "rock throwing (100 ft.)"
+    }
+   ],
+   "tactics": [],
+   "statistics": [
+    {
+     "label": "Str",
+     "value": "20"
+    },
+    {
+     "label": "Dex",
+     "value": "11"
+    },
+    {
+     "label": "Con",
+     "value": "19"
+    },
+    {
+     "label": "Int",
+     "value": "9"
+    },
+    {
+     "label": "Wis",
+     "value": "10"
+    },
+    {
+     "label": "Cha",
+     "value": "8"
+    },
+    {
+     "label": "Base Atk",
+     "value": "+6"
+    },
+    {
+     "label": "CMB",
+     "value": "+12 (+14 bull rush)"
+    },
+    {
+     "label": "CMD",
+     "value": "22 (24 vs. bull rush)"
+    },
+    {
+     "label": "Feats",
+     "value": "Improved Bull Rush, Improved Initiative, Martial Weapon Proficiency (spear), Weapon Focus (spear)"
+    },
+    {
+     "label": "Skills",
+     "value": "Acrobatics +0 (+4 when boating), Perception +6, Profession (sailor) +9, Survival +6 (+10 when boating), Swim +10"
+    },
+    {
+     "label": "Racial Modifiers",
+     "value": "+4 Acrobatics when boating, +4 Profession (sailor), +4 Survival when boating, +4 Swim"
+    },
+    {
+     "label": "Languages",
+     "value": "Common, Giant"
+    },
+    {
+     "label": "SQ",
+     "value": "hold breath"
+    }
+   ]
+  },
+  "special": [],
+  "description": null
+ },
  "roc": {
   "id": "roc",
   "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/birds/roc/",
@@ -25481,6 +26560,171 @@
   ],
   "description": null
  },
+ "shaitan": {
+  "id": "shaitan",
+  "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/genie/shaitan/",
+  "pageTitle": "Genie, Shaitan",
+  "source": null,
+  "name": "Shaitan",
+  "cr": "7",
+  "mr": null,
+  "xp": "3,200",
+  "alignment": "LN",
+  "size": "Large",
+  "type": "outsider",
+  "subtypes": [
+   "earth",
+   "extraplanar"
+  ],
+  "typeLine": "LN Large outsider (earth, extraplanar)",
+  "sections": {
+   "intro": [
+    {
+     "label": "Init",
+     "value": "+5"
+    },
+    {
+     "label": "Senses",
+     "value": "darkvision 60 ft., tremorsense 60 ft."
+    },
+    {
+     "label": "Perception",
+     "value": "+14"
+    }
+   ],
+   "defense": [
+    {
+     "label": "AC",
+     "value": "20, touch 10, flat-footed 19 (+1 Dex, +10 natural, –1 size)"
+    },
+    {
+     "label": "hp",
+     "value": "85 (9d10+36)"
+    },
+    {
+     "label": "Fort",
+     "value": "+10"
+    },
+    {
+     "label": "Ref",
+     "value": "+4"
+    },
+    {
+     "label": "Will",
+     "value": "+8"
+    },
+    {
+     "label": "Immune",
+     "value": "electricity"
+    }
+   ],
+   "offense": [
+    {
+     "label": "Speed",
+     "value": "20 ft., burrow 60 ft., climb 20 ft."
+    },
+    {
+     "label": "Melee",
+     "value": "2 slams +13 (2d6+5) or mwk scimitar +14/+9 (1d8+7/18–20)"
+    },
+    {
+     "label": "Space",
+     "value": "10 ft."
+    },
+    {
+     "label": "Reach",
+     "value": "10 ft."
+    },
+    {
+     "label": "Special Attacks",
+     "value": "earth mastery, metalmorph, stone curse"
+    },
+    {
+     "label": "Spell-Like Abilities",
+     "value": "(CL 9th)",
+     "lines": [
+      "At will—meld into stone, plane shift (willing targets to elemental planes, Astral Plane, or Material Plane only), soften earth and stone, stone shape, veil (self only)",
+      "3/day—quickened glitterdust (DC 14), stoneskin, rusting grasp, stone tell, wall of stone",
+      "1/day—transmute mud to rock, transmute rock to mud"
+     ]
+    }
+   ],
+   "tactics": [],
+   "statistics": [
+    {
+     "label": "Str",
+     "value": "20"
+    },
+    {
+     "label": "Dex",
+     "value": "13"
+    },
+    {
+     "label": "Con",
+     "value": "19"
+    },
+    {
+     "label": "Int",
+     "value": "14"
+    },
+    {
+     "label": "Wis",
+     "value": "14"
+    },
+    {
+     "label": "Cha",
+     "value": "15"
+    },
+    {
+     "label": "Base Atk",
+     "value": "+9"
+    },
+    {
+     "label": "CMB",
+     "value": "+15"
+    },
+    {
+     "label": "CMD",
+     "value": "26"
+    },
+    {
+     "label": "Feats",
+     "value": "Combat Casting, Improved Bull Rush, Improved Initiative^B, Greater Bull Rush, Power Attack, Quicken Spell-Like Ability (glitterdust)"
+    },
+    {
+     "label": "Skills",
+     "value": "Appraise +14, Bluff +14, Climb +25, Craft (gemcutting) +14, Knowledge (engineering) +14, Perception +14, Sense Motive +14, Spellcraft +14"
+    },
+    {
+     "label": "Languages",
+     "value": "Aquan, Auran, Common, Ignan, Terran; telepathy 100 ft."
+    },
+    {
+     "label": "SQ",
+     "value": "stone glide"
+    }
+   ]
+  },
+  "special": [
+   {
+    "name": "Earth Mastery (Ex)",
+    "text": "A shaitan gains a +1 bonus on attack and damage rolls and a +2 bonus on opposed Strength-based checks if both it and its foe are touching the ground. It takes a –4 penalty on attack and damage rolls against airborne or waterborne opponents."
+   },
+   {
+    "name": "Metalmorph (Su)",
+    "text": "As a standard action, a shaitan may touch a single metal object of no more than 10 pounds and transform it into any other metal for 1 day."
+   },
+   {
+    "name": "Stone Curse (Su)",
+    "text": "If a shaitan wins a bull rush check by 5 or more and pushes its target into a stone barrier, the target must make a DC 19 Reflex save or be forced into the barrier as if the target had cast meld into stone until the victim makes a successful DC 19 Fortitude save as a full-round action to exit the stone. The save DCs are Strength-based."
+   },
+   {
+    "name": "Stone Glide (Su)",
+    "text": "This functions as the earth elemental’s earth glide ability, except the shaitan can move through stone, dirt, crystal, or metal."
+   }
+  ],
+  "description": null
+ },
  "shambling-mound": {
   "id": "shambling-mound",
   "url": "https://www.d20pfsrd.com/bestiary/monster-listings/plants/shambling-mound/",
@@ -25801,6 +27045,161 @@
    {
     "name": "Spectral Mist (Su)",
     "text": "A silvanshee can assume an eerie, mist-like form roughly the size and shape of a cat. This ability has the same effect as a gaseous form spell, except the silvanshee retains its own DR and supernatural abilities and can move at its normal speed. It can remain in mist form up to 5 minutes per day. This duration does not have to be consecutive, but it must be used in 1-minute increments."
+   }
+  ],
+  "description": null
+ },
+ "slag-giant": {
+  "id": "slag-giant",
+  "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-slag/",
+  "pageTitle": "Giant, Slag",
+  "source": null,
+  "name": "Slag Giant",
+  "cr": "7",
+  "mr": null,
+  "xp": "3,200",
+  "alignment": "LN",
+  "size": "Large",
+  "type": "humanoid",
+  "subtypes": [
+   "giant"
+  ],
+  "typeLine": "LN Large humanoid (giant)",
+  "sections": {
+   "intro": [
+    {
+     "label": "Init",
+     "value": "+1"
+    },
+    {
+     "label": "Senses",
+     "value": "low-light vision"
+    },
+    {
+     "label": "Perception",
+     "value": "+9"
+    }
+   ],
+   "defense": [
+    {
+     "label": "AC",
+     "value": "20, touch 10, flat-footed 19 (+3 armor, +1 Dex, +7 natural, –1 size)"
+    },
+    {
+     "label": "hp",
+     "value": "85 (10d8+40)"
+    },
+    {
+     "label": "Fort",
+     "value": "+11"
+    },
+    {
+     "label": "Ref",
+     "value": "+6"
+    },
+    {
+     "label": "Will",
+     "value": "+4"
+    },
+    {
+     "label": "Defensive Abilities",
+     "value": "rock catching"
+    },
+    {
+     "label": "Resist",
+     "value": "fire 30"
+    }
+   ],
+   "offense": [
+    {
+     "label": "Speed",
+     "value": "40 ft."
+    },
+    {
+     "label": "Melee",
+     "value": "warhammer +15/+10 (2d6+12/×3) or 2 slams +14 (1d8+8)"
+    },
+    {
+     "label": "Ranged",
+     "value": "rock +8 (1d8+8)"
+    },
+    {
+     "label": "Space",
+     "value": "10 ft."
+    },
+    {
+     "label": "Reach",
+     "value": "10 ft."
+    },
+    {
+     "label": "Special Attacks",
+     "value": "rock throwing (120 ft.)"
+    }
+   ],
+   "tactics": [],
+   "statistics": [
+    {
+     "label": "Str",
+     "value": "27"
+    },
+    {
+     "label": "Dex",
+     "value": "12"
+    },
+    {
+     "label": "Con",
+     "value": "19"
+    },
+    {
+     "label": "Int",
+     "value": "10"
+    },
+    {
+     "label": "Wis",
+     "value": "12"
+    },
+    {
+     "label": "Cha",
+     "value": "10"
+    },
+    {
+     "label": "Base Atk",
+     "value": "+7"
+    },
+    {
+     "label": "CMB",
+     "value": "+16 (+18 sunder)"
+    },
+    {
+     "label": "CMD",
+     "value": "29 (31 vs. sunder)"
+    },
+    {
+     "label": "Feats",
+     "value": "Improved Sunder, Lightning Reflexes, Martial Weapon Proficiency (warhammer), Power Attack, Weapon Focus (warhammer)"
+    },
+    {
+     "label": "Skills",
+     "value": "Craft (armor) +12, Craft (weapons) +12, Intimidate +8, Perception +9"
+    },
+    {
+     "label": "Racial Modifiers",
+     "value": "+4 Craft (armor), +4 Craft (weapons)"
+    },
+    {
+     "label": "Languages",
+     "value": "Common, Giant"
+    },
+    {
+     "label": "SQ",
+     "value": "shattering blow"
+    }
+   ]
+  },
+  "special": [
+   {
+    "name": "Shattering Blow (Ex)",
+    "text": "A slag giant who makes a full attack against a metal or stone object or structure deals double damage."
    }
   ],
   "description": null
@@ -30343,6 +31742,153 @@
     "text": "A wolverine that takes damage in combat flies into a rage on its next turn, clawing and biting madly until either it or its opponent is dead. It gains +4 to Strength, +4 to Constitution, and –2 to AC. The creature cannot end its rage voluntarily."
    }
   ],
+  "description": null
+ },
+ "wood-giant": {
+  "id": "wood-giant",
+  "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-wood/",
+  "pageTitle": "Giant, Wood",
+  "source": null,
+  "name": "Wood Giant",
+  "cr": "6",
+  "mr": null,
+  "xp": "2,400",
+  "alignment": "CG",
+  "size": "Large",
+  "type": "humanoid",
+  "subtypes": [
+   "giant"
+  ],
+  "typeLine": "CG Large humanoid (giant)",
+  "sections": {
+   "intro": [
+    {
+     "label": "Init",
+     "value": "+5"
+    },
+    {
+     "label": "Senses",
+     "value": "low-light vision"
+    },
+    {
+     "label": "Perception",
+     "value": "+11"
+    }
+   ],
+   "defense": [
+    {
+     "label": "AC",
+     "value": "20, touch 14, flat-footed 15 (+2 armor, +5 Dex, +4 natural, –1 size)"
+    },
+    {
+     "label": "hp",
+     "value": "67 (9d8+27)"
+    },
+    {
+     "label": "Fort",
+     "value": "+9"
+    },
+    {
+     "label": "Ref",
+     "value": "+8"
+    },
+    {
+     "label": "Will",
+     "value": "+7"
+    },
+    {
+     "label": "Defensive Abilities",
+     "value": "rock catching"
+    }
+   ],
+   "offense": [
+    {
+     "label": "Speed",
+     "value": "40 ft."
+    },
+    {
+     "label": "Melee",
+     "value": "longsword +10/+5 (2d6+5/19–20) or 2 slams +10 (1d6+5)"
+    },
+    {
+     "label": "Ranged",
+     "value": "mwk longbow* +9/+9/+4 (2d6+5/×3)"
+    },
+    {
+     "label": "Space",
+     "value": "10 ft."
+    },
+    {
+     "label": "Reach",
+     "value": "10 ft."
+    },
+    {
+     "label": "Spell-Like Abilities",
+     "value": "(CL 7th; concentration +8)",
+     "lines": [
+      "Constant—pass without trace, speak with animals",
+      "3/day—charm animal (DC 12), quench, tree shape",
+      "1/day—enlarge person (self only), spike growth"
+     ]
+    }
+   ],
+   "tactics": [],
+   "statistics": [
+    {
+     "label": "Str",
+     "value": "20"
+    },
+    {
+     "label": "Dex",
+     "value": "21"
+    },
+    {
+     "label": "Con",
+     "value": "17"
+    },
+    {
+     "label": "Int",
+     "value": "14"
+    },
+    {
+     "label": "Wis",
+     "value": "15"
+    },
+    {
+     "label": "Cha",
+     "value": "12"
+    },
+    {
+     "label": "Base Atk",
+     "value": "+6"
+    },
+    {
+     "label": "CMB",
+     "value": "+12"
+    },
+    {
+     "label": "CMD",
+     "value": "27"
+    },
+    {
+     "label": "Feats",
+     "value": "Deadly Aim, Iron Will, Point-Blank Shot, Precise Shot, Rapid Shot"
+    },
+    {
+     "label": "Skills",
+     "value": "Acrobatics +11 (+15 jump), Climb +14, Knowledge (nature) +8, Perception +11, Profession (farmer) +8, Stealth +7 (+11 in forests), Survival +8"
+    },
+    {
+     "label": "Racial Modifiers",
+     "value": "+4 Stealth in forests"
+    },
+    {
+     "label": "Languages",
+     "value": "Common, Giant, Sylvan; speak with animals"
+    }
+   ]
+  },
+  "special": [],
   "description": null
  },
  "xill": {

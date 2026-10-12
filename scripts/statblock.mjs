@@ -118,7 +118,8 @@ const stripMarks = (s) => clean(s.replaceAll(B_OPEN, '').replaceAll(B_CLOSE, '')
 function isTitleBlock(b) {
   const t = stripMarks(b.text);
   if (!/CR\s*([\d/]+|—|–|-)/.test(t) || t.length > 120) return false;
-  return b.level || /\b(title|creature)\b/.test(b.cls);
+  // Also headings like <h4>Shaitan (CR 7)</h4>.
+  return b.level || /\b(title|creature)\b/.test(b.cls) || (/^h[4-6]$/.test(b.tag) && /\(CR\s*[\d/]+\)\s*$/.test(t));
 }
 
 function dividerName(b) {
@@ -149,7 +150,7 @@ function parseStatblock(blocks, start) {
   const titleText = stripMarks(blocks[start].text);
   const tm = titleText.match(/^(.*?)\s*CR\s*([\d/]+|—|–|-)(.*)$/);
   const sb = {
-    name: clean(tm ? tm[1] : titleText),
+    name: clean(tm ? tm[1] : titleText).replace(/\s*\($/, ''),
     cr: tm ? tm[2] : null,
     mr: tm && /MR\s*(\d+)/.test(tm[3]) ? Number(tm[3].match(/MR\s*(\d+)/)[1]) : null,
     xp: null,
@@ -246,6 +247,40 @@ const KNOWN_LABELS = [
 ];
 const LABEL_ALIASES = { 'Base Attack': 'Base Atk', BAB: 'Base Atk', HP: 'hp', Defensive: 'Defensive Abilities' };
 
+const CANONICAL_SECTION = {
+  Init: 'intro', Senses: 'intro', Perception: 'intro', Aura: 'intro',
+  AC: 'defense', hp: 'defense', Fort: 'defense', Ref: 'defense', Will: 'defense', 'Defensive Abilities': 'defense',
+  DR: 'defense', Immune: 'defense', Resist: 'defense', SR: 'defense', Weaknesses: 'defense',
+  Speed: 'offense', Melee: 'offense', Ranged: 'offense', Space: 'offense', Reach: 'offense', 'Special Attacks': 'offense',
+  Str: 'statistics', Dex: 'statistics', Con: 'statistics', Int: 'statistics', Wis: 'statistics', Cha: 'statistics',
+  'Base Atk': 'statistics', CMB: 'statistics', CMD: 'statistics', Feats: 'statistics', Skills: 'statistics',
+  'Racial Modifiers': 'statistics', Languages: 'statistics', SQ: 'statistics',
+};
+
+/** Moves well-known fields to their usual section when a page mislabels its dividers. */
+function moveToCanonicalSections(sb) {
+  // Animal pages append animal companion stats ("Starting Statistics: Size …"); they aren't the creature's.
+  for (const [name, fields] of Object.entries(sb.sections)) {
+    const cut = fields.findIndex((f) => /^Starting Statistics$/i.test(f.label));
+    if (cut >= 0) sb.sections[name] = fields.slice(0, cut);
+  }
+  for (const [name, fields] of Object.entries(sb.sections)) {
+    sb.sections[name] = fields.filter((f) => {
+      const target = CANONICAL_SECTION[f.label] ?? (/^(Spell-Like Abilities|Spells (Known|Prepared)|.*Spell-Like Abilities)/.test(f.label) ? 'offense' : null);
+      if (!target || target === name) return true;
+      sb.sections[target].push(f);
+      return false;
+    });
+  }
+  // Keep the usual order within each section: canonical labels sorted by their position in the list.
+  const order = Object.keys(CANONICAL_SECTION);
+  for (const fields of Object.values(sb.sections)) {
+    const known = fields.filter((f) => order.includes(f.label)).sort((a, b) => order.indexOf(a.label) - order.indexOf(b.label));
+    let k = 0;
+    for (let i = 0; i < fields.length; i++) if (order.includes(fields[i].label)) fields[i] = known[k++];
+  }
+}
+
 /** Repairs fields split or merged by inconsistent bold markup. */
 function normalizeSections(sb) {
   for (const [name, fields] of Object.entries(sb.sections)) {
@@ -318,6 +353,7 @@ export function parsePage(html, url) {
     if (isTitleBlock(blocks[i])) {
       const { statblock, end } = parseStatblock(blocks, i);
       normalizeSections(statblock);
+      moveToCanonicalSections(statblock);
       if (statblock.sections.defense.length || statblock.sections.statistics.length) statblocks.push(statblock);
       i = end - 1;
     }

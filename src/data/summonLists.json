@@ -3409,6 +3409,232 @@
         ],
         "alternatives": []
       }
+    },
+    "summon-genie": {
+      "1": {
+        "standard": [
+          {
+            "name": "Janni",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/genie/janni/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "janni"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "2": {
+        "standard": [
+          {
+            "name": "Djinni",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/genie/djinni/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "djinni"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "3": {
+        "standard": [
+          {
+            "name": "Shaitan",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/genie/shaitan/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "shaitan"
+            ]
+          }
+        ],
+        "alternatives": []
+      }
+    },
+    "summon-giant-ally": {
+      "1": {
+        "standard": [
+          {
+            "name": "Cave giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-cave/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "cave-giant"
+            ]
+          },
+          {
+            "name": "Hill giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-hill/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "hill-giant"
+            ]
+          },
+          {
+            "name": "Marsh giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-marsh/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "marsh-giant"
+            ]
+          },
+          {
+            "name": "River giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-river/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "river-giant"
+            ]
+          },
+          {
+            "name": "Slag giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-slag/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "slag-giant"
+            ]
+          },
+          {
+            "name": "Stone giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-stone/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "stone-giant"
+            ]
+          },
+          {
+            "name": "Wood giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-wood/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "wood-giant"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "2": {
+        "standard": [
+          {
+            "name": "Desert giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-desert/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "desert-giant"
+            ]
+          },
+          {
+            "name": "Fire giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-fire/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "fire-giant"
+            ]
+          },
+          {
+            "name": "Frost giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-frost/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "frost-giant"
+            ]
+          },
+          {
+            "name": "Jungle giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-jungle/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "jungle-giant"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "3": {
+        "standard": [
+          {
+            "name": "Ash giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-ash/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "ash-giant"
+            ]
+          },
+          {
+            "name": "Cloud giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-cloud/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "cloud-giant"
+            ]
+          }
+        ],
+        "alternatives": []
+      }
     }
   }
 }

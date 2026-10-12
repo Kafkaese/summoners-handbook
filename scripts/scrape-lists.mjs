@@ -106,6 +106,26 @@ async function scrapeSummonSwarm() {
   return { 1: { standard, alternatives: [] } };
 }
 
+// Spells whose description names creatures per version (lesser/normal/greater
+// or I–III). `tiers` lists the page slugs of each version's own creatures.
+async function scrapeTiered(spellUrl, tiers, suffix) {
+  const { html } = await fetchPage(spellUrl);
+  const $ = cheerio.load(html);
+  const links = $('article a[href*="/bestiary/"]').map((_, a) => fixCreatureUrl($(a).attr('href'))).get().filter(Boolean);
+  const levels = {};
+  tiers.forEach((slugs, i) => {
+    const standard = slugs.map((slug) => {
+      const url = links.find((u) => u.endsWith(`/${slug}/`));
+      if (!url) throw new Error(`${spellUrl}: no link for ${slug}`);
+      const base = slug.replace(/^giant-/, '');
+      const name = `${base.charAt(0).toUpperCase()}${base.slice(1)}${suffix}`;
+      return { name, url, templated: false, presetTemplates: [], subtypes: [], source: null, footnotes: [] };
+    });
+    levels[i + 1] = { standard, alternatives: [] };
+  });
+  return levels;
+}
+
 async function scrapeNaturesAlly() {
   const { html } = await fetchPage('https://www.d20pfsrd.com/magic/all-spells/s/summon-natures-ally/');
   const $ = cheerio.load(html);
@@ -139,6 +159,16 @@ const data = {
     'summon-monster': await scrapeSummonMonster(),
     'summon-natures-ally': await scrapeNaturesAlly(),
     'summon-swarm': await scrapeSummonSwarm(),
+    'summon-genie': await scrapeTiered('https://www.d20pfsrd.com/magic/all-spells/s/summon-genie/', [['janni'], ['djinni'], ['shaitan']], ''),
+    'summon-giant-ally': await scrapeTiered(
+      'https://www.d20pfsrd.com/magic/all-spells/s/summon-giant-ally/',
+      [
+        ['giant-cave', 'giant-hill', 'giant-marsh', 'giant-river', 'giant-slag', 'giant-stone', 'giant-wood'],
+        ['giant-desert', 'giant-fire', 'giant-frost', 'giant-jungle'],
+        ['giant-ash', 'giant-cloud'],
+      ],
+      ' giant',
+    ),
   },
 };
 await writeFile(new URL('../src/data/summonLists.json', import.meta.url), JSON.stringify(data, null, 2) + '\n');

@@ -3,7 +3,7 @@ import { CreatureList } from './components/CreatureList';
 import { SettingsPanel } from './components/SettingsPanel';
 import { SpellList } from './components/SpellList';
 import { SummonDetail } from './components/SummonDetail';
-import { classById, SPELL_NAMES, summonOptions } from './rules/classes';
+import { classById, summonOptions } from './rules/classes';
 import { choicesFor, countGroups, optionTitle } from './rules/summon';
 import type { TemplateId } from './rules/templates';
 import { useSettings } from './useSettings';
@@ -49,7 +49,7 @@ export default function App() {
           </span>{' '}
           Summoner's Handbook
         </h1>
-        <p className="tagline">Pathfinder 1e summon monster &amp; summon nature's ally</p>
+        <p className="tagline">Pathfinder 1e summoning spells</p>
       </header>
 
       <main className="layout">
@@ -61,7 +61,8 @@ export default function App() {
         <div className="pane pane-creatures">
           {option && group ? (
             <CreatureList
-              title={optionTitle(option, SPELL_NAMES)}
+              spell={option.spell}
+              title={optionTitle(option)}
               groups={groups}
               groupIndex={groups.indexOf(group)}
               onGroup={(i) => {

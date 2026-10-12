@@ -1,4 +1,4 @@
-import { type ClassDef, SPELL_NAMES, spellLevelLabel, type SummonOption } from '../rules/classes';
+import { type ClassDef, spellTitle, type SummonOption } from '../rules/classes';
 
 interface Props {
   cls: ClassDef;
@@ -30,9 +30,7 @@ export function SpellList({ cls, options, selected, onSelect }: Props) {
               {shown.map((o) => (
                 <li key={o.key}>
                   <button className={`spell-item ${selected === o.key ? 'is-active' : ''}`} onClick={() => onSelect(o.key)}>
-                    <span className="spell-name">
-                      {SPELL_NAMES[o.spell]} <span className="roman">{spellLevelLabel(o.spell, o.level)}</span>
-                    </span>
+                    <span className="spell-name">{spellTitle(o.spell, o.level)}</span>
                     <span className="spell-meta">
                       {o.sla ? `SLA · ${o.duration}` : `${ordinal(o.classSpellLevel!)}-level ${cls.name.toLowerCase()} spell · ${o.duration}`}
                     </span>
@@ -41,7 +39,7 @@ export function SpellList({ cls, options, selected, onSelect }: Props) {
               ))}
               {next && (
                 <li className="spell-next">
-                  {SPELL_NAMES[next.spell]} {spellLevelLabel(next.spell, next.level)}
+                  {spellTitle(next.spell, next.level)}
                   {next.sla ? ' (SLA)' : ''} at level {next.requiredLevel}
                 </li>
               )}

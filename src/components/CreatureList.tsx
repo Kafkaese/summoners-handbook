@@ -1,10 +1,12 @@
 import { useMemo, useState } from 'react';
-import { ROMAN } from '../rules/classes';
+import { listName } from '../rules/classes';
 import { crString, crValue } from '../rules/fields';
 import type { CountGroup, CreatureChoice } from '../rules/summon';
+import type { SpellKey } from '../rules/types';
 import { TEMPLATES } from '../rules/templates';
 
 interface Props {
+  spell: SpellKey;
   title: string;
   groups: CountGroup[];
   groupIndex: number;
@@ -29,7 +31,7 @@ function displayCr(c: CreatureChoice) {
   return templated && hitDiceOf(c) >= 5 ? crString(crValue(base) + 1) : base;
 }
 
-export function CreatureList({ title, groups, groupIndex, onGroup, choices, selected, onSelect, onBack }: Props) {
+export function CreatureList({ spell, title, groups, groupIndex, onGroup, choices, selected, onSelect, onBack }: Props) {
   const [query, setQuery] = useState('');
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -50,7 +52,7 @@ export function CreatureList({ title, groups, groupIndex, onGroup, choices, sele
           {groups.map((g, i) => (
             <button key={g.label} role="tab" aria-selected={i === groupIndex} className={i === groupIndex ? 'is-active' : ''} onClick={() => onGroup(i)}>
               <strong>{g.count}</strong>
-              <span>{g.listLevels.length > 1 ? `${ROMAN[g.listLevels[g.listLevels.length - 1]]}–${ROMAN[g.listLevels[0]]}` : ROMAN[g.listLevels[0]]}</span>
+              <span>{g.listLevels.length > 1 ? `${listName(spell, g.listLevels[g.listLevels.length - 1])}–${listName(spell, g.listLevels[0])}` : listName(spell, g.listLevels[0])}</span>
             </button>
           ))}
         </div>
@@ -59,7 +61,7 @@ export function CreatureList({ title, groups, groupIndex, onGroup, choices, sele
       <input className="search" type="search" placeholder="Filter creatures…" value={query} onChange={(e) => setQuery(e.target.value)} />
       {levels.map((level) => (
         <div key={level}>
-          {levels.length > 1 && <h3 className="group-title">Level {ROMAN[level]}</h3>}
+          {levels.length > 1 && <h3 className="group-title">Level {listName(spell, level)}</h3>}
           <ul className="creature-items">
             {filtered
               .filter((c) => c.listLevel === level)

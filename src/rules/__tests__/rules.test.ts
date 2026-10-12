@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import type { SpellKey } from '../types';
 import { allowedTemplates } from '../alignment';
 import { classById, summonOptions } from '../classes';
 import { getValue } from '../fields';
@@ -15,7 +16,7 @@ const settings: Settings = {
   deityAlignment: 'NG',
 };
 
-function build(spell: 'summon-monster' | 'summon-natures-ally' | 'summon-swarm', level: number, name: string, opts: Partial<Settings> = {}, template: Parameters<typeof buildCreature>[1] = null) {
+function build(spell: SpellKey, level: number, name: string, opts: Partial<Settings> = {}, template: Parameters<typeof buildCreature>[1] = null) {
   const s = { ...settings, ...opts };
   const choice = choicesFor(spell, level, classById(s.classId), s).find((c) => c.name === name);
   if (!choice) throw new Error(`no choice ${name}`);
@@ -160,5 +161,35 @@ describe('summon swarm', () => {
     expect(getValue(creature, 'Special Attacks')).toMatch(/distraction \(DC 14\)/);
     // Rat swarms use Dex for Climb and Swim.
     expect(getValue(creature, 'Skills')).toMatch(/Climb \+10,.*Swim \+10/);
+  });
+});
+
+describe('summon genie', () => {
+  it('has lesser/normal/greater versions with summoner levels', () => {
+    const genie = (id: string, level: number) => summonOptions(classById(id), level).filter((o) => o.spell === 'summon-genie' && o.available);
+    expect(genie('wizard', 11).map((o) => [o.level, o.classSpellLevel])).toEqual([[1, 4], [2, 5], [3, 6]]);
+    expect(genie('summoner', 10).map((o) => o.classSpellLevel)).toEqual([3, 4]);
+    expect(genie('unchained-summoner', 20)).toEqual([]);
+  });
+  it('greater summon genie offers a shaitan, 1d3 djinni or 1d4+1 jann', () => {
+    expect(countGroups(3, false, 'summon-genie').map((g) => g.label)).toEqual(['1 × shaitan', '1d3 × djinni', '1d4+1 × janni']);
+    const { creature } = build('summon-genie', 3, 'Shaitan');
+    expect(creature.cr).toBe('7');
+    expect(creature.alignment).toBe('LN');
+    expect(getValue(creature, 'AC')).toMatch(/^20,/);
+  });
+});
+
+describe('summon giant ally', () => {
+  it('is a druid 6–8 spell; hunters get the first one', () => {
+    const giant = (id: string) => summonOptions(classById(id), 20).filter((o) => o.spell === 'summon-giant-ally').map((o) => o.classSpellLevel);
+    expect(giant('druid')).toEqual([6, 7, 8]);
+    expect(giant('hunter')).toEqual([6]);
+  });
+  it('gives giants the caster’s alignment, like summon nature’s ally', () => {
+    const { creature, choice } = build('summon-giant-ally', 2, 'Fire giant', { classId: 'druid', alignment: 'CG' });
+    expect(choice.templateOptions).toEqual([]);
+    expect(creature.alignment).toBe('CG');
+    expect(countGroups(3, false, 'summon-giant-ally')[0].label).toBe('1 × ash giant or cloud giant');
   });
 });

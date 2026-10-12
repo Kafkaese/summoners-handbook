@@ -1,8 +1,9 @@
 # Summoner's Handbook (Pathfinder 1e)
 
-A local web app for *summon monster* and *summon nature's ally*. Set your class,
-level and alignment, pick a spell, pick a creature, and get the summoned stat
-block with the alignment template, alignment change and Augment Summoning applied.
+A local web app for Pathfinder 1e summoning spells: *summon monster*, *summon
+nature's ally*, *summon swarm*, *summon genie* and *summon giant ally*. Set your
+class, level and alignment, pick a spell, pick a creature, and get the summoned
+stat block with the alignment template, alignment change and Augment Summoning applied.
 
 ## Running it
 

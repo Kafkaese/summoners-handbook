@@ -2,7 +2,7 @@ import creaturesJson from '../data/creatures.json';
 import listsJson from '../data/summonLists.json';
 import { ALIGNMENT_NAMES, type Alignment, allowedTemplates, hasAlignmentSubtype, opposedDescriptors, spellDescriptors, TEMPLATE_ALIGNMENT, type TemplateRule } from './alignment';
 import { applyAugmentSummoning } from './augment';
-import { type ClassDef, ROMAN, spellLevelLabel, type SummonOption } from './classes';
+import { type ClassDef, listName, spellTitle, type SummonOption } from './classes';
 import { applyTemplate, type TemplateId } from './templates';
 import type { BuiltCreature, Creature, ListEntry, SpellKey, SummonLists } from './types';
 
@@ -28,19 +28,30 @@ export interface CountGroup {
   label: string;
 }
 
-/** One creature, two lower-level 1d3 or lower 1d4+1, as the summon spells allow. */
+const joinOr = (names: string[]) => (names.length > 1 ? `${names.slice(0, -1).join(', ')} or ${names[names.length - 1]}` : names[0] ?? '');
+
+/** "1 creature from the III list", or the creatures by name for genie and giant ally spells. */
+function groupLabel(spell: SpellKey, count: string, levels: number[]): string {
+  if (spell === 'summon-genie' || spell === 'summon-giant-ally') {
+    const names = levels.flatMap((l) => LISTS.spells[spell][String(l)]?.standard.map((e) => e.name.toLowerCase()) ?? []);
+    return `${count} × ${joinOr(names)}`;
+  }
+  const names = levels.length === 1 ? listName(spell, levels[0]) : `${listName(spell, levels[levels.length - 1])}–${listName(spell, levels[0])}`;
+  return `${count} ${count === '1' ? 'creature' : 'creatures'} from the ${names} list${levels.length > 1 ? 's' : ''}`;
+}
+
+/** One creature, 1d3 from the list below, or 1d4+1 from lower lists, as the summon spells allow. */
 export function countGroups(level: number, superior: boolean, spell: SpellKey = 'summon-monster'): CountGroup[] {
   if (spell === 'summon-swarm') return [{ listLevels: [1], count: '1', label: '1 swarm of bats, rats, or spiders' }];
-  const groups: CountGroup[] = [{ listLevels: [level], count: '1', label: `1 creature from the ${ROMAN[level]} list` }];
+  const groups: CountGroup[] = [{ listLevels: [level], count: '1', label: groupLabel(spell, '1', [level]) }];
   if (level >= 2) {
     const count = superior ? '1d3+1' : '1d3';
-    groups.push({ listLevels: [level - 1], count, label: `${count} creatures from the ${ROMAN[level - 1]} list` });
+    groups.push({ listLevels: [level - 1], count, label: groupLabel(spell, count, [level - 1]) });
   }
   if (level >= 3) {
     const count = superior ? '1d4+2' : '1d4+1';
     const lower = Array.from({ length: level - 2 }, (_, i) => level - 2 - i);
-    const names = lower.length === 1 ? ROMAN[lower[0]] : `${ROMAN[lower[lower.length - 1]]}–${ROMAN[lower[0]]}`;
-    groups.push({ listLevels: lower, count, label: `${count} creatures from the ${names} list${lower.length > 1 ? 's' : ''}` });
+    groups.push({ listLevels: lower, count, label: groupLabel(spell, count, lower) });
   }
   return groups;
 }
@@ -118,7 +129,9 @@ export function choicesFor(spell: SpellKey, listLevel: number, cls: ClassDef, se
         if (reason) excludedTemplates.push({ template: t, reason });
         else templateOptions.push(t);
       }
-      const matches = templated || (spell === 'summon-natures-ally' && !hasAlignmentSubtype(subtypes));
+      // Summon giant ally works like summon nature's ally.
+      const naturesAlly = spell === 'summon-natures-ally' || spell === 'summon-giant-ally';
+      const matches = templated || (naturesAlly && !hasAlignmentSubtype(subtypes));
       out.push({
         key: `${spell}:${listLevel}:${e.name}:${id ?? 'none'}`,
         spell,
@@ -154,7 +167,9 @@ export function buildCreature(choice: CreatureChoice, template: TemplateId | nul
     c.notes.push(
       choice.spell === 'summon-monster'
         ? 'Alignment matches yours (creatures marked "*" on the Summon Monster table).'
-        : "Alignment matches yours (summon nature's ally creatures without an alignment subtype).",
+        : choice.spell === 'summon-giant-ally'
+          ? "Alignment matches yours (summon giant ally works like summon nature's ally)."
+          : "Alignment matches yours (summon nature's ally creatures without an alignment subtype).",
     );
   }
 
@@ -167,6 +182,7 @@ export function buildCreature(choice: CreatureChoice, template: TemplateId | nul
     );
   }
 
+  if (choice.spell === 'summon-giant-ally') c.notes.push('Casting time 1 standard action (instead of 1 round).');
   if (choice.spell === 'summon-swarm') {
     c.notes.push('The swarm attacks all other creatures in its area; you have no control over its target or direction.');
   }
@@ -177,6 +193,6 @@ export function buildCreature(choice: CreatureChoice, template: TemplateId | nul
 
 const TEMPLATE_IDS: Record<TemplateId, true> = { celestial: true, fiendish: true, entropic: true, resolute: true };
 
-export function optionTitle(option: SummonOption, spellNames: Record<SpellKey, string>) {
-  return [spellNames[option.spell], spellLevelLabel(option.spell, option.level)].filter(Boolean).join(' ') + (option.sla ? ' (SLA)' : '');
+export function optionTitle(option: SummonOption) {
+  return spellTitle(option.spell, option.level) + (option.sla ? ' (SLA)' : '');
 }

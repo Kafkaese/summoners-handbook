@@ -50,7 +50,7 @@ export interface ListLevel {
   alternatives: ListEntry[];
 }
 
-export type SpellKey = 'summon-monster' | 'summon-natures-ally' | 'summon-swarm';
+export type SpellKey = 'summon-monster' | 'summon-natures-ally' | 'summon-swarm' | 'summon-genie' | 'summon-giant-ally';
 
 export interface SummonLists {
   scrapedFrom: string;
