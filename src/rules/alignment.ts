@@ -92,4 +92,20 @@ export function opposedDescriptors(a: Alignment, descriptors: string[]): string[
 }
 
 const ALIGNMENT_SUBTYPES = ['lawful', 'chaotic', 'good', 'evil'];
+/** The alignment a template gives the spell under the alignment-template house reading. */
+export const TEMPLATE_ALIGNMENT: Record<TemplateId, string> = {
+  celestial: 'good',
+  fiendish: 'evil',
+  resolute: 'lawful',
+  entropic: 'chaotic',
+};
+
+/** Whether two alignments are within one step of each other (a cleric and their deity). */
+export function withinOneStep(a: Alignment, b: Alignment): boolean {
+  const axis = (x: Alignment) => [x[0] === 'L' ? 1 : x[0] === 'C' ? -1 : 0, x.endsWith('G') ? 1 : x.endsWith('E') ? -1 : 0];
+  const [la, ga] = axis(a);
+  const [lb, gb] = axis(b);
+  return Math.abs(la - lb) + Math.abs(ga - gb) <= 1;
+}
+
 export const hasAlignmentSubtype = (subtypes: string[]) => subtypes.some((s) => ALIGNMENT_SUBTYPES.includes(s));

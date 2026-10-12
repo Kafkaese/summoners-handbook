@@ -13,6 +13,7 @@ export const DEFAULT_SETTINGS: Settings = {
   superiorSummoning: false,
   includeAlternatives: false,
   templateRule: 'core',
+  deityAlignment: 'NG',
 };
 
 function load(): Settings {
@@ -23,6 +24,7 @@ function load(): Settings {
     if (!CLASSES.some((c) => c.id === s.classId)) s.classId = DEFAULT_SETTINGS.classId;
     if (!TEMPLATE_RULES.some((r) => r.id === s.templateRule)) s.templateRule = DEFAULT_SETTINGS.templateRule;
     if (!ALIGNMENTS.includes(s.alignment)) s.alignment = DEFAULT_SETTINGS.alignment;
+    if (!ALIGNMENTS.includes(s.deityAlignment)) s.deityAlignment = s.alignment;
     s.level = Math.min(20, Math.max(1, Math.round(Number(s.level)) || 1));
     return s;
   } catch {

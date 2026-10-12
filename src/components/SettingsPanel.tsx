@@ -1,11 +1,23 @@
 import { useState } from 'react';
-import { ALIGNMENT_NAMES, ALIGNMENTS, TEMPLATE_RULES, type TemplateRule } from '../rules/alignment';
+import { type Alignment, ALIGNMENT_NAMES, ALIGNMENTS, TEMPLATE_RULES, type TemplateRule, withinOneStep } from '../rules/alignment';
 import { CLASSES, classById } from '../rules/classes';
 import type { Settings } from '../rules/summon';
 
 interface Props {
   settings: Settings;
   onChange: (s: Settings) => void;
+}
+
+function AlignmentGrid({ label, value, onChange }: { label: string; value: Alignment; onChange: (a: Alignment) => void }) {
+  return (
+    <div className="alignment-grid" role="radiogroup" aria-label={label}>
+      {ALIGNMENTS.map((a) => (
+        <button key={a} role="radio" aria-checked={value === a} className={value === a ? 'is-active' : ''} title={ALIGNMENT_NAMES[a]} onClick={() => onChange(a)}>
+          {a}
+        </button>
+      ))}
+    </div>
+  );
 }
 
 export function SettingsPanel({ settings, onChange }: Props) {
@@ -20,6 +32,7 @@ export function SettingsPanel({ settings, onChange }: Props) {
           <span className="eyebrow">Character</span>
           <strong>
             {cls.name} {settings.level} · {settings.alignment}
+            {cls.alignmentRestricted && ` · deity ${settings.deityAlignment}`}
           </strong>
         </span>
         <span className="chevron" aria-hidden>
@@ -61,21 +74,20 @@ export function SettingsPanel({ settings, onChange }: Props) {
 
         <div className="field">
           <span>Alignment</span>
-          <div className="alignment-grid" role="radiogroup" aria-label="Alignment">
-            {ALIGNMENTS.map((a) => (
-              <button
-                key={a}
-                role="radio"
-                aria-checked={settings.alignment === a}
-                className={settings.alignment === a ? 'is-active' : ''}
-                title={ALIGNMENT_NAMES[a]}
-                onClick={() => set('alignment', a)}
-              >
-                {a}
-              </button>
-            ))}
-          </div>
+          <AlignmentGrid label="Alignment" value={settings.alignment} onChange={(a) => set('alignment', a)} />
         </div>
+
+        {cls.alignmentRestricted && (
+          <div className="field">
+            <span>Deity's alignment</span>
+            <AlignmentGrid label="Deity's alignment" value={settings.deityAlignment} onChange={(a) => set('deityAlignment', a)} />
+            <small className="field-hint">
+              {withinOneStep(settings.alignment, settings.deityAlignment)
+                ? `${cls.name}s can't cast spells opposed to their own or their deity's alignment.`
+                : `${cls.name}s must be within one step of their deity's alignment.`}
+            </small>
+          </div>
+        )}
 
         <label className="field">
           <span>Summon monster templates</span>

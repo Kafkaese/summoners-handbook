@@ -1,6 +1,6 @@
 import creaturesJson from '../data/creatures.json';
 import listsJson from '../data/summonLists.json';
-import { type Alignment, allowedTemplates, type TemplateRule, hasAlignmentSubtype, opposedDescriptors, spellDescriptors } from './alignment';
+import { ALIGNMENT_NAMES, type Alignment, allowedTemplates, hasAlignmentSubtype, opposedDescriptors, spellDescriptors, TEMPLATE_ALIGNMENT, type TemplateRule } from './alignment';
 import { applyAugmentSummoning } from './augment';
 import { type ClassDef, ROMAN, type SummonOption } from './classes';
 import { applyTemplate, type TemplateId } from './templates';
@@ -17,6 +17,8 @@ export interface Settings {
   superiorSummoning: boolean;
   includeAlternatives: boolean;
   templateRule: TemplateRule;
+  /** For clerics and warpriests: their deity's alignment also restricts spells. */
+  deityAlignment: Alignment;
 }
 
 export interface CountGroup {
@@ -53,6 +55,8 @@ export interface CreatureChoice {
   /** Templates the caster may choose from; empty when the creature isn't templated. */
   templateOptions: TemplateId[];
   presetTemplates: string[];
+  /** Templates removed because the caster's or deity's alignment opposes them; `reason` is a short clause. */
+  excludedTemplates: { template: TemplateId; reason: string }[];
   descriptors: string[];
   /** Reason the caster can't summon it, if any. */
   blocked: string | null;
@@ -62,6 +66,32 @@ export interface CreatureChoice {
 
 const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
+/**
+ * Clerics and warpriests can't cast spells with an alignment descriptor
+ * opposed to their own alignment or their deity's.
+ */
+function alignmentRestriction(cls: ClassDef, settings: Settings) {
+  const sources: { who: string; alignment: Alignment }[] = cls.alignmentRestricted
+    ? [
+        { who: 'your', alignment: settings.alignment },
+        { who: "your deity's", alignment: settings.deityAlignment },
+      ]
+    : [];
+  const opposed = (descriptors: string[]) => [...new Set(sources.flatMap((s) => opposedDescriptors(s.alignment, descriptors)))];
+  /** E.g. "evil opposes your deity's alignment (neutral good)". */
+  const conflicts = (descriptors: string[]) =>
+    sources
+      .map((s) => ({ ...s, opposed: opposedDescriptors(s.alignment, descriptors) }))
+      .filter((s) => s.opposed.length)
+      .map((s) => `${s.opposed.join(' and ')} opposes ${s.who} alignment (${ALIGNMENT_NAMES[s.alignment].toLowerCase()})`)
+      .join('; ');
+  const reason = (descriptors: string[]): string | null => {
+    const c = conflicts(descriptors);
+    return c ? `${cls.name}s can't cast spells of an opposed alignment: this would make the spell ${opposed(descriptors).join(' and ')}, and ${c}.` : null;
+  };
+  return { opposed, conflicts, reason };
+}
+
 export function choicesFor(spell: SpellKey, listLevel: number, cls: ClassDef, settings: Settings): CreatureChoice[] {
   const level = LISTS.spells[spell][String(listLevel)];
   if (!level) return [];
@@ -69,6 +99,7 @@ export function choicesFor(spell: SpellKey, listLevel: number, cls: ClassDef, se
     ...level.standard.map((e) => ({ e, alternative: false })),
     ...(settings.includeAlternatives ? level.alternatives.map((e) => ({ e, alternative: true })) : []),
   ];
+  const restriction = alignmentRestriction(cls, settings);
   const out: CreatureChoice[] = [];
   for (const { e, alternative } of entries) {
     const ids = e.creatureIds.length ? e.creatureIds : [null];
@@ -78,7 +109,14 @@ export function choicesFor(spell: SpellKey, listLevel: number, cls: ClassDef, se
       const templated = spell === 'summon-monster' && e.templated;
       // Templated creatures take the caster's alignment, so they add no opposed descriptors.
       const descriptors = templated ? [] : spellDescriptors(subtypes);
-      const opposed = opposedDescriptors(settings.alignment, descriptors);
+      const opposed = restriction.opposed(descriptors);
+      const templateOptions: TemplateId[] = [];
+      const excludedTemplates: CreatureChoice['excludedTemplates'] = [];
+      for (const t of templated ? allowedTemplates(settings.alignment, settings.templateRule) : []) {
+        const reason = restriction.conflicts([TEMPLATE_ALIGNMENT[t]]);
+        if (reason) excludedTemplates.push({ template: t, reason });
+        else templateOptions.push(t);
+      }
       const matches = templated || (spell === 'summon-natures-ally' && !hasAlignmentSubtype(subtypes));
       out.push({
         key: `${spell}:${listLevel}:${e.name}:${id ?? 'none'}`,
@@ -88,12 +126,14 @@ export function choicesFor(spell: SpellKey, listLevel: number, cls: ClassDef, se
         alternative,
         creature,
         name: e.creatureIds.length > 1 && creature ? creature.name : capitalize(e.name),
-        templateOptions: templated ? allowedTemplates(settings.alignment, settings.templateRule) : [],
+        templateOptions,
         presetTemplates: e.presetTemplates,
+        excludedTemplates,
         descriptors,
-        blocked:
-          cls.alignmentRestricted && opposed.length
-            ? `${cls.name}s can't cast ${opposed.join(' or ')} spells, and summoning this creature makes the spell ${opposed.join(' and ')}.`
+        blocked: opposed.length
+          ? restriction.reason(descriptors)
+          : templated && !templateOptions.length && excludedTemplates.length
+            ? restriction.reason(excludedTemplates.map((x) => TEMPLATE_ALIGNMENT[x.template]))
             : null,
         matchesCasterAlignment: matches,
       });

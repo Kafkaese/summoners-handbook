@@ -12,6 +12,7 @@ const settings: Settings = {
   superiorSummoning: false,
   includeAlternatives: false,
   templateRule: 'core',
+  deityAlignment: 'NG',
 };
 
 function build(spell: 'summon-monster' | 'summon-natures-ally', level: number, name: string, opts: Partial<Settings> = {}, template: Parameters<typeof buildCreature>[1] = null) {
@@ -112,5 +113,29 @@ describe('alignment restrictions', () => {
   it('lets nature’s ally creatures match the caster’s alignment', () => {
     const { creature } = build('summon-natures-ally', 5, 'Cyclops', { classId: 'druid', alignment: 'CN' });
     expect(creature.alignment).toBe('CN');
+  });
+});
+
+describe('deity alignment', () => {
+  const cleric = (alignment: Settings['alignment'], deityAlignment: Settings['alignment'], templateRule: Settings['templateRule'] = 'core') =>
+    choicesFor('summon-monster', 2, classById('cleric'), { ...settings, classId: 'cleric', alignment, deityAlignment, templateRule });
+
+  it('blocks creatures opposed to the deity even when the cleric could cast them', () => {
+    const lemure = cleric('N', 'LG').find((c) => c.name === 'Lemure (devil)')!;
+    expect(lemure.blocked).toMatch(/evil opposes your deity's alignment \(lawful good\)/);
+    expect(cleric('N', 'LN').find((c) => c.name === 'Lemure (devil)')!.blocked).toBeNull();
+  });
+  it('removes templates opposed to the deity', () => {
+    const wolf = cleric('N', 'NG').find((c) => c.name === 'Wolf')!;
+    expect(wolf.templateOptions).toEqual(['celestial']);
+    expect(wolf.excludedTemplates.map((x) => x.template)).toEqual(['fiendish']);
+  });
+  it('checks both alignments for expanded templates', () => {
+    const wolf = cleric('NG', 'LG', 'expanded-lenient').find((c) => c.name === 'Wolf')!;
+    expect(wolf.templateOptions).toEqual(['celestial', 'resolute']);
+  });
+  it('ignores the deity for other classes', () => {
+    const s = { ...settings, alignment: 'N' as const, deityAlignment: 'LG' as const };
+    expect(choicesFor('summon-monster', 2, classById('wizard'), s).find((c) => c.name === 'Wolf')!.templateOptions).toEqual(['celestial', 'fiendish']);
   });
 });
