@@ -1,6 +1,6 @@
 # Summoner's Handbook (Pathfinder 1e)
 
-A local web app for Pathfinder 1e summoning spells: *summon monster*, *summon
+A web app for Pathfinder 1e summoning spells: *summon monster*, *summon
 nature's ally*, *summon swarm*, *summon genie* and *summon giant ally*. Set your
 class, level and alignment, pick a spell, pick a creature, and get the summoned
 stat block with the alignment template, alignment change and Augment Summoning applied.
@@ -13,6 +13,18 @@ npm run dev      # http://localhost:5173, also reachable from your phone on the 
 npm test         # rules tests
 npm run build    # static build in dist/
 ```
+
+## Deployment
+
+Every push to `main` runs [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
+it installs dependencies, runs the tests, builds, and publishes `dist/` to GitHub Pages at
+https://kafkaese.github.io/summoners-handbook/. A failing test stops the deploy.
+
+The workflow passes the Pages base path to Vite as `BASE_PATH`. To build for the subfolder
+locally, run `BASE_PATH=/summoners-handbook/ npm run build`.
+
+The scraped data in `src/data/` is committed; CI doesn't scrape. To update it, run
+`npm run scrape` locally, then commit and push.
 
 ## How it works
 

@@ -2,13 +2,10 @@
 
 export const APP_NAME = "Summoner's Handbook";
 
-/**
- * Paizo's Community Use Policy requires "up-to-date contact information in a
- * visible location". Point this at the repo's Issues page once it is public.
- */
+/** Paizo's Community Use Policy requires "up-to-date contact information in a visible location". */
 export const CONTACT: { label: string; href: string } | null = {
-  label: 'Kafkaese on GitHub',
-  href: 'https://github.com/Kafkaese',
+  label: 'GitHub issues',
+  href: 'https://github.com/Kafkaese/summoners-handbook/issues',
 };
 
 /** Required notice, verbatim from paizo.com/licenses/communityuse (updated 2024-08-22). */
