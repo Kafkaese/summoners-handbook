@@ -1,0 +1,3371 @@
+{
+  "scrapedFrom": "https://www.d20pfsrd.com",
+  "spells": {
+    "summon-monster": {
+      "1": {
+        "standard": [
+          {
+            "name": "Dire rat",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/rat/dire-rat/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "dire-rat"
+            ]
+          },
+          {
+            "name": "Dog",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/canines/dog/dog/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "dog"
+            ]
+          },
+          {
+            "name": "Dolphin",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/cetacean/dolphin/dolphin/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "dolphin"
+            ]
+          },
+          {
+            "name": "Eagle",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/birds/eagle/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "eagle"
+            ]
+          },
+          {
+            "name": "Fire beetle",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/beetle/beetle-fire/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "fire-beetle"
+            ]
+          },
+          {
+            "name": "Poisonous frog",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/frog/frog-poisonous/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "frog-poisonous"
+            ]
+          },
+          {
+            "name": "Pony (horse)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/horse/pony/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "pony"
+            ]
+          },
+          {
+            "name": "Viper (snake)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/snake/snake-viper/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "viper"
+            ]
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "Bloody human skeleton",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/undead/skeleton-medium/skeleton-bloody/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP47",
+            "footnotes": [
+              2
+            ],
+            "creatureIds": [
+              "bloody-skeleton"
+            ]
+          }
+        ]
+      },
+      "2": {
+        "standard": [
+          {
+            "name": "Ant, giant (worker)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/ant/ant-giant-worker/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-ant-worker"
+            ]
+          },
+          {
+            "name": "Elemental (Small)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/elemental/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "elemental"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "small-air-elemental",
+              "small-earth-elemental",
+              "small-fire-elemental",
+              "small-water-elemental",
+              "small-ice-elemental",
+              "small-lightning-elemental",
+              "small-magma-elemental",
+              "small-mud-elemental"
+            ]
+          },
+          {
+            "name": "Giant centipede",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/centipede/centipede-giant/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-centipede"
+            ]
+          },
+          {
+            "name": "Giant frog",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/frog/frog-giant/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-frog"
+            ]
+          },
+          {
+            "name": "Giant spider",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/spider/giant-spider/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-spider"
+            ]
+          },
+          {
+            "name": "Goblin dog",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/canines/dog/goblin-dog/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "goblin-dog"
+            ]
+          },
+          {
+            "name": "Horse",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/horse/horse/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "light-riding-horse"
+            ]
+          },
+          {
+            "name": "Hyena",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/hyena/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "hyena"
+            ]
+          },
+          {
+            "name": "Lemure (devil)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/devil/lemure/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "evil",
+              "lawful"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "lemure"
+            ]
+          },
+          {
+            "name": "Octopus",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/octopus/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "octopus"
+            ]
+          },
+          {
+            "name": "Squid",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/squid/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "squid"
+            ]
+          },
+          {
+            "name": "Wolf",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/canines/wolf/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "wolf"
+            ]
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "Akata",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/aberrations/akata/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP64",
+            "footnotes": [],
+            "creatureIds": [
+              "akata"
+            ]
+          },
+          {
+            "name": "Elk",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/herd-animals/elk/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP32",
+            "footnotes": [],
+            "creatureIds": [
+              "elk"
+            ]
+          },
+          {
+            "name": "Grig",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/grig/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP50",
+            "footnotes": [
+              2
+            ],
+            "creatureIds": [
+              "grig"
+            ]
+          },
+          {
+            "name": "Hell hound",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/hell-hound/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "evil",
+              "lawful"
+            ],
+            "source": "AP29",
+            "footnotes": [],
+            "creatureIds": [
+              "hell-hound"
+            ]
+          },
+          {
+            "name": "Merfolk",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/merfolk/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP38",
+            "footnotes": [],
+            "creatureIds": [
+              "merfolk"
+            ]
+          },
+          {
+            "name": "Reefclaw",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/aberrations/reefclaw/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP55",
+            "footnotes": [],
+            "creatureIds": [
+              "reefclaw"
+            ]
+          },
+          {
+            "name": "Venomous snake",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/snake/snake-venomous/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP42",
+            "footnotes": [],
+            "creatureIds": [
+              "venomous-snake"
+            ]
+          }
+        ]
+      },
+      "3": {
+        "standard": [
+          {
+            "name": "Ant, giant (soldier)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/ant/ant-giant-soldier/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-ant-soldier"
+            ]
+          },
+          {
+            "name": "Ape",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/primates/primate-gorilla/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "gorilla"
+            ]
+          },
+          {
+            "name": "Aurochs (herd animal)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/herd-animals/aurochs/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "aurochs"
+            ]
+          },
+          {
+            "name": "Boar",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/boar/boar/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "boar"
+            ]
+          },
+          {
+            "name": "Cheetah",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/felines/cat-great/cheetah/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "cheetah"
+            ]
+          },
+          {
+            "name": "Constrictor snake",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/snake/snake-constrictor/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "constrictor-snake"
+            ]
+          },
+          {
+            "name": "Crocodile",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/crocodilians/crocodile/crocodile/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "crocodile"
+            ]
+          },
+          {
+            "name": "Dire bat",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/bat/bat-dire/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "dire-bat"
+            ]
+          },
+          {
+            "name": "Dretch (demon)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/demon/dretch/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "chaotic",
+              "evil"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "dretch"
+            ]
+          },
+          {
+            "name": "Electric eel",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/eel/eel-electric/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "electric-eel"
+            ]
+          },
+          {
+            "name": "Lantern archon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/archon/lantern-archon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "good",
+              "lawful"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "lantern-archon"
+            ]
+          },
+          {
+            "name": "Leopard (cat)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/felines/cat-great/leopard/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "leopard"
+            ]
+          },
+          {
+            "name": "Monitor lizard",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/lizard/monitor-lizard/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "monitor-lizard"
+            ]
+          },
+          {
+            "name": "Shark",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/shark/shark/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "common-shark"
+            ]
+          },
+          {
+            "name": "Wolverine",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/wolverine/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "wolverine"
+            ]
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "Blink dog",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/blink-dog/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP41",
+            "footnotes": [],
+            "creatureIds": [
+              "blink-dog"
+            ]
+          },
+          {
+            "name": "Choker",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/aberrations/choker/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP23",
+            "footnotes": [
+              2
+            ],
+            "creatureIds": [
+              "choker"
+            ]
+          },
+          {
+            "name": "Dire boar",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/boar/dire-boar/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP32",
+            "footnotes": [],
+            "creatureIds": [
+              "boar-dire-daeodon"
+            ]
+          },
+          {
+            "name": "Human natural wererat rogue 2",
+            "url": null,
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP59",
+            "footnotes": [],
+            "creatureIds": []
+          },
+          {
+            "name": "Iron cobra (no poison)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/constructs/cobra-constructs/iron-cobra/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP35",
+            "footnotes": [
+              2
+            ],
+            "creatureIds": [
+              "iron-cobra"
+            ]
+          },
+          {
+            "name": "Nosoi psychopomp",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/psychopomp/psychopomp-nosoi/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP44",
+            "footnotes": [],
+            "creatureIds": [
+              "nosoi"
+            ]
+          },
+          {
+            "name": "Silvanshee agathion",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/agathion/agathion-silvanshee/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "good"
+            ],
+            "source": "AP50",
+            "footnotes": [],
+            "creatureIds": [
+              "silvanshee"
+            ]
+          }
+        ]
+      },
+      "4": {
+        "standard": [
+          {
+            "name": "Ant, giant (drone)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/ant/ant-giant-drone/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-ant-drone"
+            ]
+          },
+          {
+            "name": "Bison (herd animal)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/herd-animals/bison/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "bison"
+            ]
+          },
+          {
+            "name": "Deinonychus (dinosaur)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/dinosaur/deinonychus/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "deinonychus"
+            ]
+          },
+          {
+            "name": "Dire ape",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/primates/primate-ape-dire/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "dire-ape-gigantopithecus"
+            ]
+          },
+          {
+            "name": "Dire boar",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/boar/dire-boar/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "boar-dire-daeodon"
+            ]
+          },
+          {
+            "name": "Dire wolf",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/canines/wolf/dire-wolf/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "dire-wolf"
+            ]
+          },
+          {
+            "name": "Elemental (Medium)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/elemental/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "elemental"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "medium-air-elemental",
+              "medium-earth-elemental",
+              "medium-fire-elemental",
+              "medium-water-elemental",
+              "medium-ice-elemental",
+              "medium-lightning-elemental",
+              "medium-magma-elemental",
+              "medium-mud-elemental"
+            ]
+          },
+          {
+            "name": "Giant scorpion",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/scorpion/scorpion-giant/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-scorpion"
+            ]
+          },
+          {
+            "name": "Giant wasp",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/bees-and-wasps/wasp/wasp-giant/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-wasp"
+            ]
+          },
+          {
+            "name": "Grizzly bear",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/bear/brown-grizzly-bear/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "brown-bear-or-grizzly-kodiak-russian-brown"
+            ]
+          },
+          {
+            "name": "Hell hound",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/hell-hound/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "evil",
+              "lawful"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "hell-hound"
+            ]
+          },
+          {
+            "name": "Hound archon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/archon/hound-archon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "good",
+              "lawful"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "hound-archon"
+            ]
+          },
+          {
+            "name": "Lion",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/felines/cat-great/lion/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "lion"
+            ]
+          },
+          {
+            "name": "Mephit (any)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/mephit/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "elemental"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "air-mephit",
+              "dust-mephit",
+              "earth-mephit",
+              "fire-mephit",
+              "ice-mephit",
+              "magma-mephit",
+              "ooze-mephit",
+              "salt-mephit",
+              "steam-mephit",
+              "water-mephit"
+            ]
+          },
+          {
+            "name": "Pteranodon (dinosaur)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/pterosaur/pterosaur-pteranodon/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "pteranodon"
+            ]
+          },
+          {
+            "name": "Rhinoceros",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/rhinoceros/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "rhinoceros"
+            ]
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "Amphisbaena",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/amphisbaena/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP42",
+            "footnotes": [],
+            "creatureIds": [
+              "amphisbaena"
+            ]
+          },
+          {
+            "name": "Cerberi",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/cerberi/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "evil",
+              "lawful"
+            ],
+            "source": "AP29",
+            "footnotes": [
+              3
+            ],
+            "creatureIds": [
+              "cerberi"
+            ]
+          },
+          {
+            "name": "Choker",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/aberrations/choker/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP59",
+            "footnotes": [
+              2
+            ],
+            "creatureIds": [
+              "choker"
+            ]
+          },
+          {
+            "name": "Giant mantis",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/mantis/giant-mantis/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP53",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-mantis"
+            ]
+          },
+          {
+            "name": "Gibbering mouther",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/aberrations/gibbering-mouther/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP23",
+            "footnotes": [],
+            "creatureIds": [
+              "gibbering-mouther"
+            ]
+          },
+          {
+            "name": "Grick",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/aberrations/grick/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP23",
+            "footnotes": [],
+            "creatureIds": [
+              "grick"
+            ]
+          },
+          {
+            "name": "Tiger",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/felines/cat-great/tiger/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP53",
+            "footnotes": [],
+            "creatureIds": [
+              "tiger"
+            ]
+          }
+        ]
+      },
+      "5": {
+        "standard": [
+          {
+            "name": "Ankylosaurus (dinosaur)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/dinosaur/ankylosaurus/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "ankylosaurus"
+            ]
+          },
+          {
+            "name": "Babau (demon)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/demon/babau/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "chaotic",
+              "evil"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "babau"
+            ]
+          },
+          {
+            "name": "Bearded devil",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/devil/bearded/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "evil",
+              "lawful"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "bearded-devil-barbazu"
+            ]
+          },
+          {
+            "name": "Bralani azata",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/azata/bralani/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "chaotic",
+              "good"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "bralani"
+            ]
+          },
+          {
+            "name": "Dire lion",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/felines/cat-great/lion/dire-lion/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "dire-spotted-lion"
+            ]
+          },
+          {
+            "name": "Elemental (Large)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/elemental/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "elemental"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "large-air-elemental",
+              "large-earth-elemental",
+              "large-fire-elemental",
+              "large-water-elemental",
+              "large-ice-elemental",
+              "large-lightning-elemental",
+              "large-magma-elemental",
+              "large-mud-elemental"
+            ]
+          },
+          {
+            "name": "Giant moray eel",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/eel/eel-moray-giant/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-moray-eel"
+            ]
+          },
+          {
+            "name": "Kyton",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/kyton/kyton/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "evil",
+              "lawful"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "kyton"
+            ]
+          },
+          {
+            "name": "Orca (dolphin)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/cetacean/dolphin/orca/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "orca"
+            ]
+          },
+          {
+            "name": "Salamander",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/salamander/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "evil"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "salamander"
+            ]
+          },
+          {
+            "name": "Woolly rhinoceros",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/rhinoceros/wooly-rhinoceros/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "rhinoceros-woolly"
+            ]
+          },
+          {
+            "name": "Xill",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/xill/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "evil"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "xill"
+            ]
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "Emperor cobra",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/snake/snake-cobra-emperor/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP42",
+            "footnotes": [],
+            "creatureIds": [
+              "emperor-cobra"
+            ]
+          },
+          {
+            "name": "Cloaker",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/aberrations/cloaker/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP41",
+            "footnotes": [],
+            "creatureIds": [
+              "cloaker"
+            ]
+          },
+          {
+            "name": "Merrow, saltwater",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/merrow-saltwater/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP55",
+            "footnotes": [],
+            "creatureIds": [
+              "saltwater-merrow"
+            ]
+          },
+          {
+            "name": "Shadow mastiff",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/shadow-mastiff/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "evil"
+            ],
+            "source": "AP59 (B3)",
+            "footnotes": [],
+            "creatureIds": [
+              "shadow-mastiff"
+            ]
+          },
+          {
+            "name": "Vulpinal agathion",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/agathion/agathion-vulpinal/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "good"
+            ],
+            "source": "AP50",
+            "footnotes": [],
+            "creatureIds": [
+              "vulpinal"
+            ]
+          }
+        ]
+      },
+      "6": {
+        "standard": [
+          {
+            "name": "Dire bear",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/bear/dire-bear/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "dire-or-cave-bear"
+            ]
+          },
+          {
+            "name": "Dire tiger",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/felines/cat-great/tiger/dire-tiger/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "tiger-dire-smilodon"
+            ]
+          },
+          {
+            "name": "Elasmosaurus (dinosaur)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/dinosaur/elasmosaurus/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "elasmosarus"
+            ]
+          },
+          {
+            "name": "Elemental (Huge)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/elemental/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "elemental"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "huge-air-elemental",
+              "huge-earth-elemental",
+              "huge-fire-elemental",
+              "huge-water-elemental",
+              "huge-ice-elemental",
+              "huge-lightning-elemental",
+              "huge-magma-elemental",
+              "huge-mud-elemental"
+            ]
+          },
+          {
+            "name": "Elephant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/elephant/elephant/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "elephant"
+            ]
+          },
+          {
+            "name": "Erinyes (devil)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/devil/erinyes/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "evil",
+              "lawful"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "the-furies-erinyes"
+            ]
+          },
+          {
+            "name": "Giant octopus",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/octopus/octopus-giant/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-octopus"
+            ]
+          },
+          {
+            "name": "Invisible stalker",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/elemental/invisible-stalker/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "air"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "invisible-stalker"
+            ]
+          },
+          {
+            "name": "Lillend azata",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/azata/lillend/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "chaotic",
+              "good"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "lillend"
+            ]
+          },
+          {
+            "name": "Shadow demon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/demon/demon-shadow/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "chaotic",
+              "evil"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "shadow-demon"
+            ]
+          },
+          {
+            "name": "Shadow mastiff",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/shadow-mastiff/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "evil"
+            ],
+            "source": "B3",
+            "footnotes": [
+              4
+            ],
+            "creatureIds": [
+              "shadow-mastiff"
+            ]
+          },
+          {
+            "name": "Succubus (demon)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/demon/succubus/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "chaotic",
+              "evil"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "succubus"
+            ]
+          },
+          {
+            "name": "Triceratops (dinosaur)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/dinosaur/triceratops/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "triceratops"
+            ]
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "Bulette",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/bulette/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP35",
+            "footnotes": [
+              2
+            ],
+            "creatureIds": [
+              "bulette"
+            ]
+          },
+          {
+            "name": "Chaos Beast",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/chaos-beast/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "chaotic"
+            ],
+            "source": "AP64",
+            "footnotes": [],
+            "creatureIds": [
+              "chaos-beast"
+            ]
+          },
+          {
+            "name": "Griffon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/griffon/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP26",
+            "footnotes": [],
+            "creatureIds": [
+              "griffon"
+            ]
+          },
+          {
+            "name": "Mothman",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/monstrous-humanoids/mothman/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP64",
+            "footnotes": [
+              2
+            ],
+            "creatureIds": [
+              "mothman"
+            ]
+          },
+          {
+            "name": "Tylosaurus (dinosaur)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/dinosaur/tylosaurus/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP55",
+            "footnotes": [],
+            "creatureIds": [
+              "tylosaurus"
+            ]
+          },
+          {
+            "name": "Vanth psychopomp",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/psychopomp/psychopomp-vanth/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP44",
+            "footnotes": [],
+            "creatureIds": [
+              "vanth"
+            ]
+          }
+        ]
+      },
+      "7": {
+        "standard": [
+          {
+            "name": "Bebelith",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/bebilith/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "chaotic",
+              "evil"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "bebilith"
+            ]
+          },
+          {
+            "name": "Bone devil",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/devil/bone/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "evil",
+              "lawful"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "bone-devil-osyluth"
+            ]
+          },
+          {
+            "name": "Brachiosaurus (dinosaur)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/dinosaur/brachiosaurus/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "brachiosaurus"
+            ]
+          },
+          {
+            "name": "Dire crocodile",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/crocodilians/crocodile/dire-crocodile/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "crocodile-dire"
+            ]
+          },
+          {
+            "name": "Dire shark",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/shark/dire-shark/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "dire-shark-megalodon"
+            ]
+          },
+          {
+            "name": "Elemental (greater)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/elemental/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "elemental"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "greater-air-elemental",
+              "greater-earth-elemental",
+              "greater-fire-elemental",
+              "greater-water-elemental",
+              "greater-ice-elemental",
+              "greater-lightning-elemental",
+              "greater-magma-elemental",
+              "greater-mud-elemental"
+            ]
+          },
+          {
+            "name": "Giant squid",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/squid/giant-squid/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "squid-giant"
+            ]
+          },
+          {
+            "name": "Mastodon (elephant)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/elephant/elephant-mastodon/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "mastodon"
+            ]
+          },
+          {
+            "name": "Roc",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/birds/roc/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "roc"
+            ]
+          },
+          {
+            "name": "Tyrannosaurus (dinosaur)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/dinosaur/tyrannosaurus/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "tyrannosaurus"
+            ]
+          },
+          {
+            "name": "Vrock (demon)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/demon/vrock/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "chaotic",
+              "evil"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "vrock"
+            ]
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "Behir",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/behir/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP35",
+            "footnotes": [
+              2
+            ],
+            "creatureIds": [
+              "behir"
+            ]
+          },
+          {
+            "name": "Daughter of the Dead",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/undead/daughter-of-the-dead/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP47",
+            "footnotes": [
+              2
+            ],
+            "creatureIds": [
+              "daughter-of-the-dead"
+            ]
+          },
+          {
+            "name": "Emkrah",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/aberrations/emkrah/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP23",
+            "footnotes": [],
+            "creatureIds": [
+              "emkrah"
+            ]
+          },
+          {
+            "name": "Giant anaconda",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/snake/giant-anaconda/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP42",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-anaconda"
+            ]
+          },
+          {
+            "name": "Frost giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-frost/",
+            "templated": true,
+            "presetTemplates": [
+              "young"
+            ],
+            "subtypes": [],
+            "source": "AP38",
+            "footnotes": [
+              1
+            ],
+            "creatureIds": [
+              "frost-giant"
+            ]
+          }
+        ]
+      },
+      "8": {
+        "standard": [
+          {
+            "name": "Barbed devil",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/devil/barbed/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "evil",
+              "lawful"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "barbed-devil-hamatula"
+            ]
+          },
+          {
+            "name": "Elemental (elder)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/elemental/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "elemental"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "elder-air-elemental",
+              "elder-earth-elemental",
+              "elder-fire-elemental",
+              "elder-water-elemental",
+              "elder-ice-elemental",
+              "elder-lightning-elemental",
+              "elder-magma-elemental",
+              "elder-mud-elemental"
+            ]
+          },
+          {
+            "name": "Hezrou (demon)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/demon/hezrou/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "chaotic",
+              "evil"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "hezrou"
+            ]
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "Frost giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-frost/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP38",
+            "footnotes": [],
+            "creatureIds": [
+              "frost-giant"
+            ]
+          },
+          {
+            "name": "Gorgon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/gorgon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP35",
+            "footnotes": [
+              2
+            ],
+            "creatureIds": [
+              "gorgon"
+            ]
+          },
+          {
+            "name": "Cloud giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-cloud/",
+            "templated": true,
+            "presetTemplates": [
+              "young"
+            ],
+            "subtypes": [],
+            "source": "AP38",
+            "footnotes": [
+              1
+            ],
+            "creatureIds": [
+              "cloud-giant"
+            ]
+          }
+        ]
+      },
+      "9": {
+        "standard": [
+          {
+            "name": "Astral deva (angel)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/angel/astral-deva/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "good"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "astral-deva"
+            ]
+          },
+          {
+            "name": "Ghaele azata",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/azata/ghaele/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "chaotic",
+              "good"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "ghaele"
+            ]
+          },
+          {
+            "name": "Glabrezu (demon)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/demon/glabrezu/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "chaotic",
+              "evil"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "glabrezu"
+            ]
+          },
+          {
+            "name": "Ice devil",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/devil/ice/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "evil",
+              "lawful"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "ice-devil-gelugon"
+            ]
+          },
+          {
+            "name": "Nalfeshnee (demon)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/demon/nalfeshnee/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "chaotic",
+              "evil"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "nalfeshnee"
+            ]
+          },
+          {
+            "name": "Trumpet archon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/archon/trumpet-archon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "good",
+              "lawful"
+            ],
+            "source": "B1",
+            "footnotes": [],
+            "creatureIds": [
+              "trumpet-archon"
+            ]
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "Cloud giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-cloud/",
+            "templated": true,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP38",
+            "footnotes": [],
+            "creatureIds": [
+              "cloud-giant"
+            ]
+          },
+          {
+            "name": "Storm giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-storm/",
+            "templated": true,
+            "presetTemplates": [
+              "young"
+            ],
+            "subtypes": [],
+            "source": "AP38",
+            "footnotes": [
+              1
+            ],
+            "creatureIds": [
+              "storm-giant"
+            ]
+          }
+        ]
+      }
+    },
+    "summon-natures-ally": {
+      "1": {
+        "standard": [
+          {
+            "name": "Dire rat",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/rat/dire-rat/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "dire-rat"
+            ]
+          },
+          {
+            "name": "Dog",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/dog/dog/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "dog"
+            ]
+          },
+          {
+            "name": "Dolphin",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/cetacean/dolphin/dolphin/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "dolphin"
+            ]
+          },
+          {
+            "name": "Eagle",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/birds/eagle/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "eagle"
+            ]
+          },
+          {
+            "name": "Giant centipede",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/centipede/centipede-giant/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "giant-centipede"
+            ]
+          },
+          {
+            "name": "Fire beetle",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/beetle/beetle-fire/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "fire-beetle"
+            ]
+          },
+          {
+            "name": "Mite (gremlin)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/mite/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "mite"
+            ]
+          },
+          {
+            "name": "Poisonous frog",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/frog/frog-poisonous/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "frog-poisonous"
+            ]
+          },
+          {
+            "name": "Pony (horse)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/horse/pony/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "pony"
+            ]
+          },
+          {
+            "name": "Stirge",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/stirge/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "stirge"
+            ]
+          },
+          {
+            "name": "Viper (snake)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/snake/snake-viper/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "viper"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "2": {
+        "standard": [
+          {
+            "name": "Ant, giant (worker)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/ant/ant-giant-worker/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "giant-ant-worker"
+            ]
+          },
+          {
+            "name": "Elemental (small)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/elemental/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "elemental"
+            ],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "small-air-elemental",
+              "small-earth-elemental",
+              "small-fire-elemental",
+              "small-water-elemental",
+              "small-ice-elemental",
+              "small-lightning-elemental",
+              "small-magma-elemental",
+              "small-mud-elemental"
+            ]
+          },
+          {
+            "name": "Giant frog",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/frog/frog-giant/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "giant-frog"
+            ]
+          },
+          {
+            "name": "Giant spider",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/spider/giant-spider/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "giant-spider"
+            ]
+          },
+          {
+            "name": "Goblin dog",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/dog/goblin-dog/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "goblin-dog"
+            ]
+          },
+          {
+            "name": "Horse",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/horse/horse/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "light-riding-horse"
+            ]
+          },
+          {
+            "name": "Hyena",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/hyena/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "hyena"
+            ]
+          },
+          {
+            "name": "Octopus",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/octopus/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "octopus"
+            ]
+          },
+          {
+            "name": "Squid",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/squid/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "squid"
+            ]
+          },
+          {
+            "name": "Wolf",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/canines/wolf/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "wolf"
+            ]
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "Axe beak",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/birds/axe-beak/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP75",
+            "footnotes": [],
+            "creatureIds": [
+              "axe-beak"
+            ]
+          },
+          {
+            "name": "Celestial Elk",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/herd-animals/elk/",
+            "templated": false,
+            "presetTemplates": [
+              "celestial"
+            ],
+            "subtypes": [],
+            "source": "AP32",
+            "footnotes": [],
+            "creatureIds": [
+              "elk"
+            ]
+          },
+          {
+            "name": "Dire badger",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/badger/badger-dire/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP75",
+            "footnotes": [],
+            "creatureIds": [
+              "dire-badger"
+            ]
+          },
+          {
+            "name": "Giant porcupine",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/porcupine/porcupine-giant/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP75",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-porcupine"
+            ]
+          },
+          {
+            "name": "Venomous snake",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/snake/snake-venomous/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP42",
+            "footnotes": [],
+            "creatureIds": [
+              "venomous-snake"
+            ]
+          }
+        ]
+      },
+      "3": {
+        "standard": [
+          {
+            "name": "Ant, giant (soldier)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/ant/ant-giant-soldier/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "giant-ant-soldier"
+            ]
+          },
+          {
+            "name": "Ape",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/primates/primate-gorilla/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "gorilla"
+            ]
+          },
+          {
+            "name": "Aurochs (herd animal)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/herd-animals/aurochs/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "aurochs"
+            ]
+          },
+          {
+            "name": "Boar",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/boar/boar/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "boar"
+            ]
+          },
+          {
+            "name": "Cheetah",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/felines/cat-great/cheetah/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "cheetah"
+            ]
+          },
+          {
+            "name": "Constrictor snake",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/snake/snake-constrictor/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "constrictor-snake"
+            ]
+          },
+          {
+            "name": "Crocodile",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/crocodilians/crocodile/crocodile/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "crocodile"
+            ]
+          },
+          {
+            "name": "Dire bat",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/bat/bat-dire/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "dire-bat"
+            ]
+          },
+          {
+            "name": "Electric eel",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/eel/eel-electric/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "electric-eel"
+            ]
+          },
+          {
+            "name": "Giant Crab",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/crab/giant-crab/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "crab-giant"
+            ]
+          },
+          {
+            "name": "Leopard (cat)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/felines/cat-great/leopard/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "leopard"
+            ]
+          },
+          {
+            "name": "Monitor lizard",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/lizard/monitor-lizard/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "monitor-lizard"
+            ]
+          },
+          {
+            "name": "Shark",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/shark/shark/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "common-shark"
+            ]
+          },
+          {
+            "name": "Wolverine",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/wolverine/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "wolverine"
+            ]
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "Celestial dire boar",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/boar/dire-boar/",
+            "templated": false,
+            "presetTemplates": [
+              "celestial"
+            ],
+            "subtypes": [],
+            "source": "AP32",
+            "footnotes": [],
+            "creatureIds": [
+              "boar-dire-daeodon"
+            ]
+          }
+        ]
+      },
+      "4": {
+        "standard": [
+          {
+            "name": "Ant, giant (drone)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/ant/ant-giant-drone/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "giant-ant-drone"
+            ]
+          },
+          {
+            "name": "Bison (herd animal)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/herd-animals/bison/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "bison"
+            ]
+          },
+          {
+            "name": "Deinonychus (dinosaur)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/dinosaur/deinonychus/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "deinonychus"
+            ]
+          },
+          {
+            "name": "Dire ape",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/primates/primate-ape-dire/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "dire-ape-gigantopithecus"
+            ]
+          },
+          {
+            "name": "Dire boar",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/boar/dire-boar/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "boar-dire-daeodon"
+            ]
+          },
+          {
+            "name": "Dire wolf",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/canines/wolf/dire-wolf/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "dire-wolf"
+            ]
+          },
+          {
+            "name": "Elemental (medium)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/elemental/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "elemental"
+            ],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "medium-air-elemental",
+              "medium-earth-elemental",
+              "medium-fire-elemental",
+              "medium-water-elemental",
+              "medium-ice-elemental",
+              "medium-lightning-elemental",
+              "medium-magma-elemental",
+              "medium-mud-elemental"
+            ]
+          },
+          {
+            "name": "Giant scorpion",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/scorpion/scorpion-giant/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "giant-scorpion"
+            ]
+          },
+          {
+            "name": "Giant stag beetle",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/beetle/beetle-stag/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "beetle-giant-stag"
+            ]
+          },
+          {
+            "name": "Giant wasp",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/bees-and-wasps/wasp/wasp-giant/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "giant-wasp"
+            ]
+          },
+          {
+            "name": "Griffon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/griffon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "griffon"
+            ]
+          },
+          {
+            "name": "Grizzly bear",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/bear/brown-grizzly-bear/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "brown-bear-or-grizzly-kodiak-russian-brown"
+            ]
+          },
+          {
+            "name": "Lion",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/felines/cat-great/lion/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "lion"
+            ]
+          },
+          {
+            "name": "Mephit (any)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/mephit/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "elemental"
+            ],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "air-mephit",
+              "dust-mephit",
+              "earth-mephit",
+              "fire-mephit",
+              "ice-mephit",
+              "magma-mephit",
+              "ooze-mephit",
+              "salt-mephit",
+              "steam-mephit",
+              "water-mephit"
+            ]
+          },
+          {
+            "name": "Owlbear",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/owlbear/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "owlbear"
+            ]
+          },
+          {
+            "name": "Pteranodon (dinosaur)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/pterosaur/pterosaur-pteranodon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "pteranodon"
+            ]
+          },
+          {
+            "name": "Rhinoceros",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/rhinoceros/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "rhinoceros"
+            ]
+          },
+          {
+            "name": "Satyr",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/satyr/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "satyr"
+            ]
+          },
+          {
+            "name": "Tiger",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/felines/cat-great/tiger/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "tiger"
+            ]
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "Amphisbaena",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/amphisbaena/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP42",
+            "footnotes": [],
+            "creatureIds": [
+              "amphisbaena"
+            ]
+          },
+          {
+            "name": "Giant chameleon lizard",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/lizard/lizard-chameleon-giant/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP75",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-chameleon"
+            ]
+          },
+          {
+            "name": "Giant skunk",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/skunk/skunk-giant/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP75",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-skunk"
+            ]
+          },
+          {
+            "name": "Seaweed leshy",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/plants/leshy-template/leshy-seaweed/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP75",
+            "footnotes": [],
+            "creatureIds": [
+              "seaweed-leshy"
+            ]
+          },
+          {
+            "name": "Giant vulture",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/birds/vulture/vulture-giant/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP75",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-vulture"
+            ]
+          }
+        ]
+      },
+      "5": {
+        "standard": [
+          {
+            "name": "Ankylosaurus (dinosaur)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/dinosaur/ankylosaurus/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "ankylosaurus"
+            ]
+          },
+          {
+            "name": "Cyclops",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/cyclops/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "cyclops"
+            ]
+          },
+          {
+            "name": "Dire lion",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/felines/cat-great/lion/dire-lion/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "dire-spotted-lion"
+            ]
+          },
+          {
+            "name": "Elemental (large)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/elemental/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "elemental"
+            ],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "large-air-elemental",
+              "large-earth-elemental",
+              "large-fire-elemental",
+              "large-water-elemental",
+              "large-ice-elemental",
+              "large-lightning-elemental",
+              "large-magma-elemental",
+              "large-mud-elemental"
+            ]
+          },
+          {
+            "name": "Ettin",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/ettin/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "ettin"
+            ]
+          },
+          {
+            "name": "Giant moray eel",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/eel/eel-moray-giant/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "giant-moray-eel"
+            ]
+          },
+          {
+            "name": "Girallon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/girallon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "girallon"
+            ]
+          },
+          {
+            "name": "Orca (dolphin)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/cetacean/dolphin/orca/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "orca"
+            ]
+          },
+          {
+            "name": "Manticore",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/manticore/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "manticore"
+            ]
+          },
+          {
+            "name": "Woolly rhinoceros",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/rhinoceros/wooly-rhinoceros/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "rhinoceros-woolly"
+            ]
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "Emperor cobra",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/snake/snake-cobra-emperor/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP42",
+            "footnotes": [],
+            "creatureIds": [
+              "emperor-cobra"
+            ]
+          },
+          {
+            "name": "Giant owl",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/giant-owl/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP75",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-owl"
+            ]
+          },
+          {
+            "name": "Giant gar",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/fish/fish-gar/gar-giant/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP75",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-gar"
+            ]
+          },
+          {
+            "name": "Merrow, saltwater (NE)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/merrow-saltwater/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP55",
+            "footnotes": [],
+            "creatureIds": [
+              "saltwater-merrow"
+            ]
+          }
+        ]
+      },
+      "6": {
+        "standard": [
+          {
+            "name": "Bulette",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/bulette/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "bulette"
+            ]
+          },
+          {
+            "name": "Dire bear",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/bear/dire-bear/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "dire-or-cave-bear"
+            ]
+          },
+          {
+            "name": "Dire tiger",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/felines/cat-great/tiger/dire-tiger/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "tiger-dire-smilodon"
+            ]
+          },
+          {
+            "name": "Elasmosaurus (dinosaur)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/dinosaur/elasmosaurus/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "elasmosarus"
+            ]
+          },
+          {
+            "name": "Elemental (huge)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/elemental/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "elemental"
+            ],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "huge-air-elemental",
+              "huge-earth-elemental",
+              "huge-fire-elemental",
+              "huge-water-elemental",
+              "huge-ice-elemental",
+              "huge-lightning-elemental",
+              "huge-magma-elemental",
+              "huge-mud-elemental"
+            ]
+          },
+          {
+            "name": "Elephant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/elephant/elephant/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "elephant"
+            ]
+          },
+          {
+            "name": "Giant octopus",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/octopus/octopus-giant/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "giant-octopus"
+            ]
+          },
+          {
+            "name": "Hill giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-hill/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "hill-giant"
+            ]
+          },
+          {
+            "name": "Stegosaurus (dinosaur)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/dinosaur/stegosaurus/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "stegosaurus"
+            ]
+          },
+          {
+            "name": "Stone giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-stone/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "earth"
+            ],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "stone-giant"
+            ]
+          },
+          {
+            "name": "Triceratops (dinosaur)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/dinosaur/triceratops/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "triceratops"
+            ]
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "Shambling mound",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/plants/shambling-mound/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP75",
+            "footnotes": [],
+            "creatureIds": [
+              "shambling-mound"
+            ]
+          },
+          {
+            "name": "Tylosaurus (dinosaur) (N)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/dinosaur/tylosaurus/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP55",
+            "footnotes": [],
+            "creatureIds": [
+              "tylosaurus"
+            ]
+          }
+        ]
+      },
+      "7": {
+        "standard": [
+          {
+            "name": "Brachiosaurus (dinosaur)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/dinosaur/brachiosaurus/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "brachiosaurus"
+            ]
+          },
+          {
+            "name": "Dire crocodile",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/crocodilians/crocodile/dire-crocodile/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "crocodile-dire"
+            ]
+          },
+          {
+            "name": "Dire shark",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/shark/dire-shark/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "dire-shark-megalodon"
+            ]
+          },
+          {
+            "name": "Elemental (greater)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/elemental/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "elemental"
+            ],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "greater-air-elemental",
+              "greater-earth-elemental",
+              "greater-fire-elemental",
+              "greater-water-elemental",
+              "greater-ice-elemental",
+              "greater-lightning-elemental",
+              "greater-magma-elemental",
+              "greater-mud-elemental"
+            ]
+          },
+          {
+            "name": "Fire giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-fire/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "fire"
+            ],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "fire-giant"
+            ]
+          },
+          {
+            "name": "Frost giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-frost/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "cold"
+            ],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "frost-giant"
+            ]
+          },
+          {
+            "name": "Giant squid",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/squid/giant-squid/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "squid-giant"
+            ]
+          },
+          {
+            "name": "Mastodon (elephant)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/elephant/elephant-mastodon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "mastodon"
+            ]
+          },
+          {
+            "name": "Roc",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/birds/roc/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "roc"
+            ]
+          },
+          {
+            "name": "Tyrannosaurus (dinosaur)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/dinosaur/tyrannosaurus/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "tyrannosaurus"
+            ]
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "Giant anaconda",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/snake/giant-anaconda/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP42",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-anaconda"
+            ]
+          },
+          {
+            "name": "Giant flytrap",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/plants/flytrap-giant/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP75",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-flytrap"
+            ]
+          },
+          {
+            "name": "Giant snapping turtle",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/turtle/turtle-giant-snapping/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": "AP75",
+            "footnotes": [],
+            "creatureIds": [
+              "giant-snapping-turtle"
+            ]
+          }
+        ]
+      },
+      "8": {
+        "standard": [
+          {
+            "name": "Cloud giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-cloud/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "air"
+            ],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "cloud-giant"
+            ]
+          },
+          {
+            "name": "Elemental (elder)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/elemental/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "elemental"
+            ],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "elder-air-elemental",
+              "elder-earth-elemental",
+              "elder-fire-elemental",
+              "elder-water-elemental",
+              "elder-ice-elemental",
+              "elder-lightning-elemental",
+              "elder-magma-elemental",
+              "elder-mud-elemental"
+            ]
+          },
+          {
+            "name": "Purple worm",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/purple-worm/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "purple-worm"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "9": {
+        "standard": [
+          {
+            "name": "Pixie (w/irresistible dance and sleep arrows)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/pixie/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "pixie"
+            ]
+          },
+          {
+            "name": "Storm giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-storm/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "storm-giant"
+            ]
+          }
+        ],
+        "alternatives": []
+      }
+    }
+  }
+}

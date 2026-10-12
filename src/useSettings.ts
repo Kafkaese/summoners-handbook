@@ -1,0 +1,42 @@
+import { useEffect, useState } from 'react';
+import { ALIGNMENTS } from './rules/alignment';
+import { CLASSES } from './rules/classes';
+import type { Settings } from './rules/summon';
+
+const KEY = 'pf1e-summoner.settings';
+
+export const DEFAULT_SETTINGS: Settings = {
+  classId: 'wizard',
+  level: 5,
+  alignment: 'NG',
+  augmentSummoning: false,
+  superiorSummoning: false,
+  includeAlternatives: false,
+};
+
+function load(): Settings {
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (!raw) return DEFAULT_SETTINGS;
+    const s = { ...DEFAULT_SETTINGS, ...JSON.parse(raw) } as Settings;
+    if (!CLASSES.some((c) => c.id === s.classId)) s.classId = DEFAULT_SETTINGS.classId;
+    if (!ALIGNMENTS.includes(s.alignment)) s.alignment = DEFAULT_SETTINGS.alignment;
+    s.level = Math.min(20, Math.max(1, Math.round(Number(s.level)) || 1));
+    return s;
+  } catch {
+    return DEFAULT_SETTINGS;
+  }
+}
+
+/** Character settings, remembered in this browser. */
+export function useSettings() {
+  const [settings, setSettings] = useState<Settings>(load);
+  useEffect(() => {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(settings));
+    } catch {
+      // Storage unavailable (private mode); settings just won't persist.
+    }
+  }, [settings]);
+  return [settings, setSettings] as const;
+}
