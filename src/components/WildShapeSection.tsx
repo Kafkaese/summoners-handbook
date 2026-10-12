@@ -29,8 +29,14 @@ export function WildShapeSection({ settings, onSettings, setPane }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
 
   useEffect(() => {
-    // The animal data is only needed here, so it loads on first use.
-    import('../data/animals.json').then((m) => setForms([...Object.values(m.default as unknown as Record<string, Creature>), ...ELEMENTALS]));
+    // Animal and plant data are only needed here, so they load on first use.
+    Promise.all([import('../data/animals.json'), import('../data/plants.json')]).then(([animals, plants]) =>
+      setForms([
+        ...Object.values(animals.default as unknown as Record<string, Creature>),
+        ...ELEMENTALS,
+        ...Object.values(plants.default as unknown as Record<string, Creature>),
+      ]),
+    );
   }, []);
 
   const isDruid = settings.classId === 'druid';

@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
+import plantsJson from '../../data/plants.json';
 import { getValue } from '../fields';
+import type { Creature } from '../types';
 import { CREATURES } from '../summon';
 import { buildWildShape, DEFAULT_PROFILE, type DruidProfile, tierFor, usesPerDay } from '../wildshape';
 
@@ -128,5 +130,45 @@ describe('elementals (elemental body)', () => {
   });
   it('lets earth elementals glide through earth', () => {
     expect(getValue(shape('medium-earth-elemental', 8)!.creature, 'Speed')).toBe('20 ft., burrow 20 ft., earth glide');
+  });
+});
+
+describe('plants (plant shape)', () => {
+  const plant = (id: string, level: number, profile: Partial<DruidProfile> = {}) =>
+    buildWildShape((plantsJson as unknown as Record<string, Creature>)[id], level, { ...druid, ...profile }, 'N');
+
+  it('follows the druid table for sizes', () => {
+    expect(plant('yellow-musk-creeper', 7)).toBeNull();
+    expect(plant('yellow-musk-creeper', 8)!.tier.spell).toBe('plant shape I');
+    expect(plant('shambling-mound', 9)).toBeNull();
+    expect(plant('treant', 11)).toBeNull();
+    expect(plant('treant', 12)!.tier.spell).toBe('plant shape III');
+  });
+  it('shambling mound: base speed only, elemental resistances from plant shape II', () => {
+    const r = plant('shambling-mound', 10, { hp: 70 })!;
+    expect(r.abilities).toEqual({ str: 14, dex: 14, con: 16 });
+    expect(getValue(r.creature, 'Speed')).toBe('20 ft.');
+    expect(r.notGained).toContain('swim speed');
+    expect(getValue(r.creature, 'Resist')).toBe('electricity 20, fire 20');
+    expect(getValue(r.creature, 'hp')).toBe('80 (+10 from Con)');
+    expect(getValue(r.creature, 'Senses')).toBe('darkvision 60 ft., low-light vision');
+    expect(getValue(r.creature, 'Melee')).toBe('2 slams +8 (2d6+2 plus grab)');
+    expect(getValue(r.creature, 'Special Attacks')).toBe('constrict (2d6+2)');
+  });
+  it('treant: DR, vulnerability and trample from plant shape III', () => {
+    const r = plant('treant', 12)!;
+    expect(r.abilities).toEqual({ str: 18, dex: 12, con: 18 });
+    expect(getValue(r.creature, 'DR')).toBe('10/slashing');
+    expect(getValue(r.creature, 'Weaknesses')).toBe('vulnerability to fire');
+    expect(getValue(r.creature, 'Melee')).toBe('2 slams +11 (2d6+4/19–20)');
+    expect(getValue(r.creature, 'Special Attacks')).toBe('trample (2d6+6, DC 20)');
+    expect(r.notGained).toContain('rock throwing');
+  });
+  it('slow plants keep their speed and can’t be tripped', () => {
+    const r = plant('assassin-vine', 10)!;
+    expect(getValue(r.creature, 'Speed')).toBe('5 ft.');
+    expect(getValue(r.creature, 'Melee')).toBe('slam +8 (1d8+3 plus grab)');
+    expect(getValue(r.creature, 'CMD')).toMatch(/can't be tripped/);
+    expect(getValue(r.creature, 'Resist')).toBe('cold 20, electricity 20, fire 20');
   });
 });

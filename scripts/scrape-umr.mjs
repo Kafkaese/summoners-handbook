@@ -21,6 +21,8 @@ const ABILITIES = {
   burn: 'burn_ex',
   'earth glide': 'earth_glide_ex',
   whirlwind: 'whirlwind_su',
+  // Plant shape III.
+  regeneration: 'regeneration_ex',
 };
 
 const clean = (s) => s.replace(/\s+/g, ' ').trim();

@@ -16,7 +16,7 @@ const MOVES = ['fly', 'swim', 'climb', 'burrow'] as const;
 type Move = (typeof MOVES)[number];
 type Kind = ShapeRules['kind'];
 
-const KIND_LABELS: Record<Kind, string> = { animal: 'Animals', elemental: 'Elementals' };
+const KIND_LABELS: Record<Kind, string> = { animal: 'Animals', elemental: 'Elementals', plant: 'Plants' };
 
 export function FormList({ forms, level, familiar, onToggleFamiliar, selected, onSelect, onBack }: Props) {
   const [query, setQuery] = useState('');
@@ -37,7 +37,7 @@ export function FormList({ forms, level, familiar, onToggleFamiliar, selected, o
       }),
     [forms, level],
   );
-  const kinds = (['animal', 'elemental'] as Kind[]).filter((k) => available.some((a) => a.rules.kind === k));
+  const kinds = (['animal', 'elemental', 'plant'] as Kind[]).filter((k) => available.some((a) => a.rules.kind === k));
   const activeKind = kinds.includes(kind) ? kind : kinds[0];
   const ofKind = available.filter((a) => a.rules.kind === activeKind);
   const kindSizes = SIZES.filter((s) => ofKind.some((a) => a.form.size === s));

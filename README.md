@@ -9,7 +9,8 @@ A web app for Pathfinder 1e summoning spells and druid wild shape.
 - **Wild Shape** (`#wild-shape`, shown only when the class is druid). Enter your ability scores and a few
   bonuses, browse the animals you can turn into at your level (beast shape I–III),
   star the ones you're familiar with, and get your stat block in that form. From 6th
-  level, elementals (air, earth, fire, water; elemental body I–IV) are available too.
+  level, elementals (air, earth, fire, water; elemental body I–IV) are available too, and
+  from 8th level plants (plant shape I–III).
 
 ## Running it
 
@@ -38,8 +39,8 @@ The scraped data in `src/data/` is committed; CI doesn't scrape. To update it, r
   - `scrape-lists.mjs` reads the summon tables into `summonLists.json`
   - `scrape-creatures.mjs` parses every linked bestiary page into `creatures.json`
 
-  - `scrape-animals.mjs` crawls the animal listings into `animals.json` for wild shape. It
-    keeps only animals found on [Archives of Nethys](https://aonprd.com) (Paizo's licensed
+  - `scrape-forms.mjs` crawls the animal and plant listings into `animals.json` and
+    `plants.json` for wild shape. It keeps only creatures found on [Archives of Nethys](https://aonprd.com) (Paizo's licensed
     reference), which also gives each one's source book, and leaves out swarms, advanced
     or templated versions, and books without a verified copyright notice.
   - `scrape-umr.mjs` copies the universal monster rules wild shape can grant (grab, pounce,
@@ -55,7 +56,7 @@ The scraped data in `src/data/` is committed; CI doesn't scrape. To update it, r
   - alignment → template choice (celestial, entropic, fiendish, resolute) and cleric/warpriest restrictions
   - the four templates, applied by HD band
   - Augment Summoning (attack, damage, hp, saves, CMB/CMD, Climb/Swim and Str/Con-based DCs)
-  - wild shape (`wildshape.ts`): beast shape I–III and elemental body I–IV by druid level,
+  - wild shape (`wildshape.ts`): beast shape I–III, elemental body I–IV and plant shape I–III by druid level,
     ability and natural armor adjustments, movement and sense caps, which special abilities
     and defenses each version grants, and natural attacks with the druid's own BAB and Str.
     Elemental forms reuse the elementals from the summon data.
@@ -69,8 +70,7 @@ The scraped data in `src/data/` is committed; CI doesn't scrape. To update it, r
 - Summon Good/Evil/Neutral Monster feat lists, Evolved Summoned Monster and
   similar feats are not included yet.
 
-- Wild shape covers animals and elementals so far; plants (plant shape), druid
-  archetypes and Improved Natural Attack aren't included yet.
+- Wild shape doesn't cover druid archetypes or Improved Natural Attack yet.
 
 ## Licensing
 
