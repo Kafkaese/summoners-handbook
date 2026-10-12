@@ -20,7 +20,11 @@ npm run build    # static build in dist/
   - `scrape-lists.mjs` reads the summon tables into `summonLists.json`
   - `scrape-creatures.mjs` parses every linked bestiary page into `creatures.json`
 
-  Run both with `npm run scrape`. Fetched pages are cached in `scripts/.cache/`
+  - `scrape-spells.mjs` looks up every spell in those stat blocks and writes
+    `restrictedSpells.json`: spells a summoned creature can't use (summoning, teleportation,
+    planar travel, costly material components). The app crosses these out.
+
+  Run all three with `npm run scrape`. Fetched pages are cached in `scripts/.cache/`
   (gitignored), so re-running only hits the network for new pages.
 - `src/rules/` holds the rules logic:
   - class spell access, including summoner, unchained summoner and medium spell levels and the summoner SLA

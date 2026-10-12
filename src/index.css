@@ -750,3 +750,29 @@ mark.changed {
     padding: 10px 12px 14px;
   }
 }
+
+/* Abilities a summoned creature can't use */
+
+s.forbidden {
+  color: var(--muted);
+  text-decoration-color: var(--evil);
+  text-decoration-thickness: 1.5px;
+}
+
+.sb-special.is-forbidden p {
+  color: var(--muted);
+}
+
+.restricted-note {
+  font-size: 0.85rem;
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.restricted-note ul {
+  margin: 4px 0 0;
+  padding-left: 18px;
+}

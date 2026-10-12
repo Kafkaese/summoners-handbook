@@ -2,6 +2,7 @@ import { TEMPLATE_ALIGNMENT, TEMPLATE_RULES } from '../rules/alignment';
 import type { Settings, CountGroup, CreatureChoice } from '../rules/summon';
 import { buildCreature } from '../rules/summon';
 import { TEMPLATES, type TemplateId } from '../rules/templates';
+import { restrictionsOf } from '../rules/restrictions';
 import { StatBlock } from './StatBlock';
 
 interface Props {
@@ -17,6 +18,7 @@ interface Props {
 
 export function SummonDetail({ choice, group, duration, template, onTemplate, settings, onBack }: Props) {
   const creature = buildCreature(choice, template, settings);
+  const restricted = creature ? restrictionsOf(creature) : [];
 
   return (
     <section className="card detail">
@@ -54,6 +56,19 @@ export function SummonDetail({ choice, group, duration, template, onTemplate, se
               </p>
             ))}
             <p className="hint">{TEMPLATE_RULES.find((r) => r.id === settings.templateRule)?.description} Change this under Character.</p>
+          </div>
+        )}
+
+        {restricted.length > 0 && (
+          <div className="restricted-note">
+            <strong>Can't be used while summoned</strong> (crossed out below):
+            <ul>
+              {restricted.map((r) => (
+                <li key={r.name}>
+                  <strong>{r.name}</strong>: {r.reasons.join(', ')}
+                </li>
+              ))}
+            </ul>
           </div>
         )}
 

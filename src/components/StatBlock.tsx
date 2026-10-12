@@ -1,4 +1,6 @@
 import type { ReactNode } from 'react';
+import { ABILITY_LIST_FIELDS, abilityRestriction, spellRestriction } from '../rules/restrictions';
+import { splitItems, splitSpellLine } from '../rules/spellNames';
 import type { BuiltCreature, Field, SectionName } from '../rules/types';
 
 /** Fields printed on one line together, in stat block order. */
@@ -29,12 +31,46 @@ function Value({ creature, section, label, children }: { creature: BuiltCreature
   );
 }
 
+/** Comma-separated items with the ones a summoned creature can't use struck through. */
+function Items({ items, restriction }: { items: string[]; restriction: (item: string) => string[] | null }) {
+  return (
+    <>
+      {items.map((item, i) => {
+        const reasons = restriction(item);
+        return (
+          <span key={i}>
+            {i > 0 && ', '}
+            {reasons ? (
+              <s className="forbidden" title={`Summoned creatures can't use this: ${reasons.join(', ')}`}>
+                {item}
+              </s>
+            ) : (
+              item
+            )}
+          </span>
+        );
+      })}
+    </>
+  );
+}
+
+function SpellLine({ line }: { line: string }) {
+  const { prefix, items } = splitSpellLine(line);
+  return (
+    <>
+      {prefix}
+      <Items items={items} restriction={spellRestriction} />
+    </>
+  );
+}
+
 function FieldText({ creature, section, field }: { creature: BuiltCreature; section: SectionName; field: Field }) {
+  const abilities = ABILITY_LIST_FIELDS.has(field.label) && splitItems(field.value).some((item) => abilityRestriction(item));
   return (
     <>
       {field.label && <b>{field.label} </b>}
       <Value creature={creature} section={section} label={field.label}>
-        {field.value}
+        {abilities ? <Items items={splitItems(field.value)} restriction={abilityRestriction} /> : field.value}
       </Value>
     </>
   );
@@ -80,7 +116,9 @@ function Section({ creature, section }: { creature: BuiltCreature; section: Sect
         {f.lines && (
           <ul className="sb-lines">
             {f.lines.map((l, i) => (
-              <li key={i}>{l}</li>
+              <li key={i}>
+                <SpellLine line={l} />
+              </li>
             ))}
           </ul>
         )}
@@ -132,11 +170,16 @@ export function StatBlock({ creature }: { creature: BuiltCreature }) {
           <h4 className="sb-divider">Special Abilities</h4>
           {creature.special.map((s, i) => {
             const changed = creature.changed.has(`special.${s.name}`);
+            const forbidden = abilityRestriction(s.name);
             return (
-              <div key={i} className={`sb-special ${changed ? 'is-changed' : ''}`} title={changed ? 'Changed by a template or feat' : undefined}>
+              <div
+                key={i}
+                className={`sb-special ${changed ? 'is-changed' : ''} ${forbidden ? 'is-forbidden' : ''}`}
+                title={forbidden ? `Summoned creatures can't use this: ${forbidden.join(', ')}` : changed ? 'Changed by a template or feat' : undefined}
+              >
                 {s.text.split('\n').map((para, j) => (
                   <p key={j}>
-                    {j === 0 && s.name && <b>{s.name} </b>}
+                    {j === 0 && s.name && <b>{forbidden ? <s className="forbidden">{s.name}</s> : s.name} </b>}
                     {para}
                   </p>
                 ))}

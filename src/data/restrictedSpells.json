@@ -1,0 +1,129 @@
+{
+  "summon": {
+    "name": "summon",
+    "url": "https://www.d20pfsrd.com/bestiary/rules-for-monsters/universal-monster-rules/#Summon_Sp",
+    "reasons": [
+      "summons a creature"
+    ]
+  },
+  "augury": {
+    "name": "augury",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/a/augury/",
+    "reasons": [
+      "costly material component (25 gp)"
+    ]
+  },
+  "commune": {
+    "name": "commune",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/c/commune/",
+    "reasons": [
+      "costly material component (500 gp)"
+    ]
+  },
+  "consecrate": {
+    "name": "consecrate",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/c/consecrate/",
+    "reasons": [
+      "costly material component (25 gp)"
+    ]
+  },
+  "continual flame": {
+    "name": "continual flame",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/c/continual-flame/",
+    "reasons": [
+      "costly material component (50 gp)"
+    ]
+  },
+  "dimension door": {
+    "name": "dimension door",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/d/dimension-door/",
+    "reasons": [
+      "teleportation"
+    ]
+  },
+  "ethereal jaunt": {
+    "name": "ethereal jaunt",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/e/ethereal-jaunt/",
+    "reasons": [
+      "planar travel"
+    ]
+  },
+  "false vision": {
+    "name": "false vision",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/f/false-vision/",
+    "reasons": [
+      "costly material component (250 gp)"
+    ]
+  },
+  "greater teleport": {
+    "name": "greater teleport",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/t/teleport/",
+    "reasons": [
+      "teleportation"
+    ]
+  },
+  "plane shift": {
+    "name": "plane shift",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/p/plane-shift/",
+    "reasons": [
+      "teleportation",
+      "planar travel"
+    ]
+  },
+  "project image": {
+    "name": "project image",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/p/project-image/",
+    "reasons": [
+      "costly material component (5 gp)"
+    ]
+  },
+  "raise dead": {
+    "name": "raise dead",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/r/raise-dead/",
+    "reasons": [
+      "costly material component (5,000 gp)"
+    ]
+  },
+  "restoration": {
+    "name": "restoration",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/r/restoration/",
+    "reasons": [
+      "costly material component (100 gp)"
+    ]
+  },
+  "shadow walk": {
+    "name": "shadow walk",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/s/shadow-walk/",
+    "reasons": [
+      "planar travel"
+    ]
+  },
+  "stoneskin": {
+    "name": "stoneskin",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/s/stoneskin/",
+    "reasons": [
+      "costly material component (250 gp)"
+    ]
+  },
+  "summon nature's ally iii": {
+    "name": "summon nature's ally iii",
+    "url": null,
+    "reasons": [
+      "summons a creature"
+    ]
+  },
+  "true seeing": {
+    "name": "true seeing",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/t/true-seeing/",
+    "reasons": [
+      "costly material component (250 gp)"
+    ]
+  },
+  "wish": {
+    "name": "wish",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/w/wish/",
+    "reasons": [
+      "costly material component (25,000 gp)"
+    ]
+  }
+}
