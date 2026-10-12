@@ -1,4 +1,4 @@
-import { ALIGNMENT_NAMES } from '../rules/alignment';
+import { TEMPLATE_RULES } from '../rules/alignment';
 import type { Settings, CountGroup, CreatureChoice } from '../rules/summon';
 import { buildCreature } from '../rules/summon';
 import { TEMPLATES, type TemplateId } from '../rules/templates';
@@ -17,7 +17,6 @@ interface Props {
 
 export function SummonDetail({ choice, group, duration, template, onTemplate, settings, onBack }: Props) {
   const creature = buildCreature(choice, template, settings);
-  const neutralOneAxis = choice.templateOptions.length === 1 && settings.alignment.includes('N');
 
   return (
     <section className="card detail">
@@ -49,12 +48,7 @@ export function SummonDetail({ choice, group, duration, template, onTemplate, se
                 </button>
               ))}
             </div>
-            {neutralOneAxis && (
-              <p className="hint">
-                As {ALIGNMENT_NAMES[settings.alignment].toLowerCase()} you get the {TEMPLATES[choice.templateOptions[0]].name.toLowerCase()} template. Some GMs
-                also let casters who are neutral on one axis choose entropic or resolute.
-              </p>
-            )}
+            <p className="hint">{TEMPLATE_RULES.find((r) => r.id === settings.templateRule)?.description} Change this under Character.</p>
           </div>
         )}
 

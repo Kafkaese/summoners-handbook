@@ -1,6 +1,6 @@
 import creaturesJson from '../data/creatures.json';
 import listsJson from '../data/summonLists.json';
-import { type Alignment, allowedTemplates, hasAlignmentSubtype, opposedDescriptors, spellDescriptors } from './alignment';
+import { type Alignment, allowedTemplates, type TemplateRule, hasAlignmentSubtype, opposedDescriptors, spellDescriptors } from './alignment';
 import { applyAugmentSummoning } from './augment';
 import { type ClassDef, ROMAN, type SummonOption } from './classes';
 import { applyTemplate, type TemplateId } from './templates';
@@ -16,6 +16,7 @@ export interface Settings {
   augmentSummoning: boolean;
   superiorSummoning: boolean;
   includeAlternatives: boolean;
+  templateRule: TemplateRule;
 }
 
 export interface CountGroup {
@@ -87,7 +88,7 @@ export function choicesFor(spell: SpellKey, listLevel: number, cls: ClassDef, se
         alternative,
         creature,
         name: e.creatureIds.length > 1 && creature ? creature.name : capitalize(e.name),
-        templateOptions: templated ? allowedTemplates(settings.alignment) : [],
+        templateOptions: templated ? allowedTemplates(settings.alignment, settings.templateRule) : [],
         presetTemplates: e.presetTemplates,
         descriptors,
         blocked:

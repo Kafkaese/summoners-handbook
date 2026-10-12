@@ -36,12 +36,46 @@ const TEMPLATE_FOR: Record<Component, TemplateId> = {
 };
 
 /**
- * Templates a caster may apply to a "*" creature: celestial if good, entropic
- * if chaotic, fiendish if evil, resolute if lawful; any if neutral.
+ * Which templates "*" creatures may take. Paizo never settled whether the
+ * Bestiary 2 entropic and resolute templates work with summon monster, so
+ * this is a table setting.
  */
-export function allowedTemplates(a: Alignment): TemplateId[] {
-  if (a === 'N') return ['celestial', 'entropic', 'fiendish', 'resolute'];
-  return components(a).map((c) => TEMPLATE_FOR[c]);
+export type TemplateRule = 'core' | 'expanded' | 'expanded-lenient';
+
+export const TEMPLATE_RULES: { id: TemplateRule; name: string; description: string }[] = [
+  {
+    id: 'core',
+    name: 'Core: celestial or fiendish',
+    description: 'Core Rulebook: celestial if good, fiendish if evil; choose either if neutral on good and evil.',
+  },
+  {
+    id: 'expanded',
+    name: 'Expanded: by alignment',
+    description: 'd20pfsrd wording: celestial if good, entropic if chaotic, fiendish if evil, resolute if lawful; any if true neutral.',
+  },
+  {
+    id: 'expanded-lenient',
+    name: 'Expanded: neutral axes choose',
+    description: 'As expanded, but being neutral on an axis lets you choose either template of that axis.',
+  },
+];
+
+/** Templates a caster may apply to a "*" creature under the given rule. */
+export function allowedTemplates(a: Alignment, rule: TemplateRule = 'core'): TemplateId[] {
+  const mine = components(a);
+  const neutralGoodEvil = !mine.includes('good') && !mine.includes('evil');
+  const neutralLawChaos = !mine.includes('lawful') && !mine.includes('chaotic');
+  if (rule === 'core') return neutralGoodEvil ? ['celestial', 'fiendish'] : mine.filter((c) => c === 'good' || c === 'evil').map((c) => TEMPLATE_FOR[c]);
+  if (rule === 'expanded') {
+    if (a === 'N') return ['celestial', 'entropic', 'fiendish', 'resolute'];
+    return mine.map((c) => TEMPLATE_FOR[c]);
+  }
+  const out: TemplateId[] = [];
+  if (neutralGoodEvil) out.push('celestial', 'fiendish');
+  else out.push(...mine.filter((c) => c === 'good' || c === 'evil').map((c) => TEMPLATE_FOR[c]));
+  if (neutralLawChaos) out.push('entropic', 'resolute');
+  else out.push(...mine.filter((c) => c === 'lawful' || c === 'chaotic').map((c) => TEMPLATE_FOR[c]));
+  return out;
 }
 
 const DESCRIPTOR_SUBTYPES = ['lawful', 'chaotic', 'good', 'evil', 'air', 'earth', 'fire', 'water'];

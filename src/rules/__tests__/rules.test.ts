@@ -11,6 +11,7 @@ const settings: Settings = {
   augmentSummoning: false,
   superiorSummoning: false,
   includeAlternatives: false,
+  templateRule: 'core',
 };
 
 function build(spell: 'summon-monster' | 'summon-natures-ally', level: number, name: string, opts: Partial<Settings> = {}, template: Parameters<typeof buildCreature>[1] = null) {
@@ -37,10 +38,19 @@ describe('class spell access', () => {
 });
 
 describe('templates by alignment', () => {
-  it('offers templates per alignment component', () => {
-    expect(allowedTemplates('LG')).toEqual(['resolute', 'celestial']);
-    expect(allowedTemplates('NE')).toEqual(['fiendish']);
-    expect(allowedTemplates('N')).toHaveLength(4);
+  it('core: celestial or fiendish, either when neutral on good/evil', () => {
+    expect(allowedTemplates('LG', 'core')).toEqual(['celestial']);
+    expect(allowedTemplates('CN', 'core')).toEqual(['celestial', 'fiendish']);
+  });
+  it('expanded: one template per alignment component, any for true neutral', () => {
+    expect(allowedTemplates('LG', 'expanded')).toEqual(['resolute', 'celestial']);
+    expect(allowedTemplates('NE', 'expanded')).toEqual(['fiendish']);
+    expect(allowedTemplates('N', 'expanded')).toHaveLength(4);
+  });
+  it('lenient: a neutral axis offers both of its templates', () => {
+    expect(allowedTemplates('NG', 'expanded-lenient')).toEqual(['celestial', 'entropic', 'resolute']);
+    expect(allowedTemplates('LN', 'expanded-lenient')).toEqual(['celestial', 'fiendish', 'resolute']);
+    expect(allowedTemplates('CE', 'expanded-lenient')).toEqual(['fiendish', 'entropic']);
   });
 });
 

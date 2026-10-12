@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ALIGNMENT_NAMES, ALIGNMENTS } from '../rules/alignment';
+import { ALIGNMENT_NAMES, ALIGNMENTS, TEMPLATE_RULES, type TemplateRule } from '../rules/alignment';
 import { CLASSES, classById } from '../rules/classes';
 import type { Settings } from '../rules/summon';
 
@@ -76,6 +76,18 @@ export function SettingsPanel({ settings, onChange }: Props) {
             ))}
           </div>
         </div>
+
+        <label className="field">
+          <span>Summon monster templates</span>
+          <select value={settings.templateRule} onChange={(e) => set('templateRule', e.target.value as TemplateRule)}>
+            {TEMPLATE_RULES.map((r) => (
+              <option key={r.id} value={r.id}>
+                {r.name}
+              </option>
+            ))}
+          </select>
+          <small className="field-hint">{TEMPLATE_RULES.find((r) => r.id === settings.templateRule)?.description}</small>
+        </label>
 
         <fieldset className="toggles">
           <legend>Feats &amp; options</legend>

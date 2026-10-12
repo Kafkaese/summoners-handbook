@@ -3,7 +3,7 @@ import { classById } from '../classes';
 import { buildCreature, choicesFor, LISTS, type Settings } from '../summon';
 
 it('builds every creature with a template and Augment Summoning', () => {
-  const settings: Settings = { classId: 'wizard', level: 20, alignment: 'N', augmentSummoning: true, superiorSummoning: false, includeAlternatives: true };
+  const settings: Settings = { classId: 'wizard', level: 20, alignment: 'N', augmentSummoning: true, superiorSummoning: false, includeAlternatives: true, templateRule: 'expanded' };
   let built = 0;
   for (const spell of Object.keys(LISTS.spells) as (keyof typeof LISTS.spells)[]) {
     for (let level = 1; level <= 9; level++) {
