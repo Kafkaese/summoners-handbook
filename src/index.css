@@ -47,6 +47,33 @@
   }
 }
 
+/* Wild shape: the same design with green as the base color. */
+:root[data-section='wild-shape'] {
+  --bg: #eef1e8;
+  --surface: #fbfdf8;
+  --surface-2: #f1f5ec;
+  --border: #d5dfcc;
+  --accent: #2f5d3a;
+  --accent-soft: #dde9da;
+  --accent-text: #ffffff;
+  --warn-bg: #f3e6dc;
+  --warn-text: #7a3a1f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-section='wild-shape'] {
+    --bg: #111611;
+    --surface: #182019;
+    --surface-2: #1f2a20;
+    --border: #2e3b2f;
+    --accent: #84c493;
+    --accent-soft: #1f3524;
+    --accent-text: #0d1a10;
+    --warn-bg: #3a2a1d;
+    --warn-text: #f0c4a4;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -820,4 +847,134 @@ s.forbidden {
   font-family: var(--font);
   font-size: 0.65em;
   line-height: 0;
+}
+
+/* Section tabs */
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 3px;
+}
+
+.tabs a {
+  padding: 6px 14px;
+  border-radius: 7px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.tabs a.is-active {
+  background: var(--accent);
+  color: var(--accent-text);
+}
+
+/* Wild shape */
+
+.wild-summary {
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--accent-soft);
+  font-size: 0.9rem;
+}
+
+.ability-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+}
+
+.bonus-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 12px;
+}
+
+.ability-grid input,
+.bonus-grid input {
+  padding: 6px 4px;
+  text-align: center;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.ability-grid input::-webkit-inner-spin-button,
+.bonus-grid input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.ability-grid .field-hint {
+  text-align: center;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.chip.small {
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.form-row {
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+}
+
+.form-row .creature-item {
+  flex: 1;
+  min-width: 0;
+}
+
+.star {
+  border: 0;
+  background: none;
+  font-size: 1.25rem;
+  color: var(--muted);
+  width: 40px;
+  border-radius: 8px;
+}
+
+.star.is-active {
+  color: var(--chaos);
+}
+
+.star:hover {
+  background: var(--surface-2);
+}
+
+.show-forms {
+  display: none;
+  align-self: stretch;
+  padding: 12px;
+}
+
+@media (max-width: 760px) {
+  .app-header .tabs {
+    margin-left: 0;
+    width: 100%;
+  }
+  .tabs a {
+    flex: 1;
+    text-align: center;
+  }
+  .show-forms {
+    display: block;
+  }
+  .ability-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

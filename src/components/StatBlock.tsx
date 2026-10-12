@@ -150,9 +150,11 @@ export function StatBlock({ creature }: { creature: BuiltCreature }) {
     <article className="statblock">
       <header className="sb-title">
         <h3>{creature.name}</h3>
-        <span className="sb-cr">
-          {crChanged ? <mark className="changed" title={`Base: CR ${creature.changed.get('cr')}`}>CR {creature.cr}</mark> : `CR ${creature.cr}`}
-        </span>
+        {creature.cr && (
+          <span className="sb-cr">
+            {crChanged ? <mark className="changed" title={`Base: CR ${creature.changed.get('cr')}`}>CR {creature.cr}</mark> : `CR ${creature.cr}`}
+          </span>
+        )}
       </header>
       {creature.xp && <p className="sb-xp">XP {creature.xp}</p>}
       {creature.typeLine && (

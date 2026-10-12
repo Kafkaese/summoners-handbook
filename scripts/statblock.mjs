@@ -261,7 +261,7 @@ const CANONICAL_SECTION = {
 function moveToCanonicalSections(sb) {
   // Animal pages append animal companion stats ("Starting Statistics: Size …"); they aren't the creature's.
   for (const [name, fields] of Object.entries(sb.sections)) {
-    const cut = fields.findIndex((f) => /^Starting Statistics$/i.test(f.label));
+    const cut = fields.findIndex((f) => /^Starting Statistics$|\bCompanions?$/i.test(f.label));
     if (cut >= 0) sb.sections[name] = fields.slice(0, cut);
   }
   for (const [name, fields] of Object.entries(sb.sections)) {
@@ -281,11 +281,40 @@ function moveToCanonicalSections(sb) {
   }
 }
 
+/** Splits "Init +5; Senses low-light vision; Perception +11" on known labels. */
+function splitBoldLine(text) {
+  const labels = [...KNOWN_LABELS].sort((a, b) => b.length - a.length).map((l) => l.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+  const re = new RegExp(`(?:^|[;,]\\s+)(${labels.join('|')})\\s+`, 'g');
+  const hits = [...text.matchAll(re)];
+  if (!hits.length || hits[0].index !== 0) return [];
+  return hits.map((m, i) => {
+    const start = m.index + m[0].length;
+    const end = i + 1 < hits.length ? hits[i + 1].index : text.length;
+    // Keep a trailing comma on the last part: the line may continue in the next bold run.
+    const value = clean(text.slice(start, end));
+    return { label: m[1], value: i + 1 < hits.length ? value.replace(/[;,]$/, '') : value };
+  });
+}
+
 /** Repairs fields split or merged by inconsistent bold markup. */
 function normalizeSections(sb) {
   for (const [name, fields] of Object.entries(sb.sections)) {
     const out = [];
     for (let i = 0; i < fields.length; i++) {
+      // A whole line in bold ("<b>AC 18, touch 10 …</b>") arrives as a label without a value.
+      const splitLabel = fields[i + 1] && KNOWN_LABELS.includes(`${fields[i].label} ${fields[i + 1].label}`);
+      if (!fields[i].value && !splitLabel && !KNOWN_LABELS.includes(fields[i].label) && fields[i].label.length > 3) {
+        const parts = splitBoldLine(fields[i].label);
+        if (parts.length) {
+          out.push(...parts);
+          continue;
+        }
+        // "Gar Companions" starts the animal companion block, which is cut later.
+        if (out.length && !/\bCompanions?$/i.test(fields[i].label)) {
+          out[out.length - 1].value = clean(`${out[out.length - 1].value} ${fields[i].label}`);
+          continue;
+        }
+      }
       let f = { ...fields[i], label: LABEL_ALIASES[fields[i].label] ?? fields[i].label };
       const next = fields[i + 1];
       // "<b>Base</b> <b>Atk</b> +1"
