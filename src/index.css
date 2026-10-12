@@ -170,6 +170,19 @@ a {
 
 .pane-header .pane-title {
   margin: 0;
+  min-width: 0;
+}
+
+.duration {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 999px;
+  padding: 4px 10px;
 }
 
 .back {

@@ -88,6 +88,7 @@ export default function App() {
             <SummonDetail
               choice={choice}
               group={group}
+              duration={option!.duration}
               template={template}
               onTemplate={(t) => setTemplates({ ...templates, [choice.key]: t })}
               settings={settings}

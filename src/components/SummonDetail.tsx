@@ -7,13 +7,15 @@ import { StatBlock } from './StatBlock';
 interface Props {
   choice: CreatureChoice;
   group: CountGroup;
+  /** How long the summons last, e.g. "9 rounds". */
+  duration: string;
   template: TemplateId | null;
   onTemplate: (t: TemplateId) => void;
   settings: Settings;
   onBack: () => void;
 }
 
-export function SummonDetail({ choice, group, template, onTemplate, settings, onBack }: Props) {
+export function SummonDetail({ choice, group, duration, template, onTemplate, settings, onBack }: Props) {
   const creature = buildCreature(choice, template, settings);
   const neutralOneAxis = choice.templateOptions.length === 1 && settings.alignment.includes('N');
 
@@ -24,6 +26,9 @@ export function SummonDetail({ choice, group, template, onTemplate, settings, on
           ‹
         </button>
         <h2 className="pane-title">{choice.name}</h2>
+        <span className="duration" title="Duration of the summoning">
+          ⏳ {duration}
+        </span>
       </header>
 
       <div className="summary">
