@@ -123,6 +123,191 @@ const STEALTH_SIZE_MOD: Record<Size, number> = { Diminutive: 12, Tiny: 8, Small:
 
 export const sizeAdjustment = (size: Size) => SIZE_ADJUST[size];
 
+// --- Elementals (elemental body I–IV) ----------------------------------------
+
+export type Element = 'air' | 'earth' | 'fire' | 'water';
+export const ELEMENTS: Element[] = ['air', 'earth', 'fire', 'water'];
+
+/** The elemental body version by druid level: Small at 6th, Medium 8th, Large 10th, Huge 12th. */
+const ELEMENTAL_BODIES = [
+  { level: 12, spell: 'elemental body IV', spellLevel: 7, sizes: ['Small', 'Medium', 'Large', 'Huge'] as Size[] },
+  { level: 10, spell: 'elemental body III', spellLevel: 6, sizes: ['Small', 'Medium', 'Large'] as Size[] },
+  { level: 8, spell: 'elemental body II', spellLevel: 5, sizes: ['Small', 'Medium'] as Size[] },
+  { level: 6, spell: 'elemental body I', spellLevel: 4, sizes: ['Small'] as Size[] },
+];
+
+/** Ability and natural armor bonuses from elemental body, by element and size. */
+const ELEMENT_ADJUST: Record<Element, Partial<Record<Size, Adjust>>> = {
+  air: {
+    Small: { str: 0, dex: 2, con: 0, naturalArmor: 2 },
+    Medium: { str: 0, dex: 4, con: 0, naturalArmor: 3 },
+    Large: { str: 2, dex: 4, con: 0, naturalArmor: 4 },
+    Huge: { str: 4, dex: 6, con: 0, naturalArmor: 4 },
+  },
+  earth: {
+    Small: { str: 2, dex: 0, con: 0, naturalArmor: 4 },
+    Medium: { str: 4, dex: 0, con: 0, naturalArmor: 5 },
+    Large: { str: 6, dex: -2, con: 2, naturalArmor: 6 },
+    Huge: { str: 8, dex: -2, con: 4, naturalArmor: 6 },
+  },
+  fire: {
+    Small: { str: 0, dex: 2, con: 0, naturalArmor: 2 },
+    Medium: { str: 0, dex: 4, con: 0, naturalArmor: 3 },
+    Large: { str: 0, dex: 4, con: 2, naturalArmor: 4 },
+    Huge: { str: 0, dex: 6, con: 4, naturalArmor: 4 },
+  },
+  water: {
+    Small: { str: 0, dex: 0, con: 2, naturalArmor: 4 },
+    Medium: { str: 0, dex: 0, con: 4, naturalArmor: 5 },
+    Large: { str: 2, dex: -2, con: 6, naturalArmor: 6 },
+    Huge: { str: 4, dex: -2, con: 8, naturalArmor: 6 },
+  },
+};
+
+/** What each element grants (elemental body I), on top of darkvision 60 ft. */
+const ELEMENT_ABILITIES: Record<Element, string[]> = {
+  air: ['whirlwind'],
+  earth: ['earth glide'],
+  fire: ['burn'],
+  water: ['vortex'],
+};
+
+/** The elemental body spell wild shape works like for elementals at this level, if any. */
+export const elementalBodyFor = (level: number) => ELEMENTAL_BODIES.find((b) => level >= b.level) ?? null;
+
+/** The element of a Small–Huge elemental of the four classic elements; greater and elder ones are stronger versions elemental body doesn't allow. */
+export function elementOf(form: Creature): Element | null {
+  if (form.type !== 'outsider' || !form.subtypes.includes('elemental') || /\b(greater|elder)\b/i.test(form.name)) return null;
+  return ELEMENTS.find((e) => form.subtypes.includes(e) && new RegExp(`\\b${e} elemental\\b`, 'i').test(form.name)) ?? null;
+}
+
+// --- Plants (plant shape I–III) ----------------------------------------------
+
+/** The plant shape version by druid level: Small/Medium at 8th, Large 10th, Huge 12th. */
+const PLANT_SHAPES = [
+  { level: 12, spell: 'plant shape III', spellLevel: 7, sizes: ['Small', 'Medium', 'Large', 'Huge'] as Size[] },
+  { level: 10, spell: 'plant shape II', spellLevel: 6, sizes: ['Small', 'Medium', 'Large'] as Size[] },
+  { level: 8, spell: 'plant shape I', spellLevel: 5, sizes: ['Small', 'Medium'] as Size[] },
+];
+
+export const plantShapeFor = (level: number) => PLANT_SHAPES.find((p) => level >= p.level) ?? null;
+
+const PLANT_ADJUST: Partial<Record<Size, Adjust>> = {
+  Small: { str: 0, dex: 0, con: 2, naturalArmor: 2 },
+  Medium: { str: 2, dex: 0, con: 2, naturalArmor: 2 },
+  Large: { str: 4, dex: 0, con: 2, naturalArmor: 4 },
+  Huge: { str: 8, dex: -2, con: 4, naturalArmor: 6 },
+};
+
+const ENERGIES = ['acid', 'cold', 'electricity', 'fire', 'sonic'];
+
+/** Plant shape's form-dependent defenses: vulnerabilities, then (II+) resistance 20, then (III) DR and regeneration 5. */
+function plantDefense(form: Creature, spellLevel: number): ShapeRules['defense'] {
+  const weaknesses = field(form, 'Weaknesses')
+    .split(/,\s*/)
+    .filter((w) => /vulnerab/i.test(w))
+    .map((w) => w.trim());
+  const elemental = `${field(form, 'Immune')} ${field(form, 'Resist')}`.toLowerCase();
+  const resist = spellLevel >= 6 ? ENERGIES.filter((e) => elemental.includes(e)).map((e) => `${e} 20`) : [];
+  const regenerates = /regeneration/i.test(`${field(form, 'hp')} ${field(form, 'Defensive Abilities')} ${field(form, 'SQ')}`);
+  return {
+    immune: [],
+    resist,
+    weaknesses,
+    dr: spellLevel >= 7 && field(form, 'DR') ? field(form, 'DR') : null,
+    regeneration: spellLevel >= 7 && regenerates ? 'regeneration 5' : undefined,
+  };
+}
+
+// --- The rules a form is taken with ---------------------------------------
+
+interface Adjust {
+  str: number;
+  dex: number;
+  con: number;
+  naturalArmor: number;
+}
+
+/** Everything that depends on which spell wild shape works like for this form. */
+export interface ShapeRules {
+  kind: 'animal' | 'elemental' | 'plant';
+  spell: string;
+  spellLevel: number;
+  adjust: Adjust;
+  caps: Tier['caps'];
+  senses: string[];
+  abilities: string[];
+  /** Defenses the spell grants regardless of the form. */
+  defense: { immune: string[]; resist: string[]; weaknesses: string[]; dr: string | null; regeneration?: string };
+  sq: string[];
+}
+
+/** The rules for taking this form at this druid level, or null if the druid can't take it yet. */
+export function rulesFor(form: Creature, level: number): ShapeRules | null {
+  const size = form.size as Size;
+  const element = elementOf(form);
+  if (element) {
+    const body = ELEMENTAL_BODIES.find((b) => level >= b.level);
+    const adjust = ELEMENT_ADJUST[element][size];
+    if (!body || !body.sizes.includes(size) || !adjust) return null;
+    const iv = body.spellLevel === 7;
+    return {
+      kind: 'elemental',
+      spell: body.spell,
+      spellLevel: body.spellLevel,
+      adjust,
+      caps: {
+        climb: 0,
+        fly: element === 'air' ? (iv ? 120 : 60) : 0,
+        flyManeuver: 'perfect',
+        swim: element === 'water' ? (iv ? 120 : 60) : 0,
+        // Earth glide moves through earth and stone at the form's burrow speed.
+        burrow: element === 'earth' ? 999 : 0,
+      },
+      senses: ['darkvision 60'],
+      abilities: ELEMENT_ABILITIES[element],
+      defense: {
+        immune: body.spellLevel >= 6 ? ['bleed', 'critical hits', 'sneak attacks'] : [],
+        resist: element === 'fire' ? ['fire 20'] : [],
+        weaknesses: element === 'fire' ? ['vulnerability to cold'] : [],
+        dr: iv ? '5/—' : null,
+      },
+      sq: element === 'water' ? ['water breathing'] : [],
+    };
+  }
+  if (form.type === 'plant') {
+    const shape = plantShapeFor(level);
+    const adjust = PLANT_ADJUST[size];
+    if (!shape || !shape.sizes.includes(size) || !adjust) return null;
+    return {
+      kind: 'plant',
+      spell: shape.spell,
+      spellLevel: shape.spellLevel,
+      adjust,
+      // Plant shape grants no climb, fly, swim or burrow speed, only the base speed.
+      caps: { climb: 0, fly: 0, flyManeuver: 'average', swim: 0, burrow: 0 },
+      senses: ['darkvision 60', 'low-light vision'],
+      abilities: shape.spellLevel >= 7 ? ['constrict', 'grab', 'poison', 'trample'] : ['constrict', 'grab', 'poison'],
+      defense: plantDefense(form, shape.spellLevel),
+      sq: [],
+    };
+  }
+  if (form.type !== 'animal') return null;
+  const tier = tierFor(level);
+  if (!tier || !tier.sizes.includes(size)) return null;
+  return {
+    kind: 'animal',
+    spell: tier.spell,
+    spellLevel: tier.spellLevel,
+    adjust: { ...SIZE_ADJUST[size], con: 0 },
+    caps: tier.caps,
+    senses: tier.senses,
+    abilities: tier.abilities,
+    defense: { immune: [], resist: [], weaknesses: [], dr: null },
+    sq: [],
+  };
+}
+
 // --- Druid basics -----------------------------------------------------------
 
 export const druidBab = (level: number) => Math.floor((level * 3) / 4);
@@ -161,10 +346,10 @@ export function parseSpeed(speed: string): Movement {
 
 /** Abilities the form has, by universal monster rule name. */
 export function formAbilities(c: Creature): Set<string> {
-  const text = [field(c, 'Melee'), field(c, 'Special Attacks'), field(c, 'Defensive Abilities'), field(c, 'SQ'), ...c.special.map((s) => s.name)]
+  const text = [field(c, 'Speed'), field(c, 'Melee'), field(c, 'Special Attacks'), field(c, 'Defensive Abilities'), field(c, 'SQ'), ...c.special.map((s) => s.name)]
     .join(', ')
     .toLowerCase();
-  const all = ['constrict', 'ferocity', 'grab', 'jet', 'poison', 'pounce', 'rake', 'trample', 'trip', 'web', 'rend', 'roar', 'blood rage', 'disease', 'attach', 'bleed', 'swallow whole', 'powerful charge', 'stench', 'distraction'];
+  const all = ['constrict', 'ferocity', 'grab', 'jet', 'poison', 'pounce', 'rake', 'trample', 'trip', 'web', 'rend', 'roar', 'blood rage', 'disease', 'attach', 'bleed', 'swallow whole', 'powerful charge', 'stench', 'distraction', 'whirlwind', 'vortex', 'burn', 'earth glide', 'air mastery', 'earth mastery', 'water mastery', 'drench', 'regeneration'];
   return new Set(all.filter((a) => new RegExp(`\\b${a}\\b`).test(text)));
 }
 
@@ -227,7 +412,7 @@ function classify(attacks: Omit<NaturalAttack, 'primary'>[]): NaturalAttack[] {
 
 export interface WildShapeResult {
   creature: BuiltCreature;
-  tier: Tier;
+  tier: ShapeRules;
   gained: string[];
   notGained: string[];
   lost: string[];
@@ -240,62 +425,53 @@ const withBonus = (dice: string, bonus: number) => (bonus === 0 ? dice : `${dice
 
 const UMR = (umrJson as { rules: Record<string, { name: string; text: string }> }).rules;
 /** Gained abilities whose save DC uses the wild shape DC. */
-const DC_ABILITIES = new Set(['poison', 'trample', 'web']);
+const DC_ABILITIES = new Set(['poison', 'trample', 'web', 'whirlwind', 'vortex', 'burn']);
 
-const ABILITY_NAMES: Record<string, string> = {
-  grab: 'Grab',
-  pounce: 'Pounce',
-  trip: 'Trip',
-  rake: 'Rake',
-  constrict: 'Constrict',
-  ferocity: 'Ferocity',
-  jet: 'Jet',
-  poison: 'Poison',
-  trample: 'Trample',
-  web: 'Web',
-};
 
 export function buildWildShape(form: Creature, level: number, profile: DruidProfile, alignment: string): WildShapeResult | null {
-  const tier = tierFor(level);
+  const rules = rulesFor(form, level);
+  if (!rules) return null;
   const size = form.size as Size;
-  if (!tier || !tier.sizes.includes(size)) return null;
-
-  const adj = SIZE_ADJUST[size];
+  const adj = rules.adjust;
   const str = profile.str + adj.str;
   const dex = profile.dex + adj.dex;
-  const con = profile.con;
+  const con = profile.con + adj.con;
   const strMod = abilityMod(str);
   const dexMod = abilityMod(dex);
   const conMod = abilityMod(con);
   const bab = druidBab(level);
   const sizeMod = SIZE_MOD[size];
-  const dc = 10 + tier.spellLevel + abilityMod(profile.wis);
+  const dc = 10 + rules.spellLevel + abilityMod(profile.wis);
 
   const has = formAbilities(form);
-  const gainedAbilities = tier.abilities.filter((a) => has.has(a));
-  const notGained = [...has].filter((a) => !tier.abilities.includes(a));
+  const gainedAbilities = rules.abilities.filter((a) => has.has(a));
+  const notGained = [...has].filter((a) => !rules.abilities.includes(a));
 
   // Movement: the form's land speed, other movement capped by the spell.
   const move = formMovement(form);
   // Some forms (fish) have no land speed; the druid then can't move on land.
+  // Plant shape: a form that can't move at all leaves the druid a speed of 5 ft.
+  const immobile = rules.kind === 'plant' && !move.land && !move.climb && !move.fly && !move.swim && !move.burrow;
+  if (immobile) move.land = 5;
   const speedParts = move.land ? [`${move.land} ft.`] : [];
-  const capped = (kind: 'climb' | 'swim' | 'burrow') => Math.min(move[kind], tier.caps[kind]);
+  const capped = (kind: 'climb' | 'swim' | 'burrow') => Math.min(move[kind], rules.caps[kind]);
   if (capped('burrow')) speedParts.push(`burrow ${capped('burrow')} ft.`);
   if (capped('climb')) speedParts.push(`climb ${capped('climb')} ft.`);
-  if (move.fly && tier.caps.fly) {
-    const maneuver = MANEUVERS[Math.min(MANEUVERS.indexOf(move.flyManeuver ?? 'average'), MANEUVERS.indexOf(tier.caps.flyManeuver))];
-    speedParts.push(`fly ${Math.min(move.fly, tier.caps.fly)} ft. (${maneuver})`);
+  if (move.fly && rules.caps.fly) {
+    const maneuver = MANEUVERS[Math.min(MANEUVERS.indexOf(move.flyManeuver ?? 'average'), MANEUVERS.indexOf(rules.caps.flyManeuver))];
+    speedParts.push(`fly ${Math.min(move.fly, rules.caps.fly)} ft. (${maneuver})`);
   }
   if (capped('swim')) speedParts.push(`swim ${capped('swim')} ft.`);
+  if (rules.abilities.includes('earth glide') && has.has('earth glide')) speedParts.push('earth glide');
   const landless = !move.land;
   for (const kind of ['climb', 'fly', 'swim', 'burrow'] as const) {
-    if (move[kind] > tier.caps[kind]) notGained.push(tier.caps[kind] ? `${kind} ${move[kind]} ft. (capped at ${tier.caps[kind]} ft.)` : `${kind} speed`);
+    if (move[kind] > rules.caps[kind]) notGained.push(rules.caps[kind] ? `${kind} ${move[kind]} ft. (capped at ${rules.caps[kind]} ft.)` : `${kind} speed`);
   }
 
   // Senses: only those the spell grants, at most its range.
   const formSenses = field(form, 'Senses').toLowerCase();
   const senses: string[] = [];
-  for (const s of tier.senses) {
+  for (const s of rules.senses) {
     const [name, range] = s.split(/ (?=\d)/);
     const hit = formSenses.match(new RegExp(`${name}(?: (\\d+) ft\\.)?`));
     if (!hit) continue;
@@ -312,7 +488,7 @@ export function buildWildShape(form: Creature, level: number, profile: DruidProf
       const mult = sole ? 1.5 : a.primary ? 1 : 0.5;
       const riders = a.riders.filter((r) => {
         const key = r.toLowerCase().replace(/\s*\(.*$/, '');
-        return !Object.keys(ABILITY_NAMES).includes(key) ? false : tier.abilities.includes(key);
+        return rules.abilities.includes(key);
       });
       // Fixed damage (e.g. "1") doesn't add Strength.
       const dice = /^\d+d\d+$/.test(a.dice) ? withBonus(a.dice, strDamage(strMod, mult)) : a.dice;
@@ -322,14 +498,18 @@ export function buildWildShape(form: Creature, level: number, profile: DruidProf
     })
     .join(', ');
   for (const a of attacks) {
-    for (const r of a.riders) if (!tier.abilities.includes(r.toLowerCase().replace(/\s*\(.*$/, ''))) notGained.push(`${r} (on ${a.name})`);
+    for (const r of a.riders) if (!rules.abilities.includes(r.toLowerCase().replace(/\s*\(.*$/, ''))) notGained.push(`${r} (on ${a.name})`);
   }
 
   // Special attacks the spell grants, recomputed with the druid's numbers.
   const specialAttacks: string[] = [];
   for (const part of splitTopLevel(field(form, 'Special Attacks'), /^,\s*/)) {
     const key = part.toLowerCase().replace(/\s*\(.*$/, '').trim();
-    if (!tier.abilities.includes(key)) continue;
+    if (!rules.abilities.includes(key)) {
+      // Form-specific attacks (rock throwing, entangle, …) aren't granted either.
+      notGained.push(key);
+      continue;
+    }
     if (key === 'rake') {
       // "rake (2 claws +6, 1d4+3)" → attack with BAB + Str + size, damage + Str.
       const m = part.match(/\((\d+)\s+([a-z ]+?)\s+[+\-–−]\d+,\s*(\d+d\d+)/i);
@@ -338,7 +518,7 @@ export function buildWildShape(form: Creature, level: number, profile: DruidProf
       const dice = part.match(/(\d+d\d+)/)?.[1];
       const bonus = key === 'trample' ? strDamage(strMod, 1.5) : strMod;
       specialAttacks.push(dice ? `${key} (${withBonus(dice, bonus)}${key === 'trample' ? `, DC ${dc}` : ''})` : part);
-    } else if (key === 'poison' || key === 'web' || key === 'jet') {
+    } else if (DC_ABILITIES.has(key) || key === 'jet') {
       specialAttacks.push(part.replace(/DC \d+/g, `DC ${dc}`));
     } else {
       specialAttacks.push(part);
@@ -360,7 +540,10 @@ export function buildWildShape(form: Creature, level: number, profile: DruidProf
     `+${naturalArmor} natural`,
     sizeMod ? `${fmtMod(sizeMod)} size` : '',
   ].filter(Boolean);
-  const hp = profile.hp ?? estimateHp(level, profile.con);
+  // A Con change (elemental body) changes hit points by the modifier difference per level.
+  const baseHp = profile.hp ?? estimateHp(level, profile.con);
+  const hpDelta = (conMod - abilityMod(profile.con)) * level;
+  const hp = baseHp + hpDelta;
   const fort = goodSave(level) + conMod + profile.resistance;
   const ref = poorSave(level) + dexMod + profile.resistance;
   const will = goodSave(level) + abilityMod(profile.wis) + profile.resistance;
@@ -370,7 +553,7 @@ export function buildWildShape(form: Creature, level: number, profile: DruidProf
   const formCmd = field(form, 'CMD');
   const formCmdBase = parseNum(formCmd) ?? 0;
   const vsTrip = formCmd.match(/\((\d+) vs\.? trip\)/i);
-  const cmdText = /can't be tripped|cannot be tripped/i.test(formCmd)
+  const cmdText = /can[’']t be tripped|cannot be tripped/i.test(formCmd)
     ? `${cmd} (can't be tripped)`
     : vsTrip
       ? `${cmd} (${cmd + Number(vsTrip[1]) - formCmdBase} vs. trip)`
@@ -387,11 +570,15 @@ export function buildWildShape(form: Creature, level: number, profile: DruidProf
     intro: [{ label: 'Init', value: fmtMod(init) }, ...(senses.length ? [{ label: 'Senses', value: senses.join(', ') }] : [])],
     defense: [
       { label: 'AC', value: `${ac}, touch ${touch}, flat-footed ${flatFooted} (${acParts.join(', ')})` },
-      { label: 'hp', value: `${hp} (unchanged)` },
+      { label: 'hp', value: `${hpDelta ? `${hp} (${fmtMod(hpDelta)} from Con)` : `${hp} (unchanged)`}${rules.defense.regeneration ? `; ${rules.defense.regeneration}` : ''}` },
       { label: 'Fort', value: fmtMod(fort) },
       { label: 'Ref', value: fmtMod(ref) },
       { label: 'Will', value: fmtMod(will) },
       ...(defensive ? [{ label: 'Defensive Abilities', value: defensive }] : []),
+      ...(rules.defense.dr ? [{ label: 'DR', value: rules.defense.dr }] : []),
+      ...(rules.defense.immune.length ? [{ label: 'Immune', value: rules.defense.immune.join(', ') }] : []),
+      ...(rules.defense.resist.length ? [{ label: 'Resist', value: rules.defense.resist.join(', ') }] : []),
+      ...(rules.defense.weaknesses.length ? [{ label: 'Weaknesses', value: rules.defense.weaknesses.join(', ') }] : []),
     ],
     offense: [
       { label: 'Speed', value: landless ? `${speedParts.join(', ') || '0 ft.'} (no land speed)` : speedParts.join(', ') },
@@ -412,13 +599,15 @@ export function buildWildShape(form: Creature, level: number, profile: DruidProf
       { label: 'Base Atk', value: fmtMod(bab) },
       { label: 'CMB', value: fmtMod(cmb) + (gainedAbilities.includes('grab') ? ` (${fmtMod(cmb + 4)} grapple)` : '') },
       { label: 'CMD', value: cmdText },
-      { label: 'Skills', value: `${skills.join('; ')}; other skills as normal` },
+      { label: 'Skills', value: skills.length ? `${skills.join('; ')}; other skills as normal` : 'as normal' },
+      ...(rules.sq.length ? [{ label: 'SQ', value: rules.sq.join(', ') }] : []),
     ],
   };
 
   // Descriptions of what's gained: the form's own entry when it has one (e.g. its
   // poison's effects), otherwise the universal monster rule.
-  const dcNote = `In wild shape the DC is ${dc} (10 + ${tier.spellLevel} for ${tier.spell} + Wis modifier).`;
+  const dcNote = `In wild shape the DC is ${dc} (10 + ${rules.spellLevel} for ${rules.spell} + Wis modifier).`;
+  const formName = `${rules.kind} form`;
   const special = gainedAbilities.flatMap((a) => {
     const own = form.special.find((s) => s.name.toLowerCase().startsWith(a));
     const rule = UMR[a];
@@ -434,8 +623,9 @@ export function buildWildShape(form: Creature, level: number, profile: DruidProf
   });
 
   const lost = [
-    profile.naturalSpell ? '' : 'Spellcasting (you need Natural Spell to cast in animal form)',
-    'Speech (you can only communicate with animals of the same kind)',
+    profile.naturalSpell ? '' : `Spellcasting (you need Natural Spell to cast in ${formName})`,
+    // Wild shape only takes away speech in animal form.
+    rules.kind === 'animal' ? 'Speech (you can only communicate with animals of the same kind)' : '',
     profile.wildArmor ? 'Shield bonuses' : 'Armor and shield bonuses (unless the armor has the wild property)',
     'Items that need activating (gear with constant bonuses keeps working)',
   ].filter(Boolean);
@@ -446,7 +636,7 @@ export function buildWildShape(form: Creature, level: number, profile: DruidProf
     cr: null,
     xp: null,
     alignment,
-    typeLine: `${alignment} ${size} animal (wild shape)`,
+    typeLine: `${alignment} ${size} ${rules.kind} (wild shape)`,
     sections,
     special,
     changed: new Map(),
@@ -455,8 +645,18 @@ export function buildWildShape(form: Creature, level: number, profile: DruidProf
 
   return {
     creature,
-    tier,
-    gained: [...senses, ...speedParts.slice(landless ? 0 : 1), ...gainedAbilities],
+    tier: rules,
+    gained: [
+      ...senses,
+      ...speedParts.slice(landless ? 0 : 1),
+      ...gainedAbilities,
+      ...rules.defense.resist.map((r) => `resist ${r}`),
+      ...(rules.defense.dr ? [`DR ${rules.defense.dr}`] : []),
+      ...(rules.defense.regeneration ? [rules.defense.regeneration] : []),
+      ...rules.defense.weaknesses,
+      ...rules.defense.immune.map((i) => `immune to ${i}`),
+      ...rules.sq,
+    ],
     notGained: [...new Set(notGained)],
     lost,
     abilities: { str, dex, con },

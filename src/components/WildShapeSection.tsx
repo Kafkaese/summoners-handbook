@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import type { Settings } from '../rules/summon';
+import { CREATURES, type Settings } from '../rules/summon';
 import type { Creature } from '../rules/types';
-import { DEFAULT_PROFILE, type DruidProfile, tierFor } from '../rules/wildshape';
+import { DEFAULT_PROFILE, type DruidProfile, elementOf, rulesFor, tierFor } from '../rules/wildshape';
 import { useStored } from '../useStored';
 import { DruidPanel } from './DruidPanel';
 import { FormDetail } from './FormDetail';
@@ -17,6 +17,9 @@ interface Props {
 }
 
 const reviveProfile = (raw: unknown): DruidProfile => ({ ...DEFAULT_PROFILE, ...(typeof raw === 'object' && raw ? raw : {}) });
+// Elemental forms are the summon lists' elementals of the four classic elements.
+const ELEMENTALS = Object.values(CREATURES).filter((c) => elementOf(c) !== null);
+
 const reviveIds = (raw: unknown): string[] => (Array.isArray(raw) ? raw.filter((x) => typeof x === 'string') : []);
 
 export function WildShapeSection({ settings, onSettings, setPane }: Props) {
@@ -26,14 +29,20 @@ export function WildShapeSection({ settings, onSettings, setPane }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
 
   useEffect(() => {
-    // The animal data is only needed here, so it loads on first use.
-    import('../data/animals.json').then((m) => setForms(Object.values(m.default as unknown as Record<string, Creature>)));
+    // Animal and plant data are only needed here, so they load on first use.
+    Promise.all([import('../data/animals.json'), import('../data/plants.json')]).then(([animals, plants]) =>
+      setForms([
+        ...Object.values(animals.default as unknown as Record<string, Creature>),
+        ...ELEMENTALS,
+        ...Object.values(plants.default as unknown as Record<string, Creature>),
+      ]),
+    );
   }, []);
 
   const isDruid = settings.classId === 'druid';
   const tier = tierFor(settings.level);
   const familiar = new Set(familiarIds);
-  const form = forms?.find((f) => f.id === selected && tier?.sizes.includes(f.size as never)) ?? null;
+  const form = forms?.find((f) => f.id === selected && rulesFor(f, settings.level)) ?? null;
 
   const notice = !tier ? (
     <section className="card placeholder">
@@ -52,7 +61,7 @@ export function WildShapeSection({ settings, onSettings, setPane }: Props) {
             <DruidPanel level={settings.level} profile={profile} onChange={setProfile} />
             {tier && (
               <button className="chip is-active show-forms" onClick={() => setPane('creatures')}>
-                Show animal forms
+                Show forms
               </button>
             )}
           </>
@@ -62,12 +71,12 @@ export function WildShapeSection({ settings, onSettings, setPane }: Props) {
       <div className="pane pane-creatures">
         {notice ? (
           <section className="card placeholder">
-            <p>Animal forms appear here once your druid can wild shape.</p>
+            <p>Forms appear here once your druid can wild shape.</p>
           </section>
         ) : forms && tier ? (
           <FormList
             forms={forms}
-            tier={tier}
+            level={settings.level}
             familiar={familiar}
             onToggleFamiliar={(id) => setFamiliarIds(familiar.has(id) ? familiarIds.filter((x) => x !== id) : [...familiarIds, id])}
             selected={form?.id ?? null}
@@ -89,7 +98,7 @@ export function WildShapeSection({ settings, onSettings, setPane }: Props) {
           <FormDetail form={form} level={settings.level} profile={profile} alignment={settings.alignment} onBack={() => setPane('creatures')} />
         ) : (
           <section className="card placeholder">
-            <p>Pick an animal to see your stats in that form.</p>
+            <p>Pick a form to see your stats in it.</p>
           </section>
         )}
       </div>

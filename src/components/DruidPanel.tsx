@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { abilityMod } from '../rules/fields';
-import { type DruidProfile, druidBab, estimateHp, tierFor, usesPerDay } from '../rules/wildshape';
+import { type DruidProfile, druidBab, elementalBodyFor, estimateHp, plantShapeFor, tierFor, usesPerDay } from '../rules/wildshape';
 
 interface Props {
   level: number;
@@ -27,7 +27,7 @@ const BONUSES = [
 ] as const;
 
 const TOGGLES = [
-  ['naturalSpell', 'Natural Spell', 'cast spells in animal form'],
+  ['naturalSpell', 'Natural Spell', 'cast spells while in wild shape'],
   ['multiattack', 'Multiattack', 'secondary attacks at –2 instead of –5'],
   ['weaponFinesse', 'Weapon Finesse', 'use Dex for natural attack rolls'],
 ] as const;
@@ -37,6 +37,7 @@ export function DruidPanel({ level, profile, onChange }: Props) {
   const set = <K extends keyof DruidProfile>(key: K, value: DruidProfile[K]) => onChange({ ...profile, [key]: value });
   const tier = tierFor(level);
   const uses = usesPerDay(level);
+  const spells = [tierFor(level)?.spell, elementalBodyFor(level)?.spell, plantShapeFor(level)?.spell].filter(Boolean);
   const num = (v: string) => (v === '' ? 0 : Math.max(-99, Math.min(99, Math.round(Number(v)) || 0)));
 
   return (
@@ -56,7 +57,12 @@ export function DruidPanel({ level, profile, onChange }: Props) {
         {tier && (
           <p className="wild-summary">
             <strong>Wild shape</strong> {uses === 'at will' ? 'at will' : `${uses}/day`} · {level} hour{level === 1 ? '' : 's'} · works like{' '}
-            <em>{tier.spell}</em>
+            {spells.map((s, i) => (
+              <span key={s}>
+                {i > 0 && (i === spells.length - 1 ? ' or ' : ', ')}
+                <em>{s}</em>
+              </span>
+            ))}
           </p>
         )}
         <p className="field-hint">

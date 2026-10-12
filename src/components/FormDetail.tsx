@@ -1,5 +1,5 @@
 import type { Creature } from '../rules/types';
-import { buildWildShape, type DruidProfile, type Size, sizeAdjustment } from '../rules/wildshape';
+import { buildWildShape, type DruidProfile } from '../rules/wildshape';
 import { fmtMod } from '../rules/fields';
 import { StatBlock } from './StatBlock';
 
@@ -14,13 +14,15 @@ interface Props {
 export function FormDetail({ form, level, profile, alignment, onBack }: Props) {
   const result = buildWildShape(form, level, profile, alignment);
   if (!result) return null;
-  const adj = sizeAdjustment(form.size as Size);
-  const adjText = [adj.str && `${fmtMod(adj.str)} Str`, adj.dex && `${fmtMod(adj.dex)} Dex`, `+${adj.naturalArmor} natural armor`].filter(Boolean).join(', ');
+  const adj = result.tier.adjust;
+  const adjText = [adj.str && `${fmtMod(adj.str)} Str`, adj.dex && `${fmtMod(adj.dex)} Dex`, adj.con && `${fmtMod(adj.con)} Con`, `+${adj.naturalArmor} natural armor`]
+    .filter(Boolean)
+    .join(', ');
 
   return (
     <section className="card detail">
       <header className="pane-header">
-        <button className="back" onClick={onBack} aria-label="Back to animal forms">
+        <button className="back" onClick={onBack} aria-label="Back to forms">
           ‹
         </button>
         <h2 className="pane-title">{form.name}</h2>
@@ -32,7 +34,7 @@ export function FormDetail({ form, level, profile, alignment, onBack }: Props) {
       <div className="summary">
         <p>
           <strong>
-            {form.size} animal, as <em>{result.tier.spell}</em>
+            {form.size} {result.tier.kind}, as <em>{result.tier.spell}</em>
           </strong>{' '}
           · {adjText}
         </p>
