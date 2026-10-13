@@ -60,6 +60,8 @@ const pages = new Set([
   'https://www.d20pfsrd.com/feats/general-feats/summon-good-monster/',
   'https://www.d20pfsrd.com/feats/general-feats/summon-evil-monster/',
   'https://www.d20pfsrd.com/feats/general-feats/summon-neutral-monster/',
+  'https://www.d20pfsrd.com/feats/general-feats/sunlight-summons/',
+  'https://www.d20pfsrd.com/feats/general-feats/moonlight-summons/',
 ]);
 const pageNotices = [];
 for (const url of pages) {

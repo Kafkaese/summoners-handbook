@@ -3,7 +3,7 @@ import listsJson from '../data/summonLists.json';
 import { ALIGNMENT_NAMES, type Alignment, allowedTemplates, hasAlignmentSubtype, opposedDescriptors, qualifiesForFeat, spellDescriptors, TEMPLATE_ALIGNMENT, type TemplateRule } from './alignment';
 import { applyAugmentSummoning } from './augment';
 import { bumpLeading, getValue, setOrAddField, setValue } from './fields';
-import { type ClassDef, listName, spellTitle, type SummonOption } from './classes';
+import { type ClassDef, classById, listName, spellTitle, type SummonOption } from './classes';
 import { applyTemplate, type TemplateId } from './templates';
 import type { BuiltCreature, Creature, FeatList, ListEntry, SpellKey, SummonLists } from './types';
 
@@ -23,6 +23,32 @@ export interface Settings {
   summonGoodMonster: boolean;
   summonEvilMonster: boolean;
   summonNeutralMonster: boolean;
+  sunlightSummons: boolean;
+  moonlightSummons: boolean;
+}
+
+/** Sunlight and Moonlight Summons (Ultimate Magic): require being able to cast summon nature's ally. */
+export const LIGHT_FEATS = [
+  { setting: 'sunlightSummons', name: 'Sunlight Summons', benefit: 'light; immune to blinding and dazzling; natural weapons count as magic' },
+  { setting: 'moonlightSummons', name: 'Moonlight Summons', benefit: 'light; immune to confusion and sleep; natural weapons count as silver' },
+] as const;
+
+export const castsNaturesAlly = (cls: ClassDef) => cls.access.some((a) => a.spell === 'summon-natures-ally');
+
+/** Applies Sunlight/Moonlight Summons to any creature the caster summons. */
+function applyLightFeats(c: BuiltCreature, settings: Settings) {
+  if (!castsNaturesAlly(classById(settings.classId))) return;
+  const sun = settings.sunlightSummons;
+  const moon = settings.moonlightSummons;
+  if (!sun && !moon) return;
+  const immune = [sun && 'blinding and dazzling effects', moon && 'confusion and sleep effects'].filter(Boolean).join(', ');
+  const existing = getValue(c, 'Immune');
+  setOrAddField(c, 'defense', 'Immune', existing ? `${existing}, ${immune}` : immune, ['DR', 'Defensive Abilities', 'Will']);
+  const counts = [sun && 'magic', moon && 'silver'].filter(Boolean).join(' and ');
+  const sq = ['sheds light (as light)', `natural weapons count as ${counts} for overcoming DR`].join(', ');
+  const existingSq = getValue(c, 'SQ');
+  setOrAddField(c, 'statistics', 'SQ', existingSq ? `${existingSq}, ${sq}` : sq, ['Languages', 'Skills', 'Feats']);
+  c.notes.push(`${[sun && 'Sunlight Summons', moon && 'Moonlight Summons'].filter(Boolean).join(' and ')}: sheds light, immune to ${immune}, natural weapons count as ${counts} for overcoming DR.`);
 }
 
 export const FEAT_LISTS: { id: FeatList; setting: 'summonGoodMonster' | 'summonEvilMonster' | 'summonNeutralMonster'; name: string; benefit: string; requires: string }[] = [
@@ -230,6 +256,7 @@ export function buildCreature(choice: CreatureChoice, template: TemplateId | nul
   if (choice.spell === 'summon-swarm') {
     c.notes.push('The swarm attacks all other creatures in its area; you have no control over its target or direction.');
   }
+  applyLightFeats(c, settings);
   if (settings.augmentSummoning) applyAugmentSummoning(c);
   if (choice.creature.note) c.notes.push(choice.creature.note);
   return c;

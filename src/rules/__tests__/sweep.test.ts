@@ -18,6 +18,8 @@ it('builds every creature with each template, Augment Summoning and the feat lis
       summonGoodMonster: true,
       summonEvilMonster: true,
       summonNeutralMonster: true,
+      sunlightSummons: true,
+      moonlightSummons: true,
     };
     for (const spell of Object.keys(LISTS.spells) as (keyof typeof LISTS.spells)[]) {
       for (let level = 1; level <= 9; level++) {

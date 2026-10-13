@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { type Alignment, ALIGNMENT_NAMES, ALIGNMENTS, qualifiesForFeat, TEMPLATE_RULES, type TemplateRule, withinOneStep } from '../rules/alignment';
 import { CLASSES, classById } from '../rules/classes';
-import { FEAT_LISTS } from '../rules/summon';
+import { castsNaturesAlly, FEAT_LISTS, LIGHT_FEATS } from '../rules/summon';
 import { Collapsible } from './Collapsible';
 import type { Settings } from '../rules/summon';
 
@@ -33,7 +33,14 @@ export function SettingsPanel({ settings, onChange, characterOnly = false }: Pro
   const usesTemplates = !characterOnly && hasSummonMonster;
   // Summon Good/Evil/Neutral Monster: only for summon monster casters whose alignment qualifies.
   const summonFeats = hasSummonMonster ? FEAT_LISTS.filter((f) => qualifiesForFeat(f.id, settings.alignment)) : [];
-  const activeOptions = [settings.augmentSummoning, settings.superiorSummoning, settings.includeAlternatives, ...summonFeats.map((f) => settings[f.setting])].filter(Boolean).length;
+  const lightFeats = castsNaturesAlly(cls) ? LIGHT_FEATS : [];
+  const activeOptions = [
+    settings.augmentSummoning,
+    settings.superiorSummoning,
+    settings.includeAlternatives,
+    ...summonFeats.map((f) => settings[f.setting]),
+    ...lightFeats.map((f) => settings[f.setting]),
+  ].filter(Boolean).length;
 
   return (
     <section className={`card settings ${open ? 'is-open' : ''}`}>
@@ -128,6 +135,14 @@ export function SettingsPanel({ settings, onChange, characterOnly = false }: Pro
                   Superior Summoning <small>+1 creature when summoning several</small>
                 </span>
               </label>
+              {lightFeats.map((f) => (
+                <label key={f.setting} className="toggle">
+                  <input type="checkbox" checked={settings[f.setting]} onChange={(e) => set(f.setting, e.target.checked)} />
+                  <span>
+                    {f.name} <small>{f.benefit}</small>
+                  </span>
+                </label>
+              ))}
               {summonFeats.map((f) => (
                 <label key={f.id} className="toggle">
                   <input type="checkbox" checked={settings[f.setting]} onChange={(e) => set(f.setting, e.target.checked)} />

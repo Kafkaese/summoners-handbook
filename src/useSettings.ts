@@ -17,6 +17,8 @@ export const DEFAULT_SETTINGS: Settings = {
   summonGoodMonster: false,
   summonEvilMonster: false,
   summonNeutralMonster: false,
+  sunlightSummons: false,
+  moonlightSummons: false,
 };
 
 function load(): Settings {
