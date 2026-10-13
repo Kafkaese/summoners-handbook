@@ -675,6 +675,12 @@ mark.changed {
   padding: 0 2px;
 }
 
+/* Values with a tooltip (original value, or why it can't be used): arrow, not text cursor. */
+mark.changed,
+s.forbidden {
+  cursor: default;
+}
+
 /* Stat block */
 
 .statblock {
