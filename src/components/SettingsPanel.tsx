@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { type Alignment, ALIGNMENT_NAMES, ALIGNMENTS, TEMPLATE_RULES, type TemplateRule, withinOneStep } from '../rules/alignment';
+import { type Alignment, ALIGNMENT_NAMES, ALIGNMENTS, qualifiesForFeat, TEMPLATE_RULES, type TemplateRule, withinOneStep } from '../rules/alignment';
 import { CLASSES, classById } from '../rules/classes';
+import { castsNaturesAlly, FEAT_LISTS, LIGHT_FEATS } from '../rules/summon';
+import { Collapsible } from './Collapsible';
 import type { Settings } from '../rules/summon';
 
 interface Props {
@@ -27,7 +29,18 @@ export function SettingsPanel({ settings, onChange, characterOnly = false }: Pro
   const set = <K extends keyof Settings>(key: K, value: Settings[K]) => onChange({ ...settings, [key]: value });
   const cls = classById(settings.classId);
   // Only summon monster applies alignment templates.
-  const usesTemplates = !characterOnly && (cls.summonSla || cls.access.some((a) => a.spell === 'summon-monster'));
+  const hasSummonMonster = cls.summonSla || cls.access.some((a) => a.spell === 'summon-monster');
+  const usesTemplates = !characterOnly && hasSummonMonster;
+  // Summon Good/Evil/Neutral Monster: only for summon monster casters whose alignment qualifies.
+  const summonFeats = hasSummonMonster ? FEAT_LISTS.filter((f) => qualifiesForFeat(f.id, settings.alignment)) : [];
+  const lightFeats = castsNaturesAlly(cls) ? LIGHT_FEATS : [];
+  const activeOptions = [
+    settings.augmentSummoning,
+    settings.superiorSummoning,
+    settings.includeAlternatives,
+    ...summonFeats.map((f) => settings[f.setting]),
+    ...lightFeats.map((f) => settings[f.setting]),
+  ].filter(Boolean).length;
 
   return (
     <section className={`card settings ${open ? 'is-open' : ''}`}>
@@ -108,27 +121,44 @@ export function SettingsPanel({ settings, onChange, characterOnly = false }: Pro
         )}
 
         {!characterOnly && (
-          <fieldset className="toggles">
-            <legend>Feats &amp; options</legend>
-            <label className="toggle">
-              <input type="checkbox" checked={settings.augmentSummoning} onChange={(e) => set('augmentSummoning', e.target.checked)} />
-              <span>
-                Augment Summoning <small>+4 Str and Con</small>
-              </span>
-            </label>
-            <label className="toggle">
-              <input type="checkbox" checked={settings.superiorSummoning} onChange={(e) => set('superiorSummoning', e.target.checked)} />
-              <span>
-                Superior Summoning <small>+1 creature when summoning several</small>
-              </span>
-            </label>
-            <label className="toggle">
-              <input type="checkbox" checked={settings.includeAlternatives} onChange={(e) => set('includeAlternatives', e.target.checked)} />
-              <span>
-                Adventure Path alternatives <small>GM approval needed</small>
-              </span>
-            </label>
-          </fieldset>
+          <Collapsible title="Feats & options" activeCount={activeOptions}>
+            <div className="toggles">
+              <label className="toggle">
+                <input type="checkbox" checked={settings.augmentSummoning} onChange={(e) => set('augmentSummoning', e.target.checked)} />
+                <span>
+                  Augment Summoning <small>+4 Str and Con</small>
+                </span>
+              </label>
+              <label className="toggle">
+                <input type="checkbox" checked={settings.superiorSummoning} onChange={(e) => set('superiorSummoning', e.target.checked)} />
+                <span>
+                  Superior Summoning <small>+1 creature when summoning several</small>
+                </span>
+              </label>
+              {lightFeats.map((f) => (
+                <label key={f.setting} className="toggle">
+                  <input type="checkbox" checked={settings[f.setting]} onChange={(e) => set(f.setting, e.target.checked)} />
+                  <span>
+                    {f.name} <small>{f.benefit}</small>
+                  </span>
+                </label>
+              ))}
+              {summonFeats.map((f) => (
+                <label key={f.id} className="toggle">
+                  <input type="checkbox" checked={settings[f.setting]} onChange={(e) => set(f.setting, e.target.checked)} />
+                  <span>
+                    {f.name} <small>{f.benefit}</small>
+                  </span>
+                </label>
+              ))}
+              <label className="toggle">
+                <input type="checkbox" checked={settings.includeAlternatives} onChange={(e) => set('includeAlternatives', e.target.checked)} />
+                <span>
+                  Adventure Path alternatives <small>GM approval needed</small>
+                </span>
+              </label>
+            </div>
+          </Collapsible>
         )}
       </div>
     </section>

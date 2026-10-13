@@ -14,6 +14,11 @@ export const DEFAULT_SETTINGS: Settings = {
   includeAlternatives: false,
   templateRule: 'core',
   deityAlignment: 'NG',
+  summonGoodMonster: false,
+  summonEvilMonster: false,
+  summonNeutralMonster: false,
+  sunlightSummons: false,
+  moonlightSummons: false,
 };
 
 function load(): Settings {

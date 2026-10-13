@@ -5,7 +5,8 @@ A web app for Pathfinder 1e summoning spells and druid wild shape.
 - **Summoning:** *summon monster*, *summon nature's ally*, *summon swarm*, *summon genie*
   and *summon giant ally*. Set your class, level and alignment, pick a spell, pick a
   creature, and get the summoned stat block with the alignment template, alignment
-  change and Augment Summoning applied.
+  change and Augment Summoning applied. The Summon Good/Evil/Neutral Monster feats add
+  their extra lists (and the counterpoised template for Summon Neutral Monster).
 - **Wild Shape** (`#wild-shape`, shown only when the class is druid). Enter your ability scores and a few
   bonuses, browse the animals you can turn into at your level (beast shape I–III),
   star the ones you're familiar with, and get your stat block in that form. From 6th
@@ -35,8 +36,9 @@ The scraped data in `src/data/` is committed; CI doesn't scrape. To update it, r
 
 ## How it works
 
-- `scripts/` scrapes d20pfsrd.com into `src/data/`:
-  - `scrape-lists.mjs` reads the summon tables into `summonLists.json`
+- `scripts/` scrapes d20pfsrd.com into `src/data/` (`aon.mjs` looks up source books on Archives of Nethys):
+  - `scrape-lists.mjs` reads the summon tables, and the Summon Good/Evil/Neutral Monster
+    feat lists, into `summonLists.json`
   - `scrape-creatures.mjs` parses every linked bestiary page into `creatures.json`
 
   - `scrape-forms.mjs` crawls the animal and plant listings into `animals.json` and
@@ -67,8 +69,7 @@ The scraped data in `src/data/` is committed; CI doesn't scrape. To update it, r
 - The young template, used by a few Adventure Path alternatives, is noted but not applied.
 - Damage changes from Augment Summoning infer the Strength multiplier (½, 1, 1½)
   from the printed stat block. Unusual attacks are worth a quick check.
-- Summon Good/Evil/Neutral Monster feat lists, Evolved Summoned Monster and
-  similar feats are not included yet.
+- Evolved Summoned Monster and similar summoning feats are not included yet.
 
 - Wild shape doesn't cover druid archetypes or Improved Natural Attack yet.
 

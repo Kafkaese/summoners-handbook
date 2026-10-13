@@ -16,6 +16,13 @@ const clean = (s) => s.replace(/\s+/g, ' ').trim();
 const URL_FIXES = {
   'https://www.d20pfsrd.com/extras/community-creations/summoned-creature-leopard-cat-great/':
     'https://www.d20pfsrd.com/bestiary/monster-listings/animals/felines/cat-great/leopard/',
+  // d20pfsrd has only a variant of the brownie; Archives of Nethys has the Bestiary 2 stat block.
+  'https://www.d20pfsrd.com/bestiary/monster-listings/fey/brownie/': 'https://aonprd.com/MonsterDisplay.aspx?ItemName=Brownie',
+  // Old paths used by the Summon Good/Evil Monster tables.
+  'https://www.d20pfsrd.com/bestiary/monster-listings/animals/dolphin/orca/': 'https://www.d20pfsrd.com/bestiary/monster-listings/animals/cetacean/dolphin/orca/',
+  'https://www.d20pfsrd.com/bestiary/monster-listings/animals/octopus/giant-octopus/': 'https://www.d20pfsrd.com/bestiary/monster-listings/animals/octopus/octopus-giant/',
+  'https://www.d20pfsrd.com/bestiary/monster-listings/animals/stingray/': 'https://www.d20pfsrd.com/bestiary/monster-listings/animals/ray-stingray/',
+  'https://www.d20pfsrd.com/bestiary/monster-listings/animals/eel/giant-moray-eel/': 'https://www.d20pfsrd.com/bestiary/monster-listings/animals/eel/eel-moray-giant/',
   'https://www.d20pfsrd.com/bestiary/monster-listings/animals/horse/':
     'https://www.d20pfsrd.com/bestiary/monster-listings/animals/horse/horse/',
 };
@@ -28,7 +35,7 @@ const PATH_FIXES = [
   ['/animals/vulture/', '/animals/birds/vulture/'],
 ];
 function fixCreatureUrl(href) {
-  let url = normalizeUrl(href.replace('/monster-listin/', '/monster-listings/'));
+  let url = normalizeUrl(href.replace('/monster-listin/', '/monster-listings/').replace('/monster-list/', '/monster-listings/').replace(/([^:])\/\/+/g, '$1/'));
   url = URL_FIXES[url] ?? url;
   for (const [from, to] of PATH_FIXES) url = url.replace(from, to);
   if (url.includes('/races/')) return null;
@@ -157,6 +164,68 @@ async function scrapeNaturesAlly() {
   return levels;
 }
 
+// Summon Good/Evil/Neutral Monster: extra summon monster lists from feats.
+const FEAT_LISTS = {
+  good: 'https://www.d20pfsrd.com/feats/general-feats/summon-good-monster/',
+  evil: 'https://www.d20pfsrd.com/feats/general-feats/summon-evil-monster/',
+  neutral: 'https://www.d20pfsrd.com/feats/general-feats/summon-neutral-monster/',
+};
+const ALIGNMENT_RE = /\b(LG|NG|CG|LN|N|CN|LE|NE|CE)\b/;
+// Feat-list creatures whose source book has no verified OGL copyright notice.
+const UNCREDITED_FEAT_ENTRIES = new Set(['Larvae petitioner']); // Pathfinder #76: The Midnight Isles
+
+/** One feat's list. Tables per level ("Table: Summon Monster III") or level headers ("3rd Level"). */
+async function scrapeFeatList(url) {
+  const { html } = await fetchPage(url);
+  const $ = cheerio.load(html);
+  const levels = {};
+  let level = null;
+  const add = (tr) => {
+    const tds = $(tr).find('td').get();
+    if (!tds.length || level === null) return;
+    const cell = $(tds[0]);
+    const links = cell.find('a').map((_, a) => ({ text: clean($(a).text()), href: $(a).attr('href') ?? '' })).get();
+    const isTemplate = (l) => /\/templates\//.test(l.href);
+    // The creature link: not a template, not a rules or group page (e.g. "gremlins", "divs").
+    const creature = links.find((l) => !isTemplate(l) && /\/bestiary\//.test(l.href) && !/rules-for-monsters/.test(l.href) && l.text);
+    const raw = clean(cell.text());
+    const alignment = tds[1] ? clean($(tds[1]).text()) : raw.match(new RegExp(`\\(([^)]*?\\b${ALIGNMENT_RE.source}\\b[^)]*)\\)`))?.[2] ?? null;
+    const name = clean(raw.replace(/\s*\((?:[^()]*\b(?:LG|NG|CG|LN|N|CN|LE|NE|CE)\b[^()]*)\)\s*$/, '').replace(/\*/g, ''));
+    const subtypeText = tds[2] ? clean($(tds[2]).text()) : '';
+    // "Viduus (psychopomp)": the parenthetical repeats the subtype.
+    const bare = name.replace(/\s*\(([a-z]+)\)$/, (m, sub) => (subtypeText.toLowerCase().includes(sub) ? '' : m));
+    levels[level].standard.push({
+      name: bare.charAt(0).toUpperCase() + bare.slice(1),
+      url: creature ? fixCreatureUrl(creature.href) : null,
+      templated: false,
+      presetTemplates: links.filter(isTemplate).map((l) => l.text.toLowerCase()),
+      subtypes: subtypeText === '—' ? [] : subtypeText.split(',').map((s) => s.trim().toLowerCase()).filter(Boolean),
+      alignment: alignment && ALIGNMENT_RE.test(alignment) ? alignment.match(ALIGNMENT_RE)[1] : null,
+      source: null,
+      footnotes: [],
+    });
+  };
+  // The neutral list wraps its level tables in an outer table; only read the innermost ones.
+  $('article table').filter((_, t) => !$(t).find('table').length).each((_, table) => {
+    const caption = clean($(table).find('caption').text()).match(/Summon Monster ([IVX]+)/);
+    if (caption) level = ROMAN[caption[1]];
+    $(table)
+      .children()
+      .each((_, el) => {
+        if (el.tagName === 'thead') {
+          const h = clean($(el).find('th').first().text()).match(/^(\d)(st|nd|rd|th) Level/);
+          if (h) level = Number(h[1]);
+          if (level !== null) levels[level] ??= { standard: [], alternatives: [] };
+        } else if (el.tagName === 'tbody') {
+          if (level !== null) levels[level] ??= { standard: [], alternatives: [] };
+          $(el).find('tr').each((_, tr) => add(tr));
+        }
+      });
+  });
+  for (const level of Object.values(levels)) level.standard = level.standard.filter((e) => !UNCREDITED_FEAT_ENTRIES.has(e.name));
+  return levels;
+}
+
 /** Drops alternative summons whose source can't be credited in Section 15. */
 function withoutUncredited(levels) {
   for (const level of Object.values(levels)) level.alternatives = level.alternatives.filter((e) => !UNCREDITED_SOURCES.test(e.source ?? ''));
@@ -180,6 +249,7 @@ const data = {
       ' giant',
     ),
   },
+  featLists: Object.fromEntries(await Promise.all(Object.entries(FEAT_LISTS).map(async ([k, url]) => [k, await scrapeFeatList(url)]))),
 };
 await writeFile(new URL('../src/data/summonLists.json', import.meta.url), JSON.stringify(data, null, 2) + '\n');
 for (const [spell, levels] of Object.entries(data.spells)) {

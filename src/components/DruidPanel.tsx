@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { abilityMod } from '../rules/fields';
+import { Collapsible } from './Collapsible';
 import { type DruidProfile, druidBab, elementalBodyFor, estimateHp, plantShapeFor, tierFor, usesPerDay } from '../rules/wildshape';
 
 interface Props {
@@ -101,17 +102,18 @@ export function DruidPanel({ level, profile, onChange }: Props) {
           ))}
         </div>
 
-        <fieldset className="toggles">
-          <legend>Feats</legend>
-          {TOGGLES.map(([key, label, hint]) => (
-            <label key={key} className="toggle">
-              <input type="checkbox" checked={profile[key]} onChange={(e) => set(key, e.target.checked)} />
-              <span>
-                {label} <small>{hint}</small>
-              </span>
-            </label>
-          ))}
-        </fieldset>
+        <Collapsible title="Feats" activeCount={TOGGLES.filter(([key]) => profile[key]).length}>
+          <div className="toggles">
+            {TOGGLES.map(([key, label, hint]) => (
+              <label key={key} className="toggle">
+                <input type="checkbox" checked={profile[key]} onChange={(e) => set(key, e.target.checked)} />
+                <span>
+                  {label} <small>{hint}</small>
+                </span>
+              </label>
+            ))}
+          </div>
+        </Collapsible>
       </div>
     </section>
   );

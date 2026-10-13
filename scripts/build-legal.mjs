@@ -9,6 +9,7 @@
 //   as sources of alternative summons
 import * as cheerio from 'cheerio';
 import { readFile, writeFile } from 'node:fs/promises';
+import { aonIndexFor, aonSource, d20Keys } from './aon.mjs';
 import { fetchPage } from './fetch.mjs';
 
 const PRD_OGL_URL = 'https://legacy.aonprd.com/openGameLicense.html';
@@ -55,6 +56,12 @@ const pages = new Set([
   'https://www.d20pfsrd.com/bestiary/monster-listings/templates/fiendish/',
   'https://www.d20pfsrd.com/bestiary/monster-listings/templates/resolute-cr-0-or-1/',
   'https://www.d20pfsrd.com/bestiary/monster-listings/templates/simple-template-entropic-cr-0-or-1-1/',
+  'https://www.d20pfsrd.com/bestiary/monster-listings/templates/counterpoised-creature-cr-0-or-1/',
+  'https://www.d20pfsrd.com/feats/general-feats/summon-good-monster/',
+  'https://www.d20pfsrd.com/feats/general-feats/summon-evil-monster/',
+  'https://www.d20pfsrd.com/feats/general-feats/summon-neutral-monster/',
+  'https://www.d20pfsrd.com/feats/general-feats/sunlight-summons/',
+  'https://www.d20pfsrd.com/feats/general-feats/moonlight-summons/',
 ]);
 const pageNotices = [];
 for (const url of pages) {
@@ -113,9 +120,35 @@ async function knownNotice(source) {
   }
   return undefined;
 }
+// Summon Good/Evil/Neutral Monster creatures come from many books; look them up too.
+// Names that differ between d20pfsrd and Archives of Nethys, checked by hand.
+const AON_NAMES = {
+  damned: 'Petitioner',
+  hunted: 'Petitioner',
+  'young-adult-green-dragon': 'Young Green Dragon',
+};
+const aonIndex = await aonIndexFor('');
+// Creatures on the regular summon lists are already credited; check the feat lists' new ones.
+const onSpellLists = new Set(
+  Object.values(lists.spells).flatMap((levels) => Object.values(levels).flatMap((l) => [...l.standard, ...l.alternatives].flatMap((e) => e.creatureIds))),
+);
+const featSources = new Map();
+for (const levels of Object.values(lists.featLists ?? {})) {
+  for (const level of Object.values(levels)) {
+    for (const id of level.standard.flatMap((e) => e.creatureIds)) {
+      if (onSpellLists.has(id)) continue;
+      const c = creatures[id];
+      const item = AON_NAMES[id] ?? (/-mephit$/.test(id) ? 'Mephit' : d20Keys(c).map((k) => aonIndex.get(k)).find(Boolean));
+      featSources.set(c.name, item ? await aonSource(item) : null);
+    }
+  }
+}
+const unsourced = [...featSources].filter(([, s]) => !s).map(([n]) => n);
+
 const bookNotices = [];
 const uncreditedBooks = [];
-for (const source of [...new Set([...Object.values(animals), ...Object.values(plants)].map((a) => a.source))].sort()) {
+const formSources = [...Object.values(animals), ...Object.values(plants)].map((a) => a.source);
+for (const source of [...new Set([...formSources, ...[...featSources.values()].filter(Boolean)])].sort()) {
   const hit = (await knownNotice(source)) ?? noticeFor(source);
   if (hit) bookNotices.push(hit);
   else uncreditedBooks.push(source);
@@ -137,5 +170,9 @@ await writeFile(
 );
 console.log(`OGL: ${ogl.length} paragraphs; Section 15: ${section15.length} notices (${prdNotices.length} PRD, ${pageNotices.length} from pages, ${apNotices.length} AP).`);
 if (missing.length) console.log(`No verified notice found for: ${missing.join(', ')}`);
-if (uncreditedBooks.length) console.log(`No notice found for form source books: ${uncreditedBooks.join(', ')}`);
+if (uncreditedBooks.length) {
+  console.log(`No notice found for source books: ${uncreditedBooks.join(', ')}`);
+  for (const [name, s] of featSources) if (uncreditedBooks.includes(s)) console.log(`  feat-list creature from it: ${name} (${s})`);
+}
+if (unsourced.length) console.log(`Feat-list creatures not found on Archives of Nethys: ${unsourced.join(', ')}`);
 console.log(`Form source books matched:\n${bookNotices.map((n) => `  ${titleOf(n).trim()}`).join('\n')}`);

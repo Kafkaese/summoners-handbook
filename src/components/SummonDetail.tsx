@@ -87,7 +87,7 @@ export function SummonDetail({ choice, group, duration, template, onTemplate, se
           <p className="source">
             Base stat block:{' '}
             <a href={creature.url} target="_blank" rel="noreferrer">
-              {creature.pageTitle} on d20pfsrd.com
+              {creature.pageTitle} on {new URL(creature.url).hostname.replace(/^www\./, '')}
             </a>
             {choice.entry.source && choice.alternative && <> · alternative option from {choice.entry.source}</>}
             {creature.changed.size > 0 && <> · highlighted values were changed</>}

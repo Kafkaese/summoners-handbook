@@ -14,6 +14,11 @@ const settings: Settings = {
   includeAlternatives: false,
   templateRule: 'core',
   deityAlignment: 'NG',
+  summonGoodMonster: false,
+  summonEvilMonster: false,
+  summonNeutralMonster: false,
+  sunlightSummons: false,
+  moonlightSummons: false,
 };
 
 function build(spell: SpellKey, level: number, name: string, opts: Partial<Settings> = {}, template: Parameters<typeof buildCreature>[1] = null) {
@@ -191,5 +196,75 @@ describe('summon giant ally', () => {
     expect(choice.templateOptions).toEqual([]);
     expect(creature.alignment).toBe('CG');
     expect(countGroups(3, false, 'summon-giant-ally')[0].label).toBe('1 × ash giant or cloud giant');
+  });
+});
+
+describe('summon good/evil/neutral monster feats', () => {
+  const sm = (level: number, opts: Partial<Settings>) => {
+    const s = { ...settings, ...opts };
+    return choicesFor('summon-monster', level, classById('wizard'), s);
+  };
+  it('adds a feat’s list only when selected and the alignment qualifies', () => {
+    expect(sm(2, { alignment: 'NG' }).some((c) => c.featList)).toBe(false);
+    expect(sm(2, { alignment: 'NG', summonGoodMonster: true }).filter((c) => c.featList === 'good').map((c) => c.name)).toContain('Pseudodragon');
+    // Selected, but a neutral good caster doesn't qualify for the evil list.
+    expect(sm(2, { alignment: 'NG', summonEvilMonster: true }).some((c) => c.featList)).toBe(false);
+    const neutral = sm(2, { alignment: 'CN', summonNeutralMonster: true }).filter((c) => c.featList === 'neutral');
+    expect(neutral.map((c) => c.name)).toEqual(['Atomie', 'Brownie']);
+    // d20pfsrd only has a brownie variant; the stat block comes from Archives of Nethys.
+    expect(neutral[1].creature?.url).toMatch(/aonprd\.com/);
+    expect(neutral[1].creature?.cr).toBe('1');
+  });
+  it('good list: celestial preset, listed alignment and Diehard', () => {
+    const s = { ...settings, alignment: 'LG' as const, summonGoodMonster: true };
+    const wolf = sm(2, s).find((c) => c.featList === 'good' && c.name === 'Celestial wolf')!;
+    const c = buildCreature(wolf, null, s)!;
+    expect(c.name).toBe('Celestial wolf');
+    expect(c.alignment).toBe('NG');
+    expect(getValue(c, 'Feats')).toMatch(/Diehard$/);
+    expect(getValue(c, 'DR')).toBeNull();
+    expect(getValue(c, 'SR')).toBe('6');
+  });
+  it('evil list: standard-action casting note', () => {
+    const s = { ...settings, alignment: 'NE' as const, summonEvilMonster: true };
+    const lemure = sm(2, s).find((c) => c.featList === 'evil' && c.name === 'Lemure')!;
+    expect(buildCreature(lemure, null, s)!.notes.join(' ')).toMatch(/standard action/);
+  });
+  it('neutral: counterpoised template option and +2 Will', () => {
+    const s = { ...settings, alignment: 'N' as const, summonNeutralMonster: true };
+    const wolf = sm(4, s).find((c) => !c.featList && c.name === 'Dire wolf')!;
+    expect(wolf.templateOptions).toEqual(['celestial', 'fiendish', 'counterpoised']);
+    const c = buildCreature(wolf, 'counterpoised', s)!;
+    expect(c.name).toBe('Counterpoised dire wolf');
+    expect(getValue(c, 'DR')).toBe('5/adamantine');
+    expect(getValue(c, 'Will')).toBe('+4');
+    expect(getValue(c, 'Special Attacks')).toBe('smite bias (1/day)');
+    const atomie = sm(2, s).find((c) => c.featList === 'neutral')!;
+    expect(buildCreature(atomie, null, s)!.notes.join(' ')).toMatch(/\+2 resistance bonus on Will/);
+  });
+});
+
+describe('sunlight and moonlight summons', () => {
+  const druid = { ...settings, classId: 'druid', level: 9 };
+  const wolf = (opts: Partial<Settings>) => {
+    const s = { ...druid, ...opts };
+    const choice = choicesFor('summon-natures-ally', 2, classById('druid'), s).find((c) => c.name === 'Wolf')!;
+    return buildCreature(choice, null, s)!;
+  };
+  it('adds light, immunities and DR-overcoming natural weapons', () => {
+    const sun = wolf({ sunlightSummons: true });
+    expect(getValue(sun, 'Immune')).toBe('blinding and dazzling effects');
+    expect(getValue(sun, 'SQ')).toBe('sheds light (as light), natural weapons count as magic for overcoming DR');
+    const both = wolf({ sunlightSummons: true, moonlightSummons: true });
+    expect(getValue(both, 'Immune')).toBe('blinding and dazzling effects, confusion and sleep effects');
+    expect(getValue(both, 'SQ')).toMatch(/count as magic and silver/);
+  });
+  it('applies to all of a druid’s summons, but not to casters without summon nature’s ally', () => {
+    const s = { ...druid, moonlightSummons: true };
+    const swarm = choicesFor('summon-swarm', 1, classById('druid'), s)[0];
+    expect(getValue(buildCreature(swarm, null, s)!, 'Immune')).toMatch(/confusion and sleep effects/);
+    const wizard = { ...settings, moonlightSummons: true };
+    const dog = choicesFor('summon-monster', 1, classById('wizard'), wizard).find((c) => c.name === 'Dog')!;
+    expect(getValue(buildCreature(dog, 'celestial', wizard)!, 'Immune')).toBeNull();
   });
 });

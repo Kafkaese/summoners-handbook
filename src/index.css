@@ -675,6 +675,12 @@ mark.changed {
   padding: 0 2px;
 }
 
+/* Values with a tooltip (original value, or why it can't be used): arrow, not text cursor. */
+mark.changed,
+s.forbidden {
+  cursor: default;
+}
+
 /* Stat block */
 
 .statblock {
@@ -977,4 +983,64 @@ s.forbidden {
   .ability-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+/* Collapsible settings */
+
+.collapsible {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.collapsible summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.collapsible summary::-webkit-details-marker {
+  display: none;
+}
+
+.collapsible summary .count {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 999px;
+  padding: 1px 8px;
+}
+
+.collapsible summary .chevron {
+  margin-left: auto;
+}
+
+.collapsible[open] summary .chevron {
+  transform: rotate(180deg);
+}
+
+.collapsible-body {
+  padding: 4px 12px 12px;
+}
+
+.collapsible-body .toggles {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.badge.feat {
+  text-transform: none;
+}
+.badge.feat-good {
+  color: var(--good);
+}
+.badge.feat-evil {
+  color: var(--evil);
 }

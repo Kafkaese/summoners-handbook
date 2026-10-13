@@ -4,6 +4,7 @@
 import * as cheerio from 'cheerio';
 import { writeFile } from 'node:fs/promises';
 import { fetchPage, normalizeUrl } from './fetch.mjs';
+import { aonIndexFor, aonSource, d20Keys } from './aon.mjs';
 import { parsePage } from './statblock.mjs';
 
 // Beast shape allows Diminutive–Huge animals; plant shape Small–Huge plants.
@@ -98,7 +99,6 @@ async function crawl(kind) {
 
 // Archives of Nethys (Paizo-licensed) lists every Paizo monster with its source
 // book. Keep only animals found there; that also excludes unmarked third-party ones.
-const AON = 'https://aonprd.com/';
 // Source books without a verified OGL copyright notice (see build-legal.mjs);
 // their creatures are left out so every included form can be credited.
 const UNCREDITED_SOURCES = new Set([
@@ -131,60 +131,6 @@ const AON_ALIASES = {
   'light-riding-horse': 'Horse',
   'common-shark': 'Shark',
 };
-const norm = (s) =>
-  s
-    .toLowerCase()
-    .replace(/[“”"’']/g, '')
-    .replace(/\(([^)]*)\)/g, ' $1 ')
-    .replace(/[^a-z0-9]+/g, ' ')
-    .trim()
-    .split(' ')
-    .filter((w) => w && w !== 'or')
-    .sort()
-    .join(' ');
-
-/** Normalized name → AoN page name, for every creature of this type in AoN's monster index. */
-async function aonIndexFor(type) {
-  const { html } = await fetchPage(`${AON}Monsters.aspx?Letter=All`);
-  const $ = cheerio.load(html);
-  const index = new Map();
-  $('tr').each((_, tr) => {
-    const tds = $(tr).find('td');
-    if (!new RegExp(`^${type}\\b`).test($(tds[2]).text().trim())) return;
-    const a = $(tds[0]).find('a');
-    const item = decodeURIComponent((a.attr('href') ?? '').split('ItemName=')[1] ?? '');
-    if (!item) return;
-    // "Bear, Grizzly Bear" / "Grizzly Bear" / "Dire Boar (Daeodon)" → all point to the item.
-    for (const key of [item, a.text(), item.replace(/\s*\(.*?\)/g, ''), item.match(/\(([^)]+)\)/)?.[1] ?? '']) {
-      if (key && !index.has(norm(key))) index.set(norm(key), item);
-    }
-  });
-  return index;
-}
-
-function d20Keys(a) {
-  const names = [a.name, a.pageTitle];
-  for (const n of [a.name, a.pageTitle]) {
-    names.push(n.replace(/\s*\(.*?\)\s*/g, ' '));
-    const paren = n.match(/\(([^)]+)\)/)?.[1];
-    if (paren && !/\bor\b/.test(paren)) names.push(paren);
-  }
-  return [...new Set(names.map(norm).filter(Boolean))];
-}
-
-async function aonSource(item) {
-  const url = `${AON}MonsterDisplay.aspx?ItemName=${encodeURIComponent(item)}`;
-  for (let attempt = 0; attempt < 3; attempt++) {
-    try {
-      const { html } = await fetchPage(url);
-      return cheerio.load(html).text().replace(/\s+/g, ' ').match(/Source (.+?) pg\. \d+/)?.[1]?.trim() ?? null;
-    } catch {
-      await new Promise((r) => setTimeout(r, 3000 * (attempt + 1)));
-    }
-  }
-  return null;
-}
-
 for (const kind of KINDS) {
   const { forms, skipped, pages } = await crawl(kind);
   const aonIndex = await aonIndexFor(kind.type);

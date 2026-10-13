@@ -43,6 +43,8 @@ export interface ListEntry {
   source: string | null;
   footnotes: number[];
   creatureIds: string[];
+  /** Feat lists give each creature's alignment. */
+  alignment?: string | null;
 }
 
 export interface ListLevel {
@@ -52,9 +54,13 @@ export interface ListLevel {
 
 export type SpellKey = 'summon-monster' | 'summon-natures-ally' | 'summon-swarm' | 'summon-genie' | 'summon-giant-ally';
 
+export type FeatList = 'good' | 'evil' | 'neutral';
+
 export interface SummonLists {
   scrapedFrom: string;
   spells: Record<SpellKey, Record<string, ListLevel>>;
+  /** Extra summon monster lists from Summon Good/Evil/Neutral Monster. */
+  featLists: Record<FeatList, Record<string, ListLevel>>;
 }
 
 /** A stat block after templates and feats have been applied. */

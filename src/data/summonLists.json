@@ -3443,5 +3443,2221 @@
         "alternatives": []
       }
     }
+  },
+  "featLists": {
+    "good": {
+      "1": {
+        "standard": [
+          {
+            "name": "Celestial dog",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/dog/dog/",
+            "templated": false,
+            "presetTemplates": [
+              "celestial"
+            ],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "dog"
+            ]
+          },
+          {
+            "name": "Celestial dolphin",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/cetacean/dolphin/dolphin/",
+            "templated": false,
+            "presetTemplates": [
+              "celestial"
+            ],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "dolphin"
+            ]
+          },
+          {
+            "name": "Celestial eagle",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/birds/eagle/",
+            "templated": false,
+            "presetTemplates": [
+              "celestial"
+            ],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "eagle"
+            ]
+          },
+          {
+            "name": "Celestial fire beetle",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/beetle/beetle-fire/",
+            "templated": false,
+            "presetTemplates": [
+              "celestial"
+            ],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "fire-beetle"
+            ]
+          },
+          {
+            "name": "Celestial pony",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/horse/pony/",
+            "templated": false,
+            "presetTemplates": [
+              "celestial"
+            ],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "pony"
+            ]
+          },
+          {
+            "name": "Celestial viper",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/snake/snake-viper/",
+            "templated": false,
+            "presetTemplates": [
+              "celestial"
+            ],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "viper"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "2": {
+        "standard": [
+          {
+            "name": "Celestial octopus",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/octopus/",
+            "templated": false,
+            "presetTemplates": [
+              "celestial"
+            ],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "octopus"
+            ]
+          },
+          {
+            "name": "Celestial wolf",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/canines/wolf/",
+            "templated": false,
+            "presetTemplates": [
+              "celestial"
+            ],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "wolf"
+            ]
+          },
+          {
+            "name": "Faun",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/faun/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "faun"
+            ]
+          },
+          {
+            "name": "Grig (without fiddle ability)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/grig/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "grig"
+            ]
+          },
+          {
+            "name": "Pseudodragon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/dragons/pseudodragon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "pseudodragon"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "3": {
+        "standard": [
+          {
+            "name": "Blink dog",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/blink-dog/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "blink-dog"
+            ]
+          },
+          {
+            "name": "Celestial shark",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/shark/shark/",
+            "templated": false,
+            "presetTemplates": [
+              "celestial"
+            ],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "common-shark"
+            ]
+          },
+          {
+            "name": "Foo dog",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/foo-dog/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "augmented",
+              "good",
+              "extraplanar"
+            ],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "foo-dog"
+            ]
+          },
+          {
+            "name": "Lantern archon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/archon/lantern-archon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "archon",
+              "extraplanar",
+              "good",
+              "lawful"
+            ],
+            "alignment": "LG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "lantern-archon"
+            ]
+          },
+          {
+            "name": "Lyrakien azata",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/azata/azata-lyrakien/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "azata",
+              "chaotic",
+              "extraplanar",
+              "good"
+            ],
+            "alignment": "CG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "lyrakien"
+            ]
+          },
+          {
+            "name": "Silvanshee agathion",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/agathion/agathion-silvanshee/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "agathion",
+              "extraplanar",
+              "good"
+            ],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "silvanshee"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "4": {
+        "standard": [
+          {
+            "name": "Celestial dire wolf",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/canines/wolf/dire-wolf/",
+            "templated": false,
+            "presetTemplates": [
+              "celestial"
+            ],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "dire-wolf"
+            ]
+          },
+          {
+            "name": "Celestial giant eagle",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/giant-eagle/",
+            "templated": false,
+            "presetTemplates": [
+              "celestial"
+            ],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "giant-eagle"
+            ]
+          },
+          {
+            "name": "Celestial pegasus",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/pegasus/",
+            "templated": false,
+            "presetTemplates": [
+              "celestial"
+            ],
+            "subtypes": [],
+            "alignment": "CG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "pegasus"
+            ]
+          },
+          {
+            "name": "Faerie dragon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/dragons/dragon-faerie/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "faerie-dragon"
+            ]
+          },
+          {
+            "name": "Foo lion",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/foo-lion/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "augmented",
+              "good",
+              "extraplanar"
+            ],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "foo-lion"
+            ]
+          },
+          {
+            "name": "Hound archon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/archon/hound-archon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "archon",
+              "extraplanar",
+              "good",
+              "lawful"
+            ],
+            "alignment": "LG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "hound-archon"
+            ]
+          },
+          {
+            "name": "Pixie",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/pixie/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "pixie"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "5": {
+        "standard": [
+          {
+            "name": "Bralani azata",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/azata/bralani/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "azata",
+              "chaotic",
+              "extraplanar",
+              "good",
+              "shapechanger"
+            ],
+            "alignment": "CG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "bralani"
+            ]
+          },
+          {
+            "name": "Celestial orca",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/cetacean/dolphin/orca/",
+            "templated": false,
+            "presetTemplates": [
+              "celestial"
+            ],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "orca"
+            ]
+          },
+          {
+            "name": "Djinni",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/genie/djinni/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "air",
+              "extraplanar"
+            ],
+            "alignment": "CG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "djinni"
+            ]
+          },
+          {
+            "name": "Unicorn",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/unicorn/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "unicorn"
+            ]
+          },
+          {
+            "name": "Vulpinal agathion",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/agathion/agathion-vulpinal/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "agathion",
+              "extraplanar",
+              "good"
+            ],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "vulpinal"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "6": {
+        "standard": [
+          {
+            "name": "Celestial giant octopus",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/octopus/octopus-giant/",
+            "templated": false,
+            "presetTemplates": [
+              "celestial"
+            ],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "giant-octopus"
+            ]
+          },
+          {
+            "name": "Kirin",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/kirin/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "air"
+            ],
+            "alignment": "LG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "kirin"
+            ]
+          },
+          {
+            "name": "Legion archon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/archon/archon-legion/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "archon",
+              "extraplanar",
+              "good",
+              "lawful"
+            ],
+            "alignment": "LG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "legion-archon"
+            ]
+          },
+          {
+            "name": "Lillend azata",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/azata/lillend/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "azata",
+              "chaotic",
+              "extraplanar",
+              "good"
+            ],
+            "alignment": "LG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "lillend"
+            ]
+          },
+          {
+            "name": "Wood giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-wood/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "giant"
+            ],
+            "alignment": "CG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "wood-giant"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "7": {
+        "standard": [
+          {
+            "name": "Celestial dire shark",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/shark/dire-shark/",
+            "templated": false,
+            "presetTemplates": [
+              "celestial"
+            ],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "dire-shark-megalodon"
+            ]
+          },
+          {
+            "name": "Celestial roc",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/birds/roc/",
+            "templated": false,
+            "presetTemplates": [
+              "celestial"
+            ],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "roc"
+            ]
+          },
+          {
+            "name": "Movanic deva",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/angel/angel-movanic-deva/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "angel",
+              "extraplanar",
+              "good"
+            ],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "movanic-deva"
+            ]
+          },
+          {
+            "name": "Shedu",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/shedu/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "shedu"
+            ]
+          },
+          {
+            "name": "Shield archon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/archon/archon-shield/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "archon",
+              "extraplanar",
+              "good",
+              "lawful"
+            ],
+            "alignment": "LG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "archon-shield"
+            ]
+          },
+          {
+            "name": "Treant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/plants/treant/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "treant"
+            ]
+          },
+          {
+            "name": "Young bronze dragon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/dragons/dragon/metallic-bronze/young-bronze-dragon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "water"
+            ],
+            "alignment": "LG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "young-bronze-dragon"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "8": {
+        "standard": [
+          {
+            "name": "Cloud giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-cloud/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "giant"
+            ],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "cloud-giant"
+            ]
+          },
+          {
+            "name": "Dragon horse",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/dragon-horse/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "air"
+            ],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "dragon-horse"
+            ]
+          },
+          {
+            "name": "Lammasu",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/lammasu/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "lammasu"
+            ]
+          },
+          {
+            "name": "Monadic deva",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/angel/angel-monadic-deva/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "angel",
+              "aquatic",
+              "extraplanar",
+              "good"
+            ],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "monadic-deva"
+            ]
+          },
+          {
+            "name": "Young gold dragon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/dragons/dragon/metallic-gold/young-gold-dragon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "fire"
+            ],
+            "alignment": "LG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "young-gold-dragon"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "9": {
+        "standard": [
+          {
+            "name": "Astral deva",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/angel/astral-deva/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "angel",
+              "extraplanar",
+              "good"
+            ],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "astral-deva"
+            ]
+          },
+          {
+            "name": "Couatl",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/couatl/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "native"
+            ],
+            "alignment": "LG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "couatl"
+            ]
+          },
+          {
+            "name": "Ghaele azata",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/azata/ghaele/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "azata",
+              "chaotic",
+              "extraplanar",
+              "good",
+              "shapechanger"
+            ],
+            "alignment": "CG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "ghaele"
+            ]
+          },
+          {
+            "name": "Leonal agathion",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/agathion/agathion-leonal/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "agathion",
+              "extraplanar",
+              "good"
+            ],
+            "alignment": "NG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "leonal"
+            ]
+          },
+          {
+            "name": "Storm giant",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/humanoids/giants/giant-true/giant-storm/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "giant"
+            ],
+            "alignment": "CG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "storm-giant"
+            ]
+          },
+          {
+            "name": "Trumpet archon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/archon/trumpet-archon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "archon",
+              "extraplanar",
+              "good",
+              "lawful"
+            ],
+            "alignment": "LG",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "trumpet-archon"
+            ]
+          }
+        ],
+        "alternatives": []
+      }
+    },
+    "evil": {
+      "1": {
+        "standard": [
+          {
+            "name": "Fiendish dire rat",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/rat/dire-rat/",
+            "templated": false,
+            "presetTemplates": [
+              "fiendish"
+            ],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "dire-rat"
+            ]
+          },
+          {
+            "name": "Fiendish fire beetle",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/beetle/beetle-fire/",
+            "templated": false,
+            "presetTemplates": [
+              "fiendish"
+            ],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "fire-beetle"
+            ]
+          },
+          {
+            "name": "Fiendish ghost scorpion",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/vermin/scorpion/scorpion-ghost/",
+            "templated": false,
+            "presetTemplates": [
+              "fiendish"
+            ],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "ghost-scorpion"
+            ]
+          },
+          {
+            "name": "Fiendish pony",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/horse/pony/",
+            "templated": false,
+            "presetTemplates": [
+              "fiendish"
+            ],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "pony"
+            ]
+          },
+          {
+            "name": "Fiendish stingray",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/ray-stingray/",
+            "templated": false,
+            "presetTemplates": [
+              "fiendish"
+            ],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "stingray"
+            ]
+          },
+          {
+            "name": "Fiendish vulture",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/birds/vulture/",
+            "templated": false,
+            "presetTemplates": [
+              "fiendish"
+            ],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "vulture"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "2": {
+        "standard": [
+          {
+            "name": "Damned petitioner",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/petitioners/petitioner-damned-hell/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "damned"
+            ]
+          },
+          {
+            "name": "Fiendish squid",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/squid/",
+            "templated": false,
+            "presetTemplates": [
+              "fiendish"
+            ],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "squid"
+            ]
+          },
+          {
+            "name": "Fuath",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/gremlins/gremlin-fuath/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "fuath"
+            ]
+          },
+          {
+            "name": "Hunted petitioner",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/petitioners/petitioner-hunted-abaddon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "hunted"
+            ]
+          },
+          {
+            "name": "Lemure",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/devil/lemure/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "lemure"
+            ]
+          },
+          {
+            "name": "Pugwampi",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/gremlins/gremlin-pugwampi/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "gremlin-pugwampi"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "3": {
+        "standard": [
+          {
+            "name": "Augur",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/kyton/kyton-augur/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "augur-kyton"
+            ]
+          },
+          {
+            "name": "Cacodaemon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/daemons/cacodaemon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "cacodaemon"
+            ]
+          },
+          {
+            "name": "Doru",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/divs/div-doru/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "doru"
+            ]
+          },
+          {
+            "name": "Dretch",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/demon/dretch/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "dretch"
+            ]
+          },
+          {
+            "name": "Fiendish shark",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/shark/shark/",
+            "templated": false,
+            "presetTemplates": [
+              "fiendish"
+            ],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "common-shark"
+            ]
+          },
+          {
+            "name": "Howler",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/howler/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "howler"
+            ]
+          },
+          {
+            "name": "Tripurasura",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/asura/asura-tripurasura/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "tripurasura"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "4": {
+        "standard": [
+          {
+            "name": "Aghash",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/divs/div-aghash/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "aghash"
+            ]
+          },
+          {
+            "name": "Hell hound",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/hell-hound/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "hell-hound"
+            ]
+          },
+          {
+            "name": "Kelpie",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/plants/kelpie/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "kelpie"
+            ]
+          },
+          {
+            "name": "Schir",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/demon/demon-schir/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "schir"
+            ]
+          },
+          {
+            "name": "Spring-Heeled Jack",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/spring-heeled-jack/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "spring-heeled-jack"
+            ]
+          },
+          {
+            "name": "Yeth Hound",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/yeth-hound/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "yeth-hound"
+            ]
+          },
+          {
+            "name": "Zebub",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/devil/devil-accuser/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "accuser-devil-zebub"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "5": {
+        "standard": [
+          {
+            "name": "Babau",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/demon/babau/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "babau"
+            ]
+          },
+          {
+            "name": "Barbazu",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/devil/bearded/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "bearded-devil-barbazu"
+            ]
+          },
+          {
+            "name": "Evangelist",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/kyton/kyton-lampadarius/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "lampadarius"
+            ]
+          },
+          {
+            "name": "Fiendish giant moray eel",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/eel/eel-moray-giant/",
+            "templated": false,
+            "presetTemplates": [
+              "fiendish"
+            ],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "giant-moray-eel"
+            ]
+          },
+          {
+            "name": "Lurker in light",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/lurker-in-light/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "lurker-in-light"
+            ]
+          },
+          {
+            "name": "Salamander",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/salamander/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "salamander"
+            ]
+          },
+          {
+            "name": "Shadow mastiff",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/shadow-mastiff/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "shadow-mastiff"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "6": {
+        "standard": [
+          {
+            "name": "Efreeti",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/genie/efreeti/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "efreeti"
+            ]
+          },
+          {
+            "name": "Erinyes",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/devil/erinyes/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "the-furies-erinyes"
+            ]
+          },
+          {
+            "name": "Fiendish giant octopus",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/animals/octopus/octopus-giant/",
+            "templated": false,
+            "presetTemplates": [
+              "fiendish"
+            ],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "giant-octopus"
+            ]
+          },
+          {
+            "name": "Pairaka",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/divs/div-pairaka/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "pairaka"
+            ]
+          },
+          {
+            "name": "Shadow demon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/demon/demon-shadow/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "shadow-demon"
+            ]
+          },
+          {
+            "name": "Soul eater",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/soul-eater/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "soul-eater"
+            ]
+          },
+          {
+            "name": "Succubus",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/demon/succubus/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "succubus"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "7": {
+        "standard": [
+          {
+            "name": "Bebilith",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/bebilith/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "bebilith"
+            ]
+          },
+          {
+            "name": "Bogeyman",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/bogeyman/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "bogeyman"
+            ]
+          },
+          {
+            "name": "Leukodaemon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/daemons/leukodaemon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "leukodaemon"
+            ]
+          },
+          {
+            "name": "Nuckelavee",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/nuckelavee/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "nuckelavee"
+            ]
+          },
+          {
+            "name": "Osyluth",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/devil/bone/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "bone-devil-osyluth"
+            ]
+          },
+          {
+            "name": "Sacristan",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/kyton/kyton-sacristan/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "sacristan"
+            ]
+          },
+          {
+            "name": "Vrock",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/demon/vrock/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "vrock"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "8": {
+        "standard": [
+          {
+            "name": "Baregara",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/baregara/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "baregara"
+            ]
+          },
+          {
+            "name": "Dorvae",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/dorvae/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "dorvae"
+            ]
+          },
+          {
+            "name": "Hamatula",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/devil/barbed/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "barbed-devil-hamatula"
+            ]
+          },
+          {
+            "name": "Hezrou",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/demon/hezrou/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "hezrou"
+            ]
+          },
+          {
+            "name": "Meladaemon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/daemons/meladaemon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "meladaemon"
+            ]
+          },
+          {
+            "name": "Rusalka",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/rusalka/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "rusalka"
+            ]
+          },
+          {
+            "name": "Young adult green dragon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/dragons/dragon/chromatic-green/green-dragon-young-adult/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "young-adult-green-dragon"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "9": {
+        "standard": [
+          {
+            "name": "Ankou",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/ankou/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "ankou"
+            ]
+          },
+          {
+            "name": "Nalfeshnee",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/demon/nalfeshnee/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "nalfeshnee"
+            ]
+          },
+          {
+            "name": "Derghodaemon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/daemons/derghodaemon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "derghodaemon"
+            ]
+          },
+          {
+            "name": "Gelugon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/devil/ice/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "ice-devil-gelugon"
+            ]
+          },
+          {
+            "name": "Glabrezu",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/demon/glabrezu/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "glabrezu"
+            ]
+          },
+          {
+            "name": "Sepid",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/divs/div-sepid/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "sepid"
+            ]
+          },
+          {
+            "name": "Thanadaemon",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/daemons/thanadaemon/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "NE",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "thanadaemon"
+            ]
+          }
+        ],
+        "alternatives": []
+      }
+    },
+    "neutral": {
+      "1": {
+        "standard": [
+          {
+            "name": "Sprite",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/sprite/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CN",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "sprite"
+            ]
+          },
+          {
+            "name": "Stirge",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/stirge/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "N",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "stirge"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "2": {
+        "standard": [
+          {
+            "name": "Atomie",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/atomie/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CN",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "atomie"
+            ]
+          },
+          {
+            "name": "Brownie",
+            "url": "https://aonprd.com/MonsterDisplay.aspx?ItemName=Brownie",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "N",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "brownie"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "3": {
+        "standard": [
+          {
+            "name": "Arbiter",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/inevitable/inevitable-arbiter/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "inevitable"
+            ],
+            "alignment": "LN",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "arbiter"
+            ]
+          },
+          {
+            "name": "Nosoi",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/psychopomp/psychopomp-nosoi/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "psychopomp"
+            ],
+            "alignment": "N",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "nosoi"
+            ]
+          },
+          {
+            "name": "Paracletus",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/aeon/aeon-paracletus/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "aeon"
+            ],
+            "alignment": "N",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "paracletus"
+            ]
+          },
+          {
+            "name": "Thoqqua",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/elemental/thoqqua/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "N",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "thoqqua"
+            ]
+          },
+          {
+            "name": "Voidworm",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/protean/protean-voidworm/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "protean"
+            ],
+            "alignment": "CN",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "protean-voidworm"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "4": {
+        "standard": [
+          {
+            "name": "D’ziriak",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/d-ziriak/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "N",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "d-ziriak"
+            ]
+          },
+          {
+            "name": "Magmin",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/magmin/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CN",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "magmin"
+            ]
+          },
+          {
+            "name": "Mephit (any)",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/mephit/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "N",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "air-mephit",
+              "dust-mephit",
+              "earth-mephit",
+              "fire-mephit",
+              "ice-mephit",
+              "magma-mephit",
+              "ooze-mephit",
+              "salt-mephit",
+              "steam-mephit",
+              "water-mephit"
+            ]
+          },
+          {
+            "name": "Satyr",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/satyr/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CN",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "satyr"
+            ]
+          },
+          {
+            "name": "Shae",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/shae/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "N",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "shae"
+            ]
+          },
+          {
+            "name": "Viduus",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/psychopomp/psychopomp-viduus/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "psychopomp"
+            ],
+            "alignment": "N",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "viduus-psychopomp"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "5": {
+        "standard": [
+          {
+            "name": "Catrina",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/psychopomp/psychopomp-catrina/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "psychopomp"
+            ],
+            "alignment": "N",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "catrina"
+            ]
+          },
+          {
+            "name": "Mercane",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/mercane/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LN",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "mercane"
+            ]
+          },
+          {
+            "name": "Rast",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/rast/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "N",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "rast"
+            ]
+          },
+          {
+            "name": "Tojanida",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/tojanida/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "N",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "tojanida"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "6": {
+        "standard": [
+          {
+            "name": "Chaos Beast",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/chaos-beast/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CN",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "chaos-beast"
+            ]
+          },
+          {
+            "name": "Invisible stalker",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/elemental/invisible-stalker/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "N",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "invisible-stalker"
+            ]
+          },
+          {
+            "name": "Naunet",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/protean/protean-naunet/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "protean"
+            ],
+            "alignment": "CN",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "protean-naunet"
+            ]
+          },
+          {
+            "name": "Theletos",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/aeon/aeon-theletos/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "aeon"
+            ],
+            "alignment": "N",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "theletos"
+            ]
+          },
+          {
+            "name": "Vanth",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/psychopomp/psychopomp-vanth/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "psychopomp"
+            ],
+            "alignment": "N",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "vanth"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "7": {
+        "standard": [
+          {
+            "name": "Axiomite",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/axiomite/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "LN",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "axiomite"
+            ]
+          },
+          {
+            "name": "Jyoti",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/jyoti/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "N",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "jyoti"
+            ]
+          },
+          {
+            "name": "Shoki",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/psychopomp/psychopomp-shoki/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "psychopomp"
+            ],
+            "alignment": "N",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "shoki-psychopomp"
+            ]
+          },
+          {
+            "name": "Zelekhut",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/inevitable/inevitable-zelekhut/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "inevitable"
+            ],
+            "alignment": "LN",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "zelekhut"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "8": {
+        "standard": [
+          {
+            "name": "Imentesh",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/protean/protean-imentesh/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "protean"
+            ],
+            "alignment": "CN",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "imentesh-protean"
+            ]
+          }
+        ],
+        "alternatives": []
+      },
+      "9": {
+        "standard": [
+          {
+            "name": "Akhana",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/aeon/aeon-akhana/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "aeon"
+            ],
+            "alignment": "N",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "akhana"
+            ]
+          },
+          {
+            "name": "Morrigna",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/psychopomp/psychopomp-morrigna/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [
+              "psychopomp"
+            ],
+            "alignment": "N",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "morrigna"
+            ]
+          },
+          {
+            "name": "Valkyrie",
+            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/outsiders/valkyrie/",
+            "templated": false,
+            "presetTemplates": [],
+            "subtypes": [],
+            "alignment": "CN",
+            "source": null,
+            "footnotes": [],
+            "creatureIds": [
+              "valkyrie"
+            ]
+          }
+        ],
+        "alternatives": []
+      }
+    }
   }
 }

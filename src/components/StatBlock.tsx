@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { ABILITY_LIST_FIELDS, abilityRestriction, spellRestriction } from '../rules/restrictions';
-import { splitItems, splitSpellLine } from '../rules/spellNames';
+import { splitSpellLine } from '../rules/spellNames';
 import type { BuiltCreature, Field, SectionName } from '../rules/types';
 
 /** Fields printed on one line together, in stat block order. */
@@ -20,16 +20,25 @@ const SECTION_TITLES: Partial<Record<SectionName, string>> = {
   statistics: 'Statistics',
 };
 
-function Value({ creature, section, label, children }: { creature: BuiltCreature; section: string; label: string; children: ReactNode }) {
-  const key = `${section}.${label}`;
-  if (!creature.changed.has(key)) return <>{children}</>;
-  const original = creature.changed.get(key);
-  return (
-    <mark className="changed" title={original ? `Base: ${original}` : 'Added'}>
-      {children}
-    </mark>
-  );
+/** Splits a value into its top-level items, keeping each item's separator (", " or "; "). */
+function tokens(value: string): { text: string; sep: string }[] {
+  const out: { text: string; sep: string }[] = [];
+  let depth = 0;
+  let start = 0;
+  for (let i = 0; i < value.length; i++) {
+    const ch = value[i];
+    if (ch === '(') depth++;
+    else if (ch === ')') depth = Math.max(0, depth - 1);
+    else if (depth === 0 && (ch === ',' || ch === ';')) {
+      out.push({ text: value.slice(start, i).trim(), sep: `${ch} ` });
+      start = i + 1;
+    }
+  }
+  out.push({ text: value.slice(start).trim(), sep: '' });
+  return out.filter((t) => t.text);
 }
+
+const normalize = (s: string) => s.replace(/\s+/g, ' ').trim();
 
 /** Renders the parser's superscript markers ("Toughness^B", "dispel magic^D") as <sup>. */
 function Text({ children }: { children: string }) {
@@ -71,14 +80,60 @@ function SpellLine({ line }: { line: string }) {
   );
 }
 
+/**
+ * A field's value. When a template or feat changed it, only the items that are
+ * new or different are highlighted (e.g. the added feat, not the whole Feats line).
+ */
 function FieldText({ creature, section, field }: { creature: BuiltCreature; section: SectionName; field: Field }) {
-  const abilities = ABILITY_LIST_FIELDS.has(field.label) && splitItems(field.value).some((item) => abilityRestriction(item));
+  const key = `${section}.${field.label}`;
+  const changed = creature.changed.has(key);
+  const original = creature.changed.get(key) ?? '';
+  const before = new Set(tokens(original).map((t) => normalize(t.text)));
+  const restriction = ABILITY_LIST_FIELDS.has(field.label) ? abilityRestriction : null;
+  // A trailing ";" in the source would double up with the separator.
+  const items = tokens(field.value.replace(/[;,]\s*$/, ''));
+  const isNew = (text: string) => changed && !before.has(normalize(text));
+  const render = (text: string) => {
+    const reasons = restriction?.(text);
+    return reasons ? (
+      <s className="forbidden" title={`Summoned creatures can't use this: ${reasons.join(', ')}`}>
+        <Text>{text}</Text>
+      </s>
+    ) : (
+      <Text>{text}</Text>
+    );
+  };
+  // Adjacent changed items share one highlight, separators included.
+  const runs: { changed: boolean; items: typeof items }[] = [];
+  for (const item of items) {
+    const last = runs[runs.length - 1];
+    if (last && last.changed === isNew(item.text)) last.items.push(item);
+    else runs.push({ changed: isNew(item.text), items: [item] });
+  }
   return (
     <>
       {field.label && <b>{field.label} </b>}
-      <Value creature={creature} section={section} label={field.label}>
-        {abilities ? <Items items={splitItems(field.value)} restriction={abilityRestriction} /> : <Text>{field.value}</Text>}
-      </Value>
+      {runs.map((run, r) => {
+        const content = run.items.map((item, i) => (
+          <span key={i}>
+            {render(item.text)}
+            {i < run.items.length - 1 && item.sep}
+          </span>
+        ));
+        const sep = r < runs.length - 1 ? run.items[run.items.length - 1].sep : '';
+        return (
+          <span key={r}>
+            {run.changed ? (
+              <mark className="changed" title={original ? `Base: ${original}` : 'Added'}>
+                {content}
+              </mark>
+            ) : (
+              content
+            )}
+            {sep}
+          </span>
+        );
+      })}
     </>
   );
 }

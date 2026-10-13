@@ -98,7 +98,16 @@ export const TEMPLATE_ALIGNMENT: Record<TemplateId, string> = {
   fiendish: 'evil',
   resolute: 'lawful',
   entropic: 'chaotic',
+  // Counterpoised creatures embody balance; the template adds no alignment.
+  counterpoised: '',
 };
+
+/** Alignment prerequisites of Summon Good/Evil/Neutral Monster. */
+export function qualifiesForFeat(feat: 'good' | 'evil' | 'neutral', a: Alignment): boolean {
+  if (feat === 'good') return components(a).includes('good');
+  if (feat === 'evil') return components(a).includes('evil');
+  return a === 'LN' || a === 'N' || a === 'CN';
+}
 
 /** Whether two alignments are within one step of each other (a cleric and their deity). */
 export function withinOneStep(a: Alignment, b: Alignment): boolean {
