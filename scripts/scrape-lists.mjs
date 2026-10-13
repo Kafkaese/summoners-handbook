@@ -16,6 +16,8 @@ const clean = (s) => s.replace(/\s+/g, ' ').trim();
 const URL_FIXES = {
   'https://www.d20pfsrd.com/extras/community-creations/summoned-creature-leopard-cat-great/':
     'https://www.d20pfsrd.com/bestiary/monster-listings/animals/felines/cat-great/leopard/',
+  // d20pfsrd has only a variant of the brownie; Archives of Nethys has the Bestiary 2 stat block.
+  'https://www.d20pfsrd.com/bestiary/monster-listings/fey/brownie/': 'https://aonprd.com/MonsterDisplay.aspx?ItemName=Brownie',
   // Old paths used by the Summon Good/Evil Monster tables.
   'https://www.d20pfsrd.com/bestiary/monster-listings/animals/dolphin/orca/': 'https://www.d20pfsrd.com/bestiary/monster-listings/animals/cetacean/dolphin/orca/',
   'https://www.d20pfsrd.com/bestiary/monster-listings/animals/octopus/giant-octopus/': 'https://www.d20pfsrd.com/bestiary/monster-listings/animals/octopus/octopus-giant/',

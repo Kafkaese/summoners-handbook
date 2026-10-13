@@ -5029,6 +5029,150 @@
   "special": [],
   "description": "Broad, powerful muscles move beneath this massive bear’s brown fur, promising both speed and lethal force."
  },
+ "brownie": {
+  "id": "brownie",
+  "url": "https://aonprd.com/MonsterDisplay.aspx?ItemName=Brownie",
+  "pageTitle": "Brownie",
+  "source": null,
+  "name": "Brownie",
+  "cr": "1",
+  "mr": null,
+  "xp": "400",
+  "alignment": "N",
+  "size": "Tiny",
+  "type": "fey",
+  "subtypes": [],
+  "typeLine": "N Tiny fey",
+  "sections": {
+   "intro": [
+    {
+     "label": "Init",
+     "value": "+8"
+    },
+    {
+     "label": "Senses",
+     "value": "low-light vision"
+    },
+    {
+     "label": "Perception",
+     "value": "+8"
+    }
+   ],
+   "defense": [
+    {
+     "label": "AC",
+     "value": "17, touch 17, flat-footed 12 (+4 Dex, +1 dodge, +2 size)"
+    },
+    {
+     "label": "hp",
+     "value": "4 (1d6+1)"
+    },
+    {
+     "label": "Fort",
+     "value": "+1"
+    },
+    {
+     "label": "Ref",
+     "value": "+6"
+    },
+    {
+     "label": "Will",
+     "value": "+4; +2 vs. illusions"
+    },
+    {
+     "label": "DR",
+     "value": "5/cold iron"
+    },
+    {
+     "label": "SR",
+     "value": "12"
+    }
+   ],
+   "offense": [
+    {
+     "label": "Speed",
+     "value": "20 ft."
+    },
+    {
+     "label": "Melee",
+     "value": "short sword +6 (1d2–2/19–20)"
+    },
+    {
+     "label": "Space",
+     "value": "2–1/2 ft."
+    },
+    {
+     "label": "Reach",
+     "value": "0 ft."
+    },
+    {
+     "label": "Spell-Like Abilities",
+     "value": "(CL 7th; concentration +10)",
+     "lines": [
+      "At will—dancing lights, mending, prestidigitation",
+      "1/day—lesser confusion (DC 14), dimension door (self only), mirror image, ventriloquism (DC 14)"
+     ]
+    }
+   ],
+   "tactics": [],
+   "statistics": [
+    {
+     "label": "Str",
+     "value": "7"
+    },
+    {
+     "label": "Dex",
+     "value": "18"
+    },
+    {
+     "label": "Con",
+     "value": "12"
+    },
+    {
+     "label": "Int",
+     "value": "14"
+    },
+    {
+     "label": "Wis",
+     "value": "15"
+    },
+    {
+     "label": "Cha",
+     "value": "17"
+    },
+    {
+     "label": "Base Atk",
+     "value": "+0"
+    },
+    {
+     "label": "CMB",
+     "value": "+2"
+    },
+    {
+     "label": "CMD",
+     "value": "11"
+    },
+    {
+     "label": "Feats",
+     "value": "Dodge, Improved Initiative, Weapon Finesse"
+    },
+    {
+     "label": "Skills",
+     "value": "Acrobatics +8 (+4 jump), Bluff +7, Craft (any one) +6, Escape Artist +8, Handle Animal +4, Perception +8, Sense Motive +6, Stealth +16 (+20 in forest)"
+    },
+    {
+     "label": "Racial Modifiers",
+     "value": "+2 Perception, +4 Stealth in forests"
+    },
+    {
+     "label": "Languages",
+     "value": "Common, Elven, Gnome, Sylvan"
+    }
+   ]
+  },
+  "special": [],
+  "description": null
+ },
  "bulette": {
   "id": "bulette",
   "url": "https://www.d20pfsrd.com/bestiary/monster-listings/magical-beasts/bulette/",
@@ -11660,7 +11804,7 @@
    },
    {
     "name": "Spark Leap (Ex)",
-    "text": "A lightning elemental gains a +10 bonus on bull rush, disarm, overrun, and trip attacks when it charges a creature against whom its metal mastery ability applies.\nECOLOGY Environment any (Plane of Air) Organization solitary, pair, or gang (3–8) Treasure none Though most think of the Plane of Air as a vast expanse of clear sky, that plane also holds the power of the storm, including monstrous hurricanes larger than entire worlds and thunderstorms whose peals and claps can shatter stone. Whether lightning elementals are the by-product of common air elementals spending too much time near these electrically charged storms or are merely calved off like forgotten flurries, they are aggressive and almost suicidal in their willingness to leap into battle. They particularly enjoy attacking creatures that are made of metal and creatures that wear metal armor or wield metal weapons. Many lightning elementals have a roughly humanoid shape, but some prefer animalistic shapes (particularly birds and dragons), and a few appear to be nothing more than large disembodied heads made of dark clouds with flickering lightning tongues. Regardless of the shape a lightning elemental takes, the air around the creature hums and throbs with the promise of electrocution and the tangy stink of ozone. Section 15: Copyright Notice Pathfinder Roleplaying Game Bestiary 2, © 2010, Paizo Publishing, LLC; Authors Wolfgang Baur, Jason Bulmahn, Adam Daigle, Graeme Davis, Crystal Frasier, Joshua J. Frost, Tim Hitchcock, Brandon Hodge, James Jacobs, Steve Kenson, Hal MacLean, Martin Mason, Rob McCreary, Erik Mona, Jason Nelson, Patrick Renie, Sean K Reynolds, F. Wesley Schneider, Owen K.C. Stephens, James L. Sutter, Russ Taylor, and Greg A. Vaughan, based on material by Jonathan Tweet, Monte Cook, and Skip Williams."
+    "text": "A lightning elemental gains a +10 bonus on bull rush, disarm, overrun, and trip attacks when it charges a creature against whom its metal mastery ability applies."
    }
   ],
   "description": null
@@ -18691,7 +18835,7 @@
    },
    {
     "name": "Spark Leap (Ex)",
-    "text": "A lightning elemental gains a +10 bonus on bull rush, disarm, overrun, and trip attacks when it charges a creature against whom its metal mastery ability applies.\nECOLOGY Environment any (Plane of Air) Organization solitary, pair, or gang (3–8) Treasure none Though most think of the Plane of Air as a vast expanse of clear sky, that plane also holds the power of the storm, including monstrous hurricanes larger than entire worlds and thunderstorms whose peals and claps can shatter stone. Whether lightning elementals are the by-product of common air elementals spending too much time near these electrically charged storms or are merely calved off like forgotten flurries, they are aggressive and almost suicidal in their willingness to leap into battle. They particularly enjoy attacking creatures that are made of metal and creatures that wear metal armor or wield metal weapons. Many lightning elementals have a roughly humanoid shape, but some prefer animalistic shapes (particularly birds and dragons), and a few appear to be nothing more than large disembodied heads made of dark clouds with flickering lightning tongues. Regardless of the shape a lightning elemental takes, the air around the creature hums and throbs with the promise of electrocution and the tangy stink of ozone. Section 15: Copyright Notice Pathfinder Roleplaying Game Bestiary 2, © 2010, Paizo Publishing, LLC; Authors Wolfgang Baur, Jason Bulmahn, Adam Daigle, Graeme Davis, Crystal Frasier, Joshua J. Frost, Tim Hitchcock, Brandon Hodge, James Jacobs, Steve Kenson, Hal MacLean, Martin Mason, Rob McCreary, Erik Mona, Jason Nelson, Patrick Renie, Sean K Reynolds, F. Wesley Schneider, Owen K.C. Stephens, James L. Sutter, Russ Taylor, and Greg A. Vaughan, based on material by Jonathan Tweet, Monte Cook, and Skip Williams."
+    "text": "A lightning elemental gains a +10 bonus on bull rush, disarm, overrun, and trip attacks when it charges a creature against whom its metal mastery ability applies."
    }
   ],
   "description": null
@@ -28244,7 +28388,7 @@
    },
    {
     "name": "Spark Leap (Ex)",
-    "text": "A lightning elemental gains a +10 bonus on bull rush, disarm, overrun, and trip attacks when it charges a creature against whom its metal mastery ability applies.\nECOLOGY Environment any (Plane of Air) Organization solitary, pair, or gang (3–8) Treasure none Though most think of the Plane of Air as a vast expanse of clear sky, that plane also holds the power of the storm, including monstrous hurricanes larger than entire worlds and thunderstorms whose peals and claps can shatter stone. Whether lightning elementals are the by-product of common air elementals spending too much time near these electrically charged storms or are merely calved off like forgotten flurries, they are aggressive and almost suicidal in their willingness to leap into battle. They particularly enjoy attacking creatures that are made of metal and creatures that wear metal armor or wield metal weapons. Many lightning elementals have a roughly humanoid shape, but some prefer animalistic shapes (particularly birds and dragons), and a few appear to be nothing more than large disembodied heads made of dark clouds with flickering lightning tongues. Regardless of the shape a lightning elemental takes, the air around the creature hums and throbs with the promise of electrocution and the tangy stink of ozone. Section 15: Copyright Notice Pathfinder Roleplaying Game Bestiary 2, © 2010, Paizo Publishing, LLC; Authors Wolfgang Baur, Jason Bulmahn, Adam Daigle, Graeme Davis, Crystal Frasier, Joshua J. Frost, Tim Hitchcock, Brandon Hodge, James Jacobs, Steve Kenson, Hal MacLean, Martin Mason, Rob McCreary, Erik Mona, Jason Nelson, Patrick Renie, Sean K Reynolds, F. Wesley Schneider, Owen K.C. Stephens, James L. Sutter, Russ Taylor, and Greg A. Vaughan, based on material by Jonathan Tweet, Monte Cook, and Skip Williams."
+    "text": "A lightning elemental gains a +10 bonus on bull rush, disarm, overrun, and trip attacks when it charges a creature against whom its metal mastery ability applies."
    }
   ],
   "description": null
@@ -29594,10 +29738,6 @@
    {
     "name": "Starting Statistics",
     "text": "Size Small; Speed 30 ft., swim 30 ft.; AC +1 natural armor; Attack bite (1d6 plus grab); Ability Scores Str 13, Dex 17, Con 12, Int 2, Wis 12, Cha 6; Special Qualities low-light vision, scent\n7th-Level Advancement: Size Medium, AC +2 natural armor; Attack bite (1d8 plus grab and poison); Ability Scores Str +4, Dex –2, Con +4"
-   },
-   {
-    "name": "ECOLOGY",
-    "text": "Environment warm forests or plains Organization solitary, pair, or pack (3–8) Treasure none\nMonitor lizards are large enough to pose a threat to humans, and in some societies are often mistaken for dragons. Some can reach lengths of 10 feet or more and weights of 350 pounds."
    }
   ],
   "description": null
@@ -36911,7 +37051,7 @@
    },
    {
     "name": "Spark Leap (Ex)",
-    "text": "A lightning elemental gains a +10 bonus on bull rush, disarm, overrun, and trip attacks when it charges a creature against whom its metal mastery ability applies.\nECOLOGY Environment any (Plane of Air) Organization solitary, pair, or gang (3–8) Treasure none Though most think of the Plane of Air as a vast expanse of clear sky, that plane also holds the power of the storm, including monstrous hurricanes larger than entire worlds and thunderstorms whose peals and claps can shatter stone. Whether lightning elementals are the by-product of common air elementals spending too much time near these electrically charged storms or are merely calved off like forgotten flurries, they are aggressive and almost suicidal in their willingness to leap into battle. They particularly enjoy attacking creatures that are made of metal and creatures that wear metal armor or wield metal weapons. Many lightning elementals have a roughly humanoid shape, but some prefer animalistic shapes (particularly birds and dragons), and a few appear to be nothing more than large disembodied heads made of dark clouds with flickering lightning tongues. Regardless of the shape a lightning elemental takes, the air around the creature hums and throbs with the promise of electrocution and the tangy stink of ozone. Section 15: Copyright Notice Pathfinder Roleplaying Game Bestiary 2, © 2010, Paizo Publishing, LLC; Authors Wolfgang Baur, Jason Bulmahn, Adam Daigle, Graeme Davis, Crystal Frasier, Joshua J. Frost, Tim Hitchcock, Brandon Hodge, James Jacobs, Steve Kenson, Hal MacLean, Martin Mason, Rob McCreary, Erik Mona, Jason Nelson, Patrick Renie, Sean K Reynolds, F. Wesley Schneider, Owen K.C. Stephens, James L. Sutter, Russ Taylor, and Greg A. Vaughan, based on material by Jonathan Tweet, Monte Cook, and Skip Williams."
+    "text": "A lightning elemental gains a +10 bonus on bull rush, disarm, overrun, and trip attacks when it charges a creature against whom its metal mastery ability applies."
    }
   ],
   "description": null
@@ -39814,7 +39954,7 @@
   "special": [
    {
     "name": "Molten Body (Su)",
-    "text": "A thoqqua’s body is hot enough to melt stone. Anyone striking a thoqqua with a natural weapon or unarmed strike takes 1d6 points of fire damage. A creature that grapples a thoqqua or is grappled by one takes 3d6 points of fire damage each round the grapple persists. A creature that strikes a thoqqua with a manufactured weapon can attempt a DC 13 Reflex save to pull the weapon away from the creature’s molten body quickly enough to avoid having the weapon take 1d6 points of fire damage—damage caused to a weapon in this manner is not halved as is normal for damage caused to items, and ignores the first 5 points of hardness possessed by the item. As a result, most metal weapons can generally safely strike a thoqqua without taking much damage, but wooden weapons have a significant chance of burning away if used against one of these creatures. The save DC is Constitution-based. ECOLOGY Environment any land (Plane of Fire) Organization solitary or pair Treasure none Thoqquas are cantankerous creatures of fire and slag. Their bodies generate incredible heat that allows them to burrow or melt through most surfaces, even solid rock. Thoqquas are native to the vast ash deserts and lava fields where the Plane of Fire abuts the Plane of Earth. There they consume ore and minerals, which their furnace-like bodies then smelt into armor plates that grant the creatures their natural armor—as outsiders, these creatures have no need to eat to survive, but a “starving” thoqqua generally has a lower natural armor bonus than a healthy one. A thoqqua’s frontmost body segment tapers into a straight, horn-like beak that glows with a blistering heat. Steam and smoke constantly hiss from its joints, and from a distance a thoqqua can be mistaken for a strange metallic Construct. Adult thoqquas are 5 feet long and weigh 200 pounds. Their fiery tempers make thoqquas dangerous to approach—they attack without thinking when startled or frustrated. If a thoqqua does not immediately chase away humanoids within its territory, then it gradually comes to view that settlement as property, and even guards it. Mephits seem to understand the thoqqua thought process, and occasionally broker deals with the simple-minded worms. The mephits say that the mountain-sized ancestors of modern thoqquas were servants of the Elemental lords, and dug the first volcanoes in the young worlds of the Material Plane. These progenitor worms then retired to the worlds’ cores, where their heat warms the planets even today. Thoqquas on the Material Plane do indeed congregate around volcanoes—though whether this is to protect a mineral-rich food site or a sacred place is unknown."
+    "text": "A thoqqua’s body is hot enough to melt stone. Anyone striking a thoqqua with a natural weapon or unarmed strike takes 1d6 points of fire damage. A creature that grapples a thoqqua or is grappled by one takes 3d6 points of fire damage each round the grapple persists. A creature that strikes a thoqqua with a manufactured weapon can attempt a DC 13 Reflex save to pull the weapon away from the creature’s molten body quickly enough to avoid having the weapon take 1d6 points of fire damage—damage caused to a weapon in this manner is not halved as is normal for damage caused to items, and ignores the first 5 points of hardness possessed by the item. As a result, most metal weapons can generally safely strike a thoqqua without taking much damage, but wooden weapons have a significant chance of burning away if used against one of these creatures. The save DC is Constitution-based."
    }
   ],
   "description": null

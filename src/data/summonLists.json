@@ -5208,14 +5208,16 @@
           },
           {
             "name": "Brownie",
-            "url": "https://www.d20pfsrd.com/bestiary/monster-listings/fey/brownie/",
+            "url": "https://aonprd.com/MonsterDisplay.aspx?ItemName=Brownie",
             "templated": false,
             "presetTemplates": [],
             "subtypes": [],
             "alignment": "N",
             "source": null,
             "footnotes": [],
-            "creatureIds": []
+            "creatureIds": [
+              "brownie"
+            ]
           }
         ],
         "alternatives": []

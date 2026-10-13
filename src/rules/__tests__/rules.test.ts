@@ -207,8 +207,11 @@ describe('summon good/evil/neutral monster feats', () => {
     expect(sm(2, { alignment: 'NG', summonGoodMonster: true }).filter((c) => c.featList === 'good').map((c) => c.name)).toContain('Pseudodragon');
     // Selected, but a neutral good caster doesn't qualify for the evil list.
     expect(sm(2, { alignment: 'NG', summonEvilMonster: true }).some((c) => c.featList)).toBe(false);
-    // Brownie is on the list but d20pfsrd has no stat block for it.
-    expect(sm(2, { alignment: 'CN', summonNeutralMonster: true }).filter((c) => c.featList === 'neutral').map((c) => c.name)).toEqual(['Atomie', 'Brownie']);
+    const neutral = sm(2, { alignment: 'CN', summonNeutralMonster: true }).filter((c) => c.featList === 'neutral');
+    expect(neutral.map((c) => c.name)).toEqual(['Atomie', 'Brownie']);
+    // d20pfsrd only has a brownie variant; the stat block comes from Archives of Nethys.
+    expect(neutral[1].creature?.url).toMatch(/aonprd\.com/);
+    expect(neutral[1].creature?.cr).toBe('1');
   });
   it('good list: celestial preset, listed alignment and Diehard', () => {
     const s = { ...settings, alignment: 'LG' as const, summonGoodMonster: true };

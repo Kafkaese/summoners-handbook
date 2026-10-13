@@ -53,7 +53,8 @@ const SKIP_SELECTOR = '#toc_container, .ogn-npa, .page-widget, .breadcrumbs, .og
 /** Flattens article content into a list of blocks ({ tag, cls, text, level }). */
 function linearize($, root) {
   const blocks = [];
-  const hasBlockChild = (el) => $(el).children().get().some((c) => BLOCK_TAGS.has(c.tagName?.toLowerCase()));
+  // Block content anywhere inside, e.g. a <td> holding a <span> holding headings.
+  const hasBlockChild = (el) => $(el).find('p, div, ul, ol, li, h1, h2, h3, h4, h5, h6, table, thead, tbody, tr, td, th').length > 0;
   const push = (tag, cls, nodes) => {
     const wrapper = $('<p></p>');
     for (const n of nodes) wrapper.append($(n).clone());
@@ -74,7 +75,14 @@ function linearize($, root) {
         const tag = child.tagName.toLowerCase();
         const $c = $(child);
         if (SKIP_TAGS.has(tag) || $c.is(SKIP_SELECTOR)) return;
-        if (!BLOCK_TAGS.has(tag)) return void inline.push(child);
+        if (!BLOCK_TAGS.has(tag)) {
+          // An inline wrapper around block content (Archives of Nethys wraps the stat block in a <span>).
+          if (hasBlockChild(child)) {
+            flush();
+            return void walk(child);
+          }
+          return void inline.push(child);
+        }
         flush();
         if (tag === 'li') return void push('li', '', [child]);
         // A table row "Lyrakien | CR 2" is a stat block title.
@@ -180,14 +188,16 @@ function parseStatblock(blocks, start) {
   for (; i < blocks.length; i++) {
     const b = blocks[i];
     if (isTitleBlock(b)) break;
-    if (/^h[1-3]$/.test(b.tag)) break;
+    // Section headings (Archives of Nethys uses <h3>Defense</h3>) come before the heading check.
     const div = dividerName(b);
+    if (!div && /^h[1-3]$/.test(b.tag)) break;
     if (div) {
       if (div === 'ecology') break;
       section = div;
       lastField = null;
       continue;
     }
+    if (/^h[1-3]$/.test(b.tag)) break;
     const plain = stripMarks(b.text);
     if (!plain) continue;
     if (/\bdescription\b/.test(b.cls) && section === 'intro' && !sb.description) {
@@ -243,6 +253,8 @@ function parseStatblock(blocks, start) {
           sb.xp = clean(f.label.replace(/^XP/, '') + ' ' + f.value);
           continue;
         }
+        // Archives of Nethys puts "Source Bestiary 2 pg. 49" in the stat block.
+        if (section === 'intro' && f.label === 'Source') continue;
         sb.sections[section].push(f);
         lastField = f;
       }
@@ -400,11 +412,12 @@ function statblocksIn($, root) {
 
 export function parsePage(html, url) {
   const $ = cheerio.load(html);
-  const title = clean($('h1').first().text());
+  // d20pfsrd content, or the stat block on an Archives of Nethys page.
+  const root = $('#article-content').length ? $('#article-content') : $('article').length ? $('article') : $('#MainContent_DataListFeats');
+  const title = clean(root.find('h1').first().text() || $('h1').first().text());
   // Some pages close #article-content early (a stray </div>); then read the whole article.
-  const fromContent = statblocksIn($, $('#article-content').length ? $('#article-content') : $('article'));
+  const fromContent = statblocksIn($, root);
   const statblocks = fromContent.length ? fromContent : statblocksIn($, $('article'));
-  const root = $('#article-content').length ? $('#article-content') : $('article');
   const text = root.text();
   const sourceMatch = text.match(/Source\s*:?\s*((?:PZO|Pathfinder|PRG|PF)[^\n]{0,120})/);
   const childPages = $('.ogn-childpages a')
