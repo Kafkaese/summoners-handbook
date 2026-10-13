@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { type Alignment, ALIGNMENT_NAMES, ALIGNMENTS, qualifiesForFeat, TEMPLATE_RULES, type TemplateRule, withinOneStep } from '../rules/alignment';
 import { CLASSES, classById } from '../rules/classes';
-import { castsNaturesAlly, FEAT_LISTS, LIGHT_FEATS } from '../rules/summon';
+import { castsNaturesAlly, castsSummonMonster, FEAT_LISTS, LIGHT_FEATS } from '../rules/summon';
+import { VERSATILE_IDS, VERSATILE_TEMPLATES, type VersatileTemplateId } from '../rules/versatile';
 import { Collapsible } from './Collapsible';
 import type { Settings } from '../rules/summon';
 
@@ -29,7 +30,7 @@ export function SettingsPanel({ settings, onChange, characterOnly = false }: Pro
   const set = <K extends keyof Settings>(key: K, value: Settings[K]) => onChange({ ...settings, [key]: value });
   const cls = classById(settings.classId);
   // Only summon monster applies alignment templates.
-  const hasSummonMonster = cls.summonSla || cls.access.some((a) => a.spell === 'summon-monster');
+  const hasSummonMonster = castsSummonMonster(cls);
   const usesTemplates = !characterOnly && hasSummonMonster;
   // Summon Good/Evil/Neutral Monster: only for summon monster casters whose alignment qualifies.
   const summonFeats = hasSummonMonster ? FEAT_LISTS.filter((f) => qualifiesForFeat(f.id, settings.alignment)) : [];
@@ -40,7 +41,11 @@ export function SettingsPanel({ settings, onChange, characterOnly = false }: Pro
     settings.includeAlternatives,
     ...summonFeats.map((f) => settings[f.setting]),
     ...lightFeats.map((f) => settings[f.setting]),
+    hasSummonMonster && settings.versatileSummonMonster,
   ].filter(Boolean).length;
+  const picked = settings.versatileTemplates;
+  const toggleVersatile = (id: VersatileTemplateId, on: boolean) =>
+    set('versatileTemplates', on ? VERSATILE_IDS.filter((t) => t === id || picked.includes(t)) : picked.filter((t) => t !== id));
 
   return (
     <section className={`card settings ${open ? 'is-open' : ''}`}>
@@ -151,6 +156,32 @@ export function SettingsPanel({ settings, onChange, characterOnly = false }: Pro
                   </span>
                 </label>
               ))}
+              {hasSummonMonster && (
+                <div className="toggle-group">
+                  <label className="toggle">
+                    <input type="checkbox" checked={settings.versatileSummonMonster} onChange={(e) => set('versatileSummonMonster', e.target.checked)} />
+                    <span>
+                      Versatile Summon Monster <small>other templates instead of celestial, fiendish, entropic or resolute</small>
+                    </span>
+                  </label>
+                  {settings.versatileSummonMonster && (
+                    <fieldset className="sub-toggles">
+                      <legend>
+                        Templates picked <small>two each time you take the feat{picked.length ? ` · ${picked.length} picked` : ''}</small>
+                      </legend>
+                      {VERSATILE_IDS.map((id) => (
+                        <label key={id} className="toggle">
+                          <input type="checkbox" checked={picked.includes(id)} onChange={(e) => toggleVersatile(id, e.target.checked)} />
+                          <span>
+                            {VERSATILE_TEMPLATES[id].name} <small>{VERSATILE_TEMPLATES[id].benefit}</small>
+                          </span>
+                        </label>
+                      ))}
+                      {picked.length % 2 === 1 && <small className="field-hint">The feat gives templates in pairs; pick one more.</small>}
+                    </fieldset>
+                  )}
+                </div>
+              )}
               <label className="toggle">
                 <input type="checkbox" checked={settings.includeAlternatives} onChange={(e) => set('includeAlternatives', e.target.checked)} />
                 <span>

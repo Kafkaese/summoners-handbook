@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ALIGNMENTS, TEMPLATE_RULES } from './rules/alignment';
 import { CLASSES } from './rules/classes';
 import type { Settings } from './rules/summon';
+import { isVersatile } from './rules/versatile';
 
 const KEY = 'pf1e-summoner.settings';
 
@@ -19,6 +20,8 @@ export const DEFAULT_SETTINGS: Settings = {
   summonNeutralMonster: false,
   sunlightSummons: false,
   moonlightSummons: false,
+  versatileSummonMonster: false,
+  versatileTemplates: [],
 };
 
 function load(): Settings {
@@ -30,6 +33,7 @@ function load(): Settings {
     if (!TEMPLATE_RULES.some((r) => r.id === s.templateRule)) s.templateRule = DEFAULT_SETTINGS.templateRule;
     if (!ALIGNMENTS.includes(s.alignment)) s.alignment = DEFAULT_SETTINGS.alignment;
     if (!ALIGNMENTS.includes(s.deityAlignment)) s.deityAlignment = s.alignment;
+    s.versatileTemplates = Array.isArray(s.versatileTemplates) ? [...new Set(s.versatileTemplates.filter(isVersatile))] : [];
     s.level = Math.min(20, Math.max(1, Math.round(Number(s.level)) || 1));
     return s;
   } catch {

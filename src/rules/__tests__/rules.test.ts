@@ -19,6 +19,8 @@ const settings: Settings = {
   summonNeutralMonster: false,
   sunlightSummons: false,
   moonlightSummons: false,
+  versatileSummonMonster: false,
+  versatileTemplates: [],
 };
 
 function build(spell: SpellKey, level: number, name: string, opts: Partial<Settings> = {}, template: Parameters<typeof buildCreature>[1] = null) {
@@ -266,5 +268,66 @@ describe('sunlight and moonlight summons', () => {
     const wizard = { ...settings, moonlightSummons: true };
     const dog = choicesFor('summon-monster', 1, classById('wizard'), wizard).find((c) => c.name === 'Dog')!;
     expect(getValue(buildCreature(dog, 'celestial', wizard)!, 'Immune')).toBeNull();
+  });
+});
+
+describe('versatile summon monster', () => {
+  const s = { ...settings, level: 17, versatileSummonMonster: true, versatileTemplates: ['aerial', 'fiery', 'primordial', 'dark'] as Settings['versatileTemplates'] };
+  const sm = (level: number, name: string, opts: Partial<Settings> = {}) =>
+    choicesFor('summon-monster', level, classById('wizard'), { ...s, ...opts }).find((c) => c.name.startsWith(name))!;
+  it('offers the picked templates next to the alignment ones, only with the feat', () => {
+    expect(sm(2, 'Wolf').templateOptions).toEqual(['celestial', 'aerial', 'fiery', 'primordial', 'dark']);
+    expect(sm(2, 'Wolf', { versatileSummonMonster: false }).templateOptions).toEqual(['celestial']);
+  });
+  it("leaves out fiery for creatures with a swim speed, and explains why", () => {
+    const dolphin = sm(1, 'Dolphin');
+    expect(dolphin.templateOptions).not.toContain('fiery');
+    expect(dolphin.excludedTemplates.map((x) => x.message)).toEqual(["No fiery template: creatures with a swim speed can't be fiery."]);
+  });
+  it('applies aerial by Hit Dice: DR, resistance, perfect fly speed and electricity damage', () => {
+    const lion = buildCreature(sm(5, 'Dire lion'), 'aerial', s)!;
+    expect(lion.name).toBe('Aerial dire lion');
+    expect(lion.cr).toBe('6');
+    expect(lion.typeLine).toMatch(/\(air\)$/);
+    expect(getValue(lion, 'DR')).toBe('3/—');
+    expect(getValue(lion, 'Resist')).toBe('electricity 15');
+    expect(getValue(lion, 'Speed')).toBe('40 ft., fly 40 ft. (perfect)');
+    expect(getValue(lion, 'Melee')).toBe('bite +12 (1d8+7 plus 1d6 electricity plus grab), 2 claws +13 (1d6+7 plus 1d6 electricity)');
+  });
+  it('keeps the critical range with the weapon damage', () => {
+    const rex = buildCreature(sm(7, 'Tyrannosaurus'), 'fiery', s)!;
+    expect(getValue(rex, 'Melee')).toBe('bite +20 (4d6+22/19–20 plus 3d6 fire plus grab)');
+    expect(getValue(rex, 'Immune')).toMatch(/fire/);
+    expect(getValue(rex, 'Weaknesses')).toMatch(/vulnerability to cold/);
+  });
+  it('primordial: faster, bigger bite, SR and spell-like abilities by Hit Dice', () => {
+    const rex = buildCreature(sm(7, 'Tyrannosaurus'), 'primordial', s)!;
+    expect(getValue(rex, 'Speed')).toBe('50 ft.');
+    expect(getValue(rex, 'Melee')).toBe('bite +20 (6d6+22/19–20 plus grab)');
+    expect(getValue(rex, 'DR')).toBe('10/cold iron');
+    expect(getValue(rex, 'SR')).toBe('16');
+    expect(rex.sections.offense.find((f) => f.label === 'Spell-Like Abilities')!.lines).toEqual(['1/day—dancing lights, faerie fire, lesser confusion (DC 11)']);
+  });
+  it('dark: low-light vision, DR/magic, SR and shadow blend', () => {
+    const wolf = buildCreature(sm(2, 'Wolf'), 'dark', s)!;
+    expect(getValue(wolf, 'Senses')).toBe('darkvision 60 ft., low-light vision, scent');
+    expect(getValue(wolf, 'Resist')).toBe('cold 5, electricity 5');
+    expect(getValue(wolf, 'SR')).toBe('6');
+    expect(wolf.special.some((x) => x.name === 'Shadow Blend (Su)')).toBe(true);
+  });
+  it('can replace the preset template of a Summon Good Monster creature', () => {
+    const opts = { summonGoodMonster: true };
+    const choice = choicesFor('summon-monster', 2, classById('wizard'), { ...s, ...opts }).find((c) => c.featList === 'good' && /wolf/i.test(c.name))!;
+    expect(choice.templateOptions[0]).toBe('celestial');
+    expect(buildCreature(choice, 'celestial', { ...s, ...opts })!.name).toBe('Celestial wolf');
+    expect(buildCreature(choice, 'aerial', { ...s, ...opts })!.name).toBe('Aerial wolf');
+  });
+  it('gives clerics a template when their alignment rules out the alignment ones', () => {
+    // A good cleric of an evil deity can't use the celestial template.
+    const cleric = { ...s, classId: 'cleric', alignment: 'NG' as const, deityAlignment: 'NE' as const };
+    const wolf = (opts: Partial<Settings>) => choicesFor('summon-monster', 2, classById('cleric'), { ...cleric, ...opts }).find((c) => c.name === 'Wolf')!;
+    expect(wolf({ versatileSummonMonster: false }).blocked).not.toBeNull();
+    expect(wolf({}).blocked).toBeNull();
+    expect(wolf({}).templateOptions).toEqual(['aerial', 'fiery', 'primordial', 'dark']);
   });
 });

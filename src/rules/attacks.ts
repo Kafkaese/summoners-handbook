@@ -46,7 +46,7 @@ export function parseAttack(s: string): ParsedAttack | null {
   };
 }
 
-const formatAttack = (a: ParsedAttack) =>
+export const formatAttack = (a: ParsedAttack) =>
   `${a.prefix} ${a.bonuses.map(fmtMod).join('/')}${a.middle}(${a.damage})${a.suffix}`;
 
 const DAMAGE_RE = /^(\d+d\d+)(?:\s*([+\-–−])\s*(\d+))?/;

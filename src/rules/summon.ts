@@ -4,7 +4,8 @@ import { ALIGNMENT_NAMES, type Alignment, allowedTemplates, hasAlignmentSubtype,
 import { applyAugmentSummoning } from './augment';
 import { bumpLeading, getValue, setOrAddField, setValue } from './fields';
 import { type ClassDef, classById, listName, spellTitle, type SummonOption } from './classes';
-import { applyTemplate, type TemplateId } from './templates';
+import { applyTemplate, type AlignmentTemplateId, TEMPLATES, type TemplateId } from './templates';
+import { applyVersatileTemplate, isVersatile, VERSATILE_TEMPLATES, type VersatileTemplateId, versatileIneligibility } from './versatile';
 import type { BuiltCreature, Creature, FeatList, ListEntry, SpellKey, SummonLists } from './types';
 
 export const CREATURES = creaturesJson as unknown as Record<string, Creature>;
@@ -25,7 +26,12 @@ export interface Settings {
   summonNeutralMonster: boolean;
   sunlightSummons: boolean;
   moonlightSummons: boolean;
+  versatileSummonMonster: boolean;
+  /** The templates picked with Versatile Summon Monster (two each time it's taken). */
+  versatileTemplates: VersatileTemplateId[];
 }
+
+export const castsSummonMonster = (cls: ClassDef) => !!cls.summonSla || cls.access.some((a) => a.spell === 'summon-monster');
 
 /** Sunlight and Moonlight Summons (Ultimate Magic): require being able to cast summon nature's ally. */
 export const LIGHT_FEATS = [
@@ -108,8 +114,11 @@ export interface CreatureChoice {
   /** Templates the caster may choose from; empty when the creature isn't templated. */
   templateOptions: TemplateId[];
   presetTemplates: string[];
-  /** Templates removed because the caster's or deity's alignment opposes them; `reason` is a short clause. */
-  excludedTemplates: { template: TemplateId; reason: string }[];
+  /**
+   * Templates that can't be used: opposed by the caster's or deity's alignment
+   * (`reason` is a short clause), or not allowed for this creature. `message` explains it.
+   */
+  excludedTemplates: { template: TemplateId; reason: string; message: string }[];
   descriptors: string[];
   /** Reason the caster can't summon it, if any. */
   blocked: string | null;
@@ -168,12 +177,24 @@ export function choicesFor(spell: SpellKey, listLevel: number, cls: ClassDef, se
       const templateOptions: TemplateId[] = [];
       const excludedTemplates: CreatureChoice['excludedTemplates'] = [];
       // Summon Neutral Monster: the counterpoised template instead of celestial or fiendish.
-      const options = templated ? [...allowedTemplates(settings.alignment, settings.templateRule), ...(feats.includes('neutral') ? (['counterpoised'] as TemplateId[]) : [])] : [];
+      const options: TemplateId[] = templated ? [...allowedTemplates(settings.alignment, settings.templateRule), ...(feats.includes('neutral') ? (['counterpoised'] as const) : [])] : [];
       for (const t of options) {
         const reason = restriction.conflicts([TEMPLATE_ALIGNMENT[t]]);
-        if (reason) excludedTemplates.push({ template: t, reason });
+        if (reason) excludedTemplates.push({ template: t, reason, message: `No ${TEMPLATES[t as AlignmentTemplateId].name.toLowerCase()} template: it makes the spell ${TEMPLATE_ALIGNMENT[t]}, and ${reason}.` });
         else templateOptions.push(t);
       }
+      // Versatile Summon Monster: the chosen templates can replace a celestial, entropic, fiendish or resolute one.
+      const preset = e.presetTemplates.find((t): t is AlignmentTemplateId => t in TEMPLATES);
+      const versatile = spell === 'summon-monster' && settings.versatileSummonMonster && castsSummonMonster(cls) ? settings.versatileTemplates : [];
+      if (creature && versatile.length && (templated || preset)) {
+        if (preset) templateOptions.push(preset);
+        for (const t of versatile) {
+          const why = versatileIneligibility(t, creature, subtypes);
+          if (why) excludedTemplates.push({ template: t, reason: why, message: `No ${VERSATILE_TEMPLATES[t].name.toLowerCase()} template: ${why}.` });
+          else templateOptions.push(t);
+        }
+      }
+      const alignmentExcluded = excludedTemplates.filter((x) => TEMPLATE_ALIGNMENT[x.template]);
       // Summon giant ally works like summon nature's ally.
       const naturesAlly = spell === 'summon-natures-ally' || spell === 'summon-giant-ally';
       const matches = templated || (naturesAlly && !hasAlignmentSubtype(subtypes));
@@ -192,8 +213,8 @@ export function choicesFor(spell: SpellKey, listLevel: number, cls: ClassDef, se
         descriptors,
         blocked: opposed.length
           ? restriction.reason(descriptors)
-          : templated && !templateOptions.length && excludedTemplates.length
-            ? restriction.reason(excludedTemplates.map((x) => TEMPLATE_ALIGNMENT[x.template]))
+          : templated && !templateOptions.length && alignmentExcluded.length
+            ? restriction.reason(alignmentExcluded.map((x) => TEMPLATE_ALIGNMENT[x.template]))
             : null,
         matchesCasterAlignment: matches,
       });
@@ -225,11 +246,13 @@ export function buildCreature(choice: CreatureChoice, template: TemplateId | nul
     c.alignment = choice.entry.alignment;
   }
 
-  const preset = choice.presetTemplates.find((t): t is TemplateId => t in TEMPLATE_IDS);
-  const applied = preset ?? template;
+  const preset = choice.presetTemplates.find((t): t is AlignmentTemplateId => t in TEMPLATES);
+  // A chosen template (Versatile Summon Monster) can replace a preset one.
+  const applied = template && (!preset || choice.templateOptions.includes(template)) ? template : preset ?? null;
   // "Celestial wolf" on a feat list: the template adds the prefix itself.
   if (preset && c.name.toLowerCase().startsWith(`${preset} `)) c.name = capitalize(c.name.slice(preset.length + 1));
-  if (applied) applyTemplate(c, applied);
+  if (applied && isVersatile(applied)) applyVersatileTemplate(c, applied);
+  else if (applied) applyTemplate(c, applied);
 
   if (choice.featList === 'good') {
     const feats = getValue(c, 'Feats');
@@ -261,8 +284,6 @@ export function buildCreature(choice: CreatureChoice, template: TemplateId | nul
   if (choice.creature.note) c.notes.push(choice.creature.note);
   return c;
 }
-
-const TEMPLATE_IDS: Record<TemplateId, true> = { celestial: true, fiendish: true, entropic: true, resolute: true, counterpoised: true };
 
 export function optionTitle(option: SummonOption) {
   return spellTitle(option.spell, option.level) + (option.sla ? ' (SLA)' : '');

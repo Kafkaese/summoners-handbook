@@ -1,7 +1,7 @@
-import { TEMPLATE_ALIGNMENT, TEMPLATE_RULES } from '../rules/alignment';
+import { TEMPLATE_RULES } from '../rules/alignment';
 import type { Settings, CountGroup, CreatureChoice } from '../rules/summon';
 import { buildCreature } from '../rules/summon';
-import { TEMPLATES, type TemplateId } from '../rules/templates';
+import { templateName, type TemplateId } from '../rules/templates';
 import { restrictionsOf } from '../rules/restrictions';
 import { StatBlock } from './StatBlock';
 
@@ -46,13 +46,13 @@ export function SummonDetail({ choice, group, duration, template, onTemplate, se
             <div className="chips" role="radiogroup" aria-label="Template">
               {choice.templateOptions.map((t) => (
                 <button key={t} role="radio" aria-checked={template === t} className={`chip ${template === t ? 'is-active' : ''}`} onClick={() => onTemplate(t)}>
-                  {TEMPLATES[t].name}
+                  {templateName(t)}
                 </button>
               ))}
             </div>
             {choice.excludedTemplates.map((x) => (
               <p key={x.template} className="hint">
-                No {TEMPLATES[x.template].name.toLowerCase()} template: it makes the spell {TEMPLATE_ALIGNMENT[x.template]}, and {x.reason}.
+                {x.message}
               </p>
             ))}
             <p className="hint">{TEMPLATE_RULES.find((r) => r.id === settings.templateRule)?.description} Change this under Character.</p>

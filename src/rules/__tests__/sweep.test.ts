@@ -1,6 +1,7 @@
 import { expect, it } from 'vitest';
 import { classById } from '../classes';
 import { buildCreature, choicesFor, LISTS, type Settings } from '../summon';
+import { VERSATILE_IDS } from '../versatile';
 
 it('builds every creature with each template, Augment Summoning and the feat lists', () => {
   let built = 0;
@@ -20,6 +21,8 @@ it('builds every creature with each template, Augment Summoning and the feat lis
       summonNeutralMonster: true,
       sunlightSummons: true,
       moonlightSummons: true,
+      versatileSummonMonster: true,
+      versatileTemplates: [...VERSATILE_IDS],
     };
     for (const spell of Object.keys(LISTS.spells) as (keyof typeof LISTS.spells)[]) {
       for (let level = 1; level <= 9; level++) {

@@ -1,11 +1,14 @@
 // The simple templates applied by summon monster (Bestiary 1 and 2).
 import { abilityMod, abilityScore, crString, crValue, findField, getValue, hitDice, parseNum, setOrAddField, setValue, xpForCr } from './fields';
 import type { BuiltCreature } from './types';
+import { VERSATILE_TEMPLATES, type VersatileTemplateId } from './versatile';
 
-export type TemplateId = 'celestial' | 'fiendish' | 'entropic' | 'resolute' | 'counterpoised';
+export type AlignmentTemplateId = 'celestial' | 'fiendish' | 'entropic' | 'resolute' | 'counterpoised';
+/** Any template a summon monster creature can take, including Versatile Summon Monster's. */
+export type TemplateId = AlignmentTemplateId | VersatileTemplateId;
 
 interface TemplateDef {
-  id: TemplateId;
+  id: AlignmentTemplateId;
   name: string;
   energies: string[];
   drType: string;
@@ -16,7 +19,7 @@ interface TemplateDef {
 
 const BASE = 'https://www.d20pfsrd.com/bestiary/monster-listings/templates/';
 
-export const TEMPLATES: Record<TemplateId, TemplateDef> = {
+export const TEMPLATES: Record<AlignmentTemplateId, TemplateDef> = {
   celestial: {
     id: 'celestial',
     name: 'Celestial',
@@ -64,6 +67,8 @@ export const TEMPLATES: Record<TemplateId, TemplateDef> = {
   },
 };
 
+export const templateName = (id: TemplateId) => (id in TEMPLATES ? TEMPLATES[id as AlignmentTemplateId] : VERSATILE_TEMPLATES[id as VersatileTemplateId]).name;
+
 const SMITE_TARGET = { evil: 'evil', good: 'good', law: 'lawful', chaos: 'chaotic', bias: 'chaotic evil, chaotic good, lawful evil or lawful good' } as const;
 
 /** Defenses by Hit Dice: 1–4, 5–10, 11+. */
@@ -73,7 +78,7 @@ function defensesFor(hd: number) {
   return { resist: 5, dr: 0 };
 }
 
-function addDarkvision(c: BuiltCreature) {
+export function addDarkvision(c: BuiltCreature) {
   const senses = getValue(c, 'Senses');
   if (senses === null) {
     setOrAddField(c, 'intro', 'Senses', 'darkvision 60 ft.', ['Init']);
@@ -84,7 +89,7 @@ function addDarkvision(c: BuiltCreature) {
   setValue(c, 'Senses', dv ? senses.replace(dv[0], 'darkvision 60 ft.') : `darkvision 60 ft., ${senses}`);
 }
 
-function mergeResist(c: BuiltCreature, energies: string[], amount: number) {
+export function mergeResist(c: BuiltCreature, energies: string[], amount: number) {
   const immune = (getValue(c, 'Immune') ?? '').toLowerCase();
   const current = getValue(c, 'Resist');
   const entries = new Map<string, string>();
@@ -102,39 +107,51 @@ function mergeResist(c: BuiltCreature, energies: string[], amount: number) {
   if (value) setOrAddField(c, 'defense', 'Resist', value, ['Immune', 'DR', 'Defensive Abilities', 'Will']);
 }
 
-function addDr(c: BuiltCreature, amount: number, type: string) {
+export function addDr(c: BuiltCreature, amount: number, type: string) {
   if (!amount) return;
   const current = getValue(c, 'DR');
   if (!current) {
     setOrAddField(c, 'defense', 'DR', `${amount}/${type}`, ['Defensive Abilities', 'Will']);
     return;
   }
-  const same = current.match(new RegExp(`(\\d+)/${type}\\b`));
+  // Not \b: "—" isn't a word character.
+  const same = current.match(new RegExp(`(\\d+)/${type}(?![a-z])`, 'i'));
   if (same && Number(same[1]) >= amount) return;
   setValue(c, 'DR', same ? current.replace(same[0], `${amount}/${type}`) : `${current}, ${amount}/${type}`);
 }
 
-export function applyTemplate(c: BuiltCreature, id: TemplateId) {
+/** "Celestial wolf": prefixes the template name. */
+export function prefixName(c: BuiltCreature, name: string) {
+  c.name = `${name} ${c.name.charAt(0).toLowerCase()}${c.name.slice(1)}`;
+}
+
+/** These simple templates add +1 CR only to creatures with 5 or more HD. */
+export function bumpCrForHd(c: BuiltCreature, hd: number) {
+  if (hd < 5) return;
+  const cr = crString(crValue(c.cr) + 1);
+  c.changed.set('cr', c.cr ?? '');
+  c.cr = cr;
+  c.xp = xpForCr(cr) ?? c.xp;
+}
+
+/** Sets SR to `sr` unless the creature already has better. */
+export function raiseSr(c: BuiltCreature, sr: number) {
+  const currentSr = parseNum(getValue(c, 'SR') ?? '');
+  if (currentSr === null || currentSr < sr) setOrAddField(c, 'defense', 'SR', String(sr), ['Resist', 'Immune', 'DR', 'Will']);
+}
+
+export function applyTemplate(c: BuiltCreature, id: AlignmentTemplateId) {
   const t = TEMPLATES[id];
   const hd = hitDice(c);
-  c.name = `${t.name} ${c.name.charAt(0).toLowerCase()}${c.name.slice(1)}`;
-
-  const baseCr = crValue(c.cr);
-  if (hd >= 5) {
-    const cr = crString(baseCr + 1);
-    c.changed.set('cr', c.cr ?? '');
-    c.cr = cr;
-    c.xp = xpForCr(cr) ?? c.xp;
-  }
+  prefixName(c, t.name);
+  bumpCrForHd(c, hd);
 
   addDarkvision(c);
   const { resist, dr } = defensesFor(hd);
   addDr(c, dr, t.drType);
   mergeResist(c, t.energies, resist);
 
-  const sr = Math.floor(crValue(c.cr)) + 5;
-  const currentSr = parseNum(getValue(c, 'SR') ?? '');
-  if (currentSr === null || currentSr < sr) setOrAddField(c, 'defense', 'SR', String(sr), ['Resist', 'Immune', 'DR', 'Will']);
+  raiseSr(c, Math.floor(crValue(c.cr)) + 5);
 
   const smite = `smite ${t.smite} (1/day)`;
   const sa = findField(c, 'Special Attacks');
