@@ -74,6 +74,7 @@ export function CreatureList({ spell, title, groups, groupIndex, onGroup, choice
                     <span className="creature-name">
                       {c.name}
                       {c.alternative && <span className="badge alt">{c.entry.source}</span>}
+                      {c.featList && <span className={`badge feat feat-${c.featList}`}>{c.featList} list</span>}
                     </span>
                     <span className="creature-meta">
                       <span className="cr">CR {displayCr(c)}</span>

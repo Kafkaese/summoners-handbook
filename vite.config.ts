@@ -8,6 +8,6 @@ export default defineConfig({
   // passes the path in. Locally the app is served from the root.
   base: process.env.BASE_PATH ?? '/',
   server: { host: true },
-  // The bundled creature data is ~700 kB; fine for a local app.
-  build: { chunkSizeWarningLimit: 1000 },
+  // The bundled summon creature data is ~1 MB (about 250 kB gzipped).
+  build: { chunkSizeWarningLimit: 1500 },
 })

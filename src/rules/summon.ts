@@ -1,10 +1,11 @@
 import creaturesJson from '../data/creatures.json';
 import listsJson from '../data/summonLists.json';
-import { ALIGNMENT_NAMES, type Alignment, allowedTemplates, hasAlignmentSubtype, opposedDescriptors, spellDescriptors, TEMPLATE_ALIGNMENT, type TemplateRule } from './alignment';
+import { ALIGNMENT_NAMES, type Alignment, allowedTemplates, hasAlignmentSubtype, opposedDescriptors, qualifiesForFeat, spellDescriptors, TEMPLATE_ALIGNMENT, type TemplateRule } from './alignment';
 import { applyAugmentSummoning } from './augment';
+import { bumpLeading, getValue, setOrAddField, setValue } from './fields';
 import { type ClassDef, listName, spellTitle, type SummonOption } from './classes';
 import { applyTemplate, type TemplateId } from './templates';
-import type { BuiltCreature, Creature, ListEntry, SpellKey, SummonLists } from './types';
+import type { BuiltCreature, Creature, FeatList, ListEntry, SpellKey, SummonLists } from './types';
 
 export const CREATURES = creaturesJson as unknown as Record<string, Creature>;
 export const LISTS = listsJson as unknown as SummonLists;
@@ -19,7 +20,19 @@ export interface Settings {
   templateRule: TemplateRule;
   /** For clerics and warpriests: their deity's alignment also restricts spells. */
   deityAlignment: Alignment;
+  summonGoodMonster: boolean;
+  summonEvilMonster: boolean;
+  summonNeutralMonster: boolean;
 }
+
+export const FEAT_LISTS: { id: FeatList; setting: 'summonGoodMonster' | 'summonEvilMonster' | 'summonNeutralMonster'; name: string; benefit: string; requires: string }[] = [
+  { id: 'good', setting: 'summonGoodMonster', name: 'Summon Good Monster', benefit: 'extra list; its creatures gain Diehard', requires: 'good alignment' },
+  { id: 'evil', setting: 'summonEvilMonster', name: 'Summon Evil Monster', benefit: 'extra list; cast as a standard action', requires: 'evil alignment' },
+  { id: 'neutral', setting: 'summonNeutralMonster', name: 'Summon Neutral Monster', benefit: 'extra list and the counterpoised template; +2 Will', requires: 'LN, N or CN alignment' },
+];
+
+/** The summon feats whose lists the caster can use (selected and alignment allows). */
+export const activeFeatLists = (settings: Settings) => FEAT_LISTS.filter((f) => settings[f.setting] && qualifiesForFeat(f.id, settings.alignment)).map((f) => f.id);
 
 export interface CountGroup {
   /** List level the creatures come from. */
@@ -60,6 +73,8 @@ export interface CreatureChoice {
   key: string;
   spell: SpellKey;
   entry: ListEntry;
+  /** Set for creatures from a Summon Good/Evil/Neutral Monster list. */
+  featList: FeatList | null;
   listLevel: number;
   alternative: boolean;
   creature: Creature | null;
@@ -107,13 +122,15 @@ function alignmentRestriction(cls: ClassDef, settings: Settings) {
 export function choicesFor(spell: SpellKey, listLevel: number, cls: ClassDef, settings: Settings): CreatureChoice[] {
   const level = LISTS.spells[spell][String(listLevel)];
   if (!level) return [];
-  const entries = [
-    ...level.standard.map((e) => ({ e, alternative: false })),
-    ...(settings.includeAlternatives ? level.alternatives.map((e) => ({ e, alternative: true })) : []),
+  const feats = spell === 'summon-monster' ? activeFeatLists(settings) : [];
+  const entries: { e: ListEntry; alternative: boolean; featList: FeatList | null }[] = [
+    ...level.standard.map((e) => ({ e, alternative: false, featList: null })),
+    ...(settings.includeAlternatives ? level.alternatives.map((e) => ({ e, alternative: true, featList: null })) : []),
+    ...feats.flatMap((f) => (LISTS.featLists?.[f]?.[String(listLevel)]?.standard ?? []).map((e) => ({ e, alternative: false, featList: f }))),
   ];
   const restriction = alignmentRestriction(cls, settings);
   const out: CreatureChoice[] = [];
-  for (const { e, alternative } of entries) {
+  for (const { e, alternative, featList } of entries) {
     const ids = e.creatureIds.length ? e.creatureIds : [null];
     for (const id of ids) {
       const creature = id ? CREATURES[id] : null;
@@ -124,7 +141,9 @@ export function choicesFor(spell: SpellKey, listLevel: number, cls: ClassDef, se
       const opposed = restriction.opposed(descriptors);
       const templateOptions: TemplateId[] = [];
       const excludedTemplates: CreatureChoice['excludedTemplates'] = [];
-      for (const t of templated ? allowedTemplates(settings.alignment, settings.templateRule) : []) {
+      // Summon Neutral Monster: the counterpoised template instead of celestial or fiendish.
+      const options = templated ? [...allowedTemplates(settings.alignment, settings.templateRule), ...(feats.includes('neutral') ? (['counterpoised'] as TemplateId[]) : [])] : [];
+      for (const t of options) {
         const reason = restriction.conflicts([TEMPLATE_ALIGNMENT[t]]);
         if (reason) excludedTemplates.push({ template: t, reason });
         else templateOptions.push(t);
@@ -133,9 +152,10 @@ export function choicesFor(spell: SpellKey, listLevel: number, cls: ClassDef, se
       const naturesAlly = spell === 'summon-natures-ally' || spell === 'summon-giant-ally';
       const matches = templated || (naturesAlly && !hasAlignmentSubtype(subtypes));
       out.push({
-        key: `${spell}:${listLevel}:${e.name}:${id ?? 'none'}`,
+        key: `${featList ? `feat-${featList}` : spell}:${listLevel}:${e.name}:${id ?? 'none'}`,
         spell,
         entry: e,
+        featList,
         listLevel,
         alternative,
         creature,
@@ -173,9 +193,33 @@ export function buildCreature(choice: CreatureChoice, template: TemplateId | nul
     );
   }
 
+  // Feat lists give each creature's alignment.
+  if (choice.entry.alignment && c.alignment !== choice.entry.alignment) {
+    c.changed.set('alignment', c.alignment ?? '');
+    c.alignment = choice.entry.alignment;
+  }
+
   const preset = choice.presetTemplates.find((t): t is TemplateId => t in TEMPLATE_IDS);
-  if (preset) applyTemplate(c, preset);
-  else if (template) applyTemplate(c, template);
+  const applied = preset ?? template;
+  // "Celestial wolf" on a feat list: the template adds the prefix itself.
+  if (preset && c.name.toLowerCase().startsWith(`${preset} `)) c.name = capitalize(c.name.slice(preset.length + 1));
+  if (applied) applyTemplate(c, applied);
+
+  if (choice.featList === 'good') {
+    const feats = getValue(c, 'Feats');
+    setOrAddField(c, 'statistics', 'Feats', feats ? `${feats}, Diehard` : 'Diehard', ['CMD']);
+    c.notes.push('Summon Good Monster: creatures from this list gain the Diehard feat.');
+  }
+  if (choice.featList === 'evil') {
+    c.notes.push(
+      "Summon Evil Monster: you can cast the spell as a standard action. The creature can't act until your next turn, but it isn't flat-footed and can make attacks of opportunity.",
+    );
+  }
+  if (choice.featList === 'neutral' || applied === 'counterpoised') {
+    const will = getValue(c, 'Will');
+    if (will) setValue(c, 'Will', bumpLeading(will, 2));
+    c.notes.push('Summon Neutral Monster: +2 resistance bonus on Will saves.');
+  }
   if (choice.presetTemplates.includes('young')) {
     c.notes.push(
       'This alternative summon is the young version of the creature. The young template (–1 CR, one size smaller, –4 Str/Con, +4 Dex) is not applied automatically yet.',
@@ -191,7 +235,7 @@ export function buildCreature(choice: CreatureChoice, template: TemplateId | nul
   return c;
 }
 
-const TEMPLATE_IDS: Record<TemplateId, true> = { celestial: true, fiendish: true, entropic: true, resolute: true };
+const TEMPLATE_IDS: Record<TemplateId, true> = { celestial: true, fiendish: true, entropic: true, resolute: true, counterpoised: true };
 
 export function optionTitle(option: SummonOption) {
   return spellTitle(option.spell, option.level) + (option.sla ? ' (SLA)' : '');

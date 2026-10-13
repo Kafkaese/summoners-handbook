@@ -14,6 +14,9 @@ const settings: Settings = {
   includeAlternatives: false,
   templateRule: 'core',
   deityAlignment: 'NG',
+  summonGoodMonster: false,
+  summonEvilMonster: false,
+  summonNeutralMonster: false,
 };
 
 function build(spell: SpellKey, level: number, name: string, opts: Partial<Settings> = {}, template: Parameters<typeof buildCreature>[1] = null) {
@@ -191,5 +194,47 @@ describe('summon giant ally', () => {
     expect(choice.templateOptions).toEqual([]);
     expect(creature.alignment).toBe('CG');
     expect(countGroups(3, false, 'summon-giant-ally')[0].label).toBe('1 × ash giant or cloud giant');
+  });
+});
+
+describe('summon good/evil/neutral monster feats', () => {
+  const sm = (level: number, opts: Partial<Settings>) => {
+    const s = { ...settings, ...opts };
+    return choicesFor('summon-monster', level, classById('wizard'), s);
+  };
+  it('adds a feat’s list only when selected and the alignment qualifies', () => {
+    expect(sm(2, { alignment: 'NG' }).some((c) => c.featList)).toBe(false);
+    expect(sm(2, { alignment: 'NG', summonGoodMonster: true }).filter((c) => c.featList === 'good').map((c) => c.name)).toContain('Pseudodragon');
+    // Selected, but a neutral good caster doesn't qualify for the evil list.
+    expect(sm(2, { alignment: 'NG', summonEvilMonster: true }).some((c) => c.featList)).toBe(false);
+    // Brownie is on the list but d20pfsrd has no stat block for it.
+    expect(sm(2, { alignment: 'CN', summonNeutralMonster: true }).filter((c) => c.featList === 'neutral').map((c) => c.name)).toEqual(['Atomie', 'Brownie']);
+  });
+  it('good list: celestial preset, listed alignment and Diehard', () => {
+    const s = { ...settings, alignment: 'LG' as const, summonGoodMonster: true };
+    const wolf = sm(2, s).find((c) => c.featList === 'good' && c.name === 'Celestial wolf')!;
+    const c = buildCreature(wolf, null, s)!;
+    expect(c.name).toBe('Celestial wolf');
+    expect(c.alignment).toBe('NG');
+    expect(getValue(c, 'Feats')).toMatch(/Diehard$/);
+    expect(getValue(c, 'DR')).toBeNull();
+    expect(getValue(c, 'SR')).toBe('6');
+  });
+  it('evil list: standard-action casting note', () => {
+    const s = { ...settings, alignment: 'NE' as const, summonEvilMonster: true };
+    const lemure = sm(2, s).find((c) => c.featList === 'evil' && c.name === 'Lemure')!;
+    expect(buildCreature(lemure, null, s)!.notes.join(' ')).toMatch(/standard action/);
+  });
+  it('neutral: counterpoised template option and +2 Will', () => {
+    const s = { ...settings, alignment: 'N' as const, summonNeutralMonster: true };
+    const wolf = sm(4, s).find((c) => !c.featList && c.name === 'Dire wolf')!;
+    expect(wolf.templateOptions).toEqual(['celestial', 'fiendish', 'counterpoised']);
+    const c = buildCreature(wolf, 'counterpoised', s)!;
+    expect(c.name).toBe('Counterpoised dire wolf');
+    expect(getValue(c, 'DR')).toBe('5/adamantine');
+    expect(getValue(c, 'Will')).toBe('+4');
+    expect(getValue(c, 'Special Attacks')).toBe('smite bias (1/day)');
+    const atomie = sm(2, s).find((c) => c.featList === 'neutral')!;
+    expect(buildCreature(atomie, null, s)!.notes.join(' ')).toMatch(/\+2 resistance bonus on Will/);
   });
 });

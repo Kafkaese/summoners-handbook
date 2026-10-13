@@ -2,19 +2,35 @@ import { expect, it } from 'vitest';
 import { classById } from '../classes';
 import { buildCreature, choicesFor, LISTS, type Settings } from '../summon';
 
-it('builds every creature with a template and Augment Summoning', () => {
-  const settings: Settings = { classId: 'wizard', level: 20, alignment: 'N', augmentSummoning: true, superiorSummoning: false, includeAlternatives: true, templateRule: 'expanded', deityAlignment: 'N' };
+it('builds every creature with each template, Augment Summoning and the feat lists', () => {
   let built = 0;
-  for (const spell of Object.keys(LISTS.spells) as (keyof typeof LISTS.spells)[]) {
-    for (let level = 1; level <= 9; level++) {
-      for (const choice of choicesFor(spell, level, classById('wizard'), settings)) {
-        const c = buildCreature(choice, choice.templateOptions[0] ?? null, settings);
-        if (!c) continue;
-        built++;
-        const text = JSON.stringify(c.sections);
-        expect(text, c.name).not.toMatch(/NaN|undefined/);
+  // Each feat list needs a qualifying alignment.
+  for (const alignment of ['NG', 'NE', 'N'] as const) {
+    const settings: Settings = {
+      classId: 'wizard',
+      level: 20,
+      alignment,
+      augmentSummoning: true,
+      superiorSummoning: false,
+      includeAlternatives: true,
+      templateRule: 'expanded',
+      deityAlignment: alignment,
+      summonGoodMonster: true,
+      summonEvilMonster: true,
+      summonNeutralMonster: true,
+    };
+    for (const spell of Object.keys(LISTS.spells) as (keyof typeof LISTS.spells)[]) {
+      for (let level = 1; level <= 9; level++) {
+        for (const choice of choicesFor(spell, level, classById('wizard'), settings)) {
+          for (const template of choice.templateOptions.length ? choice.templateOptions : [null]) {
+            const c = buildCreature(choice, template, settings);
+            if (!c) continue;
+            built++;
+            expect(JSON.stringify(c.sections), c.name).not.toMatch(/NaN|undefined/);
+          }
+        }
       }
     }
   }
-  expect(built).toBeGreaterThan(200);
+  expect(built).toBeGreaterThan(600);
 });

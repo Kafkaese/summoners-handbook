@@ -77,7 +77,8 @@ function FieldText({ creature, section, field }: { creature: BuiltCreature; sect
     <>
       {field.label && <b>{field.label} </b>}
       <Value creature={creature} section={section} label={field.label}>
-        {abilities ? <Items items={splitItems(field.value)} restriction={abilityRestriction} /> : <Text>{field.value}</Text>}
+        {/* A trailing ";" in the source would double up with the separator. */}
+        {abilities ? <Items items={splitItems(field.value)} restriction={abilityRestriction} /> : <Text>{field.value.replace(/[;,]\s*$/, '')}</Text>}
       </Value>
     </>
   );

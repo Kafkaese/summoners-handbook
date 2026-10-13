@@ -2,14 +2,14 @@
 import { abilityMod, abilityScore, crString, crValue, findField, getValue, hitDice, parseNum, setOrAddField, setValue, xpForCr } from './fields';
 import type { BuiltCreature } from './types';
 
-export type TemplateId = 'celestial' | 'fiendish' | 'entropic' | 'resolute';
+export type TemplateId = 'celestial' | 'fiendish' | 'entropic' | 'resolute' | 'counterpoised';
 
 interface TemplateDef {
   id: TemplateId;
   name: string;
   energies: string[];
   drType: string;
-  smite: 'evil' | 'good' | 'law' | 'chaos';
+  smite: 'evil' | 'good' | 'law' | 'chaos' | 'bias';
   source: string;
   url: string;
 }
@@ -44,6 +44,15 @@ export const TEMPLATES: Record<TemplateId, TemplateDef> = {
     source: 'Bestiary 2',
     url: `${BASE}simple-template-entropic-cr-0-or-1-1/`,
   },
+  counterpoised: {
+    id: 'counterpoised',
+    name: 'Counterpoised',
+    energies: ['acid', 'cold', 'electricity'],
+    drType: 'adamantine',
+    smite: 'bias',
+    source: 'Champions of Balance',
+    url: `${BASE}counterpoised-creature-cr-0-or-1/`,
+  },
   resolute: {
     id: 'resolute',
     name: 'Resolute',
@@ -55,7 +64,7 @@ export const TEMPLATES: Record<TemplateId, TemplateDef> = {
   },
 };
 
-const SMITE_TARGET = { evil: 'evil', good: 'good', law: 'lawful', chaos: 'chaotic' } as const;
+const SMITE_TARGET = { evil: 'evil', good: 'good', law: 'lawful', chaos: 'chaotic', bias: 'chaotic evil, chaotic good, lawful evil or lawful good' } as const;
 
 /** Defenses by Hit Dice: 1–4, 5–10, 11+. */
 function defensesFor(hd: number) {
@@ -139,7 +148,7 @@ export function applyTemplate(c: BuiltCreature, id: TemplateId) {
   c.special.push({
     name,
     text:
-      `Once per day as a swift action, the ${t.name.toLowerCase()} creature chooses one ${target} target within sight to smite. ` +
+      `Once per day as a swift action, the ${t.name.toLowerCase()} creature chooses one ${t.smite === 'bias' ? 'target that is ' : ''}${target}${t.smite === 'bias' ? '' : ' target'} within sight to smite. ` +
       `It adds its Charisma bonus (${chaBonus >= 0 ? '+' : ''}${chaBonus}) to attack rolls and gains a damage bonus equal to its HD (+${hd}) against that foe. ` +
       `The smite persists until the target is dead or the creature rests.`,
   });

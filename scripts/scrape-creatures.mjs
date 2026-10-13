@@ -121,7 +121,9 @@ async function resolveEntry(entry) {
 }
 
 const lists = JSON.parse(await readFile(LISTS_FILE, 'utf8'));
-for (const [spell, levels] of Object.entries(lists.spells)) {
+// Spell lists plus the Summon Good/Evil/Neutral Monster feat lists.
+const allLists = [...Object.entries(lists.spells), ...Object.entries(lists.featLists ?? {}).map(([k, v]) => [`feat-${k}`, v])];
+for (const [spell, levels] of allLists) {
   for (const [level, groups] of Object.entries(levels)) {
     for (const entries of Object.values(groups)) {
       for (const entry of entries) {
