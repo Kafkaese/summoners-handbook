@@ -184,12 +184,39 @@ function editMelee(c: BuiltCreature, edit: (attack: NonNullable<ReturnType<typeo
 // Damage and any critical range or multiplier: "4d6+22/19–20".
 const LEADING_DAMAGE = /^((?:\d+d\d+(?:\s*[+\-–−]\s*\d+)?|\d+)(?:\/\d+[–-]20)?(?:\/[×x]\d)?)/;
 
-/** One size larger, as on the Core Rulebook's damage dice progression. */
-const DICE_UP: Record<string, string> = {
-  '1d2': '1d3', '1d3': '1d4', '1d4': '1d6', '1d6': '1d8', '1d8': '2d6', '1d10': '2d8', '1d12': '3d6',
-  '2d4': '2d6', '2d6': '3d6', '2d8': '3d8', '2d10': '4d8', '3d6': '4d6', '3d8': '4d8',
-  '4d6': '6d6', '4d8': '6d8', '6d6': '8d6', '6d8': '8d8', '8d6': '12d6', '8d8': '12d8',
-};
+/**
+ * Paizo's FAQ "Size Changes, Effective Size Changes, and Damage Dice Progression":
+ * one size larger moves two steps on this chart, or one step if the creature is
+ * Small or smaller or the damage is 1d6 or less.
+ */
+const DAMAGE_CHART = ['1', '1d2', '1d3', '1d4', '1d6', '1d8', '1d10', '2d6', '2d8', '3d6', '3d8', '4d6', '4d8', '6d6', '6d8', '8d6', '8d8', '12d6', '12d8', '16d6'];
+const SMALL_OR_LOWER = ['fine', 'diminutive', 'tiny', 'small'];
+
+export function damageOneSizeLarger(dice: string, size: string | null): string {
+  const m = dice.match(/^(\d+)d(\d+)$/);
+  const [n, die] = m ? [Number(m[1]), Number(m[2])] : [0, 0];
+  // 2d10 increases to 4d8 regardless of size, and so on for more d10s.
+  if (die === 10 && n >= 2) return `${n * 2}d8`;
+  let start = dice;
+  if (die === 12) start = `${n * 2}d6`;
+  else if (dice === '2d4') start = '1d8';
+  else if (dice === '3d4') start = '2d6';
+  if (!DAMAGE_CHART.includes(start)) {
+    const sm = start.match(/^(\d+)d([68])$/);
+    if (!sm) return dice;
+    const count = Number(sm[1]);
+    const counts = (d: string) => DAMAGE_CHART.filter((x) => x.endsWith(`d${d}`)).map((x) => Number(x.split('d')[0]));
+    // Off-chart d6s use the next lower number of d8s; off-chart d8s the next higher number of d6s.
+    start =
+      sm[2] === '6'
+        ? `${Math.max(...counts('8').filter((x) => x < count))}d8`
+        : `${Math.min(...counts('6').filter((x) => x > count))}d6`;
+    if (!DAMAGE_CHART.includes(start)) return dice;
+  }
+  const i = DAMAGE_CHART.indexOf(start);
+  const steps = SMALL_OR_LOWER.includes(size?.toLowerCase() ?? '') || i <= DAMAGE_CHART.indexOf('1d6') ? 1 : 2;
+  return DAMAGE_CHART[Math.min(i + steps, DAMAGE_CHART.length - 1)];
+}
 
 const PRIMARY_ORDER = ['bite', 'claw', 'slam', 'gore', 'talon', 'sting'];
 const weaponType = (prefix: string) => PRIMARY_ORDER.find((w) => new RegExp(`\\b${w}s?\\b`, 'i').test(prefix));
@@ -273,12 +300,15 @@ export function applyVersatileTemplate(c: BuiltCreature, id: VersatileTemplateId
 
   if (id === 'primordial') {
     const melee = getValue(c, 'Melee') ?? '';
-    const types = splitTopLevel(melee, /^(?:\s+or\s+|,\s*)/).map((p) => weaponType(parseAttack(p)?.prefix ?? ''));
+    const attacks = splitTopLevel(melee, /^(?:\s+or\s+|\s+and\s+|,\s*)/).filter((p) => parseAttack(p));
+    const types = attacks.map((p) => weaponType(parseAttack(p)!.prefix));
+    // The list only breaks ties between primary attacks; a sole natural attack (an ankylosaurus's tail) is primary.
     const primary = PRIMARY_ORDER.find((w) => types.includes(w));
-    if (primary) {
+    const sole = !primary && attacks.length === 1;
+    if (primary || sole) {
       editMelee(c, (a) => {
-        if (weaponType(a.prefix) !== primary) return;
-        a.damage = a.damage.replace(/^(\d+d\d+)/, (dice) => DICE_UP[dice] ?? dice);
+        if (primary && weaponType(a.prefix) !== primary) return;
+        a.damage = a.damage.replace(/^(\d+d\d+|1(?!\d))/, (dice) => damageOneSizeLarger(dice, c.size));
       });
     }
     addPrimordialSlas(c, hd);

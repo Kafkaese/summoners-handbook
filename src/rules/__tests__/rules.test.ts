@@ -4,6 +4,7 @@ import { allowedTemplates } from '../alignment';
 import { classById, summonOptions } from '../classes';
 import { getValue } from '../fields';
 import { buildCreature, choicesFor, countGroups, type Settings } from '../summon';
+import { damageOneSizeLarger } from '../versatile';
 
 const settings: Settings = {
   classId: 'wizard',
@@ -307,6 +308,20 @@ describe('versatile summon monster', () => {
     expect(getValue(rex, 'DR')).toBe('10/cold iron');
     expect(getValue(rex, 'SR')).toBe('16');
     expect(rex.sections.offense.find((f) => f.label === 'Spell-Like Abilities')!.lines).toEqual(['1/day—dancing lights, faerie fire, lesser confusion (DC 11)']);
+  });
+  it('primordial enlarges a sole natural attack even when it isn’t on the bite/claw/… list', () => {
+    const ankylosaurus = buildCreature(sm(5, 'Ankylosaurus'), 'primordial', s)!;
+    expect(getValue(ankylosaurus, 'Melee')).toBe('tail +14 (4d6+12 plus stun)');
+  });
+  it("follows Paizo's damage dice progression FAQ", () => {
+    expect(damageOneSizeLarger('1d6', 'Medium')).toBe('1d8');
+    expect(damageOneSizeLarger('1d8', 'Large')).toBe('2d6');
+    expect(damageOneSizeLarger('1d8', 'Small')).toBe('1d10');
+    expect(damageOneSizeLarger('3d6', 'Huge')).toBe('4d6');
+    expect(damageOneSizeLarger('4d10', 'Huge')).toBe('8d8');
+    expect(damageOneSizeLarger('1d12', 'Large')).toBe('3d6');
+    expect(damageOneSizeLarger('10d6', 'Colossal')).toBe('12d8');
+    expect(damageOneSizeLarger('1', 'Tiny')).toBe('1d2');
   });
   it('dark: low-light vision, DR/magic, SR and shadow blend', () => {
     const wolf = buildCreature(sm(2, 'Wolf'), 'dark', s)!;
