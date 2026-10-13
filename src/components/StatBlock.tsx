@@ -70,14 +70,23 @@ function Items({ items, restriction }: { items: string[]; restriction: (item: st
   );
 }
 
-function SpellLine({ line }: { line: string }) {
+function SpellLine({ line, changed }: { line: string; changed: boolean }) {
   const { prefix, items } = splitSpellLine(line);
-  return (
+  const content = (
     <>
       {prefix}
       <Items items={items} restriction={spellRestriction} />
     </>
   );
+  return changed ? <mark className="changed">{content}</mark> : content;
+}
+
+/** Spell-like ability lines a template added or changed; the original lines are stored as JSON. */
+function changedLines(creature: BuiltCreature, section: SectionName, field: Field): (line: string) => boolean {
+  const original = creature.changed.get(`${section}.${field.label}.lines`);
+  if (original === undefined) return () => false;
+  const before = new Set<string>(JSON.parse(original));
+  return (line) => !before.has(line);
 }
 
 /**
@@ -170,6 +179,7 @@ function Section({ creature, section }: { creature: BuiltCreature; section: Sect
       continue;
     }
     used.add(f);
+    const lineChanged = changedLines(creature, section, f);
     lines.push(
       <div key={`f-${lines.length}`}>
         <p>
@@ -179,7 +189,7 @@ function Section({ creature, section }: { creature: BuiltCreature; section: Sect
           <ul className="sb-lines">
             {f.lines.map((l, i) => (
               <li key={i}>
-                <SpellLine line={l} />
+                <SpellLine line={l} changed={lineChanged(l)} />
               </li>
             ))}
           </ul>
@@ -199,7 +209,9 @@ function Section({ creature, section }: { creature: BuiltCreature; section: Sect
 export function StatBlock({ creature }: { creature: BuiltCreature }) {
   const crChanged = creature.changed.has('cr');
   const alignmentChanged = creature.changed.has('alignment');
-  const typeRest = creature.typeLine && creature.alignment ? creature.typeLine.replace(/^\S+\s+/, '') : creature.typeLine;
+  const typeChanged = creature.changed.has('type');
+  const stripAlignment = (line: string) => (creature.alignment ? line.replace(/^\S+\s+/, '') : line);
+  const typeRest = creature.typeLine && stripAlignment(creature.typeLine);
 
   return (
     <article className="statblock">
@@ -221,7 +233,13 @@ export function StatBlock({ creature }: { creature: BuiltCreature }) {
           ) : (
             creature.alignment
           )}{' '}
-          {typeRest}
+          {typeChanged ? (
+            <mark className="changed" title={`Base: ${stripAlignment(creature.changed.get('type') ?? '')}`}>
+              {typeRest}
+            </mark>
+          ) : (
+            typeRest
+          )}
         </p>
       )}
       <Section creature={creature} section="intro" />

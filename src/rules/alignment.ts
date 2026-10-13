@@ -1,4 +1,4 @@
-import type { TemplateId } from './templates';
+import type { AlignmentTemplateId, TemplateId } from './templates';
 
 export type Alignment = 'LG' | 'NG' | 'CG' | 'LN' | 'N' | 'CN' | 'LE' | 'NE' | 'CE';
 
@@ -28,7 +28,7 @@ export function components(a: Alignment): Component[] {
 }
 
 const OPPOSITE: Record<Component, Component> = { lawful: 'chaotic', chaotic: 'lawful', good: 'evil', evil: 'good' };
-const TEMPLATE_FOR: Record<Component, TemplateId> = {
+const TEMPLATE_FOR: Record<Component, AlignmentTemplateId> = {
   good: 'celestial',
   evil: 'fiendish',
   lawful: 'resolute',
@@ -61,7 +61,7 @@ export const TEMPLATE_RULES: { id: TemplateRule; name: string; description: stri
 ];
 
 /** Templates a caster may apply to a "*" creature under the given rule. */
-export function allowedTemplates(a: Alignment, rule: TemplateRule = 'core'): TemplateId[] {
+export function allowedTemplates(a: Alignment, rule: TemplateRule = 'core'): AlignmentTemplateId[] {
   const mine = components(a);
   const neutralGoodEvil = !mine.includes('good') && !mine.includes('evil');
   const neutralLawChaos = !mine.includes('lawful') && !mine.includes('chaotic');
@@ -70,7 +70,7 @@ export function allowedTemplates(a: Alignment, rule: TemplateRule = 'core'): Tem
     if (a === 'N') return ['celestial', 'entropic', 'fiendish', 'resolute'];
     return mine.map((c) => TEMPLATE_FOR[c]);
   }
-  const out: TemplateId[] = [];
+  const out: AlignmentTemplateId[] = [];
   if (neutralGoodEvil) out.push('celestial', 'fiendish');
   else out.push(...mine.filter((c) => c === 'good' || c === 'evil').map((c) => TEMPLATE_FOR[c]));
   if (neutralLawChaos) out.push('entropic', 'resolute');
@@ -100,6 +100,13 @@ export const TEMPLATE_ALIGNMENT: Record<TemplateId, string> = {
   entropic: 'chaotic',
   // Counterpoised creatures embody balance; the template adds no alignment.
   counterpoised: '',
+  // Versatile Summon Monster's templates have no alignment either.
+  aerial: '',
+  aqueous: '',
+  chthonic: '',
+  dark: '',
+  fiery: '',
+  primordial: '',
 };
 
 /** Alignment prerequisites of Summon Good/Evil/Neutral Monster. */

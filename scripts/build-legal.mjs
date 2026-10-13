@@ -62,6 +62,13 @@ const pages = new Set([
   'https://www.d20pfsrd.com/feats/general-feats/summon-neutral-monster/',
   'https://www.d20pfsrd.com/feats/general-feats/sunlight-summons/',
   'https://www.d20pfsrd.com/feats/general-feats/moonlight-summons/',
+  'https://www.d20pfsrd.com/feats/general-feats/versatile-summon-monster/',
+  'https://www.d20pfsrd.com/bestiary/monster-listings/templates/simple-template-aerial-creature-cr-0-or-1/',
+  'https://www.d20pfsrd.com/bestiary/monster-listings/templates/simple-template-aqueous-creature-cr-0-or-1/',
+  'https://www.d20pfsrd.com/bestiary/monster-listings/templates/simple-template-chthonic-creature-cr-0-or-1/',
+  'https://www.d20pfsrd.com/bestiary/monster-listings/templates/simple-template-dark-creature-cr-0-or-1/',
+  'https://www.d20pfsrd.com/bestiary/monster-listings/templates/simple-template-fiery-creature-cr-0-or-1/',
+  'https://www.d20pfsrd.com/bestiary/monster-listings/templates/simple-template-primordial-creature-cr-0-or-1/',
 ]);
 const pageNotices = [];
 for (const url of pages) {

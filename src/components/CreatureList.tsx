@@ -3,7 +3,7 @@ import { listName } from '../rules/classes';
 import { crString, crValue } from '../rules/fields';
 import type { CountGroup, CreatureChoice } from '../rules/summon';
 import type { SpellKey } from '../rules/types';
-import { TEMPLATES } from '../rules/templates';
+import { TEMPLATES, templateName } from '../rules/templates';
 
 interface Props {
   spell: SpellKey;
@@ -79,8 +79,8 @@ export function CreatureList({ spell, title, groups, groupIndex, onGroup, choice
                     <span className="creature-meta">
                       <span className="cr">CR {displayCr(c)}</span>
                       {c.templateOptions.length > 0 && (
-                        <span className="badge template" title="Summoned with an alignment template">
-                          {c.templateOptions.length === 1 ? TEMPLATES[c.templateOptions[0]].name : 'template'}
+                        <span className="badge template" title="Summoned with a template">
+                          {c.templateOptions.length === 1 ? templateName(c.templateOptions[0]) : 'template'}
                         </span>
                       )}
                       {c.descriptors.map((d) => (
